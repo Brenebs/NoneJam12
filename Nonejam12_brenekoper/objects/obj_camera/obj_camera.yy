@@ -30,12 +30,15 @@
   "physicsShapePoints":[],
   "physicsStartAwake":true,
   "properties":[
-    {"$GMObjectProperty":"v1","%Name":"camera_zoom","filters":[],"listItems":[],"multiselect":false,"name":"camera_zoom","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"1","varType":0,},
-    {"$GMObjectProperty":"v1","%Name":"camera_zoom_acel","filters":[],"listItems":[],"multiselect":false,"name":"camera_zoom_acel","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0.1","varType":0,},
-    {"$GMObjectProperty":"v1","%Name":"alvo","filters":[
+    {"$GMObjectProperty":"v2","%Name":"camera_zoom","filters":[],"listItems":[],"multiselect":false,"name":"camera_zoom","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"1","varType":0,},
+    {"$GMObjectProperty":"v2","%Name":"camera_zoom_acel","filters":[],"listItems":[],"multiselect":false,"name":"camera_zoom_acel","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0.1","varType":0,},
+    {"$GMObjectProperty":"v2","%Name":"alvo","filters":[
         "GMObject",
       ],"listItems":[],"multiselect":false,"name":"alvo","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"noone","varType":5,},
-    {"$GMObjectProperty":"v1","%Name":"acel","filters":[],"listItems":[],"multiselect":false,"name":"acel","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":".25","varType":0,},
+    {"$GMObjectProperty":"v2","%Name":"acel","filters":[],"listItems":[],"multiselect":false,"name":"acel","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":".25","varType":0,},
+    {"$GMObjectProperty":"v2","%Name":"lock_camera_x","filters":[],"listItems":[],"multiselect":false,"name":"lock_camera_x","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"true","varType":3,},
+    {"$GMObjectProperty":"v2","%Name":"lock_camera_y","filters":[],"listItems":[],"multiselect":false,"name":"lock_camera_y","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"False","varType":3,},
+    {"$GMObjectProperty":"v2","%Name":"distance_to_follow","filters":[],"listItems":[],"multiselect":false,"name":"distance_to_follow","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"8","varType":0,},
   ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
@@ -45,5 +48,5 @@
     "path":"sprites/spr_camera_dbg/spr_camera_dbg.yy",
   },
   "spriteMaskId":null,
-  "visible":true,
+  "visible":false,
 }

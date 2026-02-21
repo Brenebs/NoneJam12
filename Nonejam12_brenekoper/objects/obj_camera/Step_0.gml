@@ -5,8 +5,10 @@ if(global.pause) return;
 
 if(instance_exists(alvo))
 {
-	x=lerp(x,alvo.x + offset.x,acel);
-	y=lerp(y,alvo.y + offset.y,acel);
+	camera_second_acel = lerp(camera_second_acel,(point_distance(x,y,alvo.x,alvo.y) > distance_to_follow),.01)
+	
+	x=lerp(x,alvo.x + offset.x,acel * camera_second_acel);
+	y=lerp(y,alvo.y + offset.y,acel * camera_second_acel);
 }
 
 if(DEBUG_BUILD)
@@ -23,6 +25,21 @@ if(DEBUG_BUILD)
 		}
 	}
 }
+
+
+var _y = max(y - (CAMERA_HEIGHT/2) , 0);
+var _x = (x - (CAMERA_WIDTH/2))
+
+if(lock_camera_x)
+{
+	_x = clamp(x - (CAMERA_WIDTH/2) , 0 , room_width - CAMERA_WIDTH)
+}
+if(lock_camera_y)
+{
+	_y = clamp(y - (CAMERA_HEIGHT/2) , 0 , room_height - CAMERA_HEIGHT);
+}
+
+camera_set_view_pos(view_camera[0] , _x  , _y );
 
 var _x = 0;
 var _y = 0;

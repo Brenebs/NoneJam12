@@ -8,6 +8,8 @@ camera_zoom		 *= 1;
 
 offset = new vector2();
 
+camera_second_acel = 0;
+
 #region update camera functions
 
 	update_camera = function(_lerp = 1)
@@ -47,9 +49,6 @@ debug_create = function()
 
 	dbg_slider(_ref , 0 , 3,"ZOOM: ",0.1)
 	
-	
-	dbg_slider(ref_create(obj_game_control.filter_vignete,"offset_pause") , 0 , 2,"Efeito black: ",0.05)
-
 }
 
 debug_destroy = function()
