@@ -212,7 +212,7 @@ function better_array_create(_lenght = 1 , _val = undefined)
 	var _array = [];
 	for(var i = 0 ; i < _lenght ; i++)
 	{
-		_array[i] = _val;
+		_array[i] = variable_clone(_val);
 	}
 	
 	return variable_clone(_array);

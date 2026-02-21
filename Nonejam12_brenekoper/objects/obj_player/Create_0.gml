@@ -8,6 +8,8 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 
 #region mineirando
 
+	inside_ground = true;
+
 	damage = 1;
 	dash_damage_multiply = 1.5;
 	
@@ -49,7 +51,7 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 			{
 				_current.destroy_function();
 			}
-			
+			else
 			if(push_once)
 			{
 				push_once = false;
@@ -134,6 +136,12 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 	
 	draw_drill = function()
 	{
+		if(!can_cave) 
+		{
+			draw_sprite_ext(spr_litou_hat,0,x,y - 10 - wave(1,-1,2) , xscale * look_at , yscale , 0 , image_blend , 1);
+			return;
+		}
+		
 		var _dist = 8
 		var _x = lengthdir_x(_dist , angle_direction);
 		var _y = lengthdir_y(_dist*.8 , angle_direction);
@@ -155,14 +163,14 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 		draw_healthbar(20,20,100 + energy_max,30,current_energy/energy_max * 100 , c_black , c_red , c_white , 0,true , true);
 	}
 	
-	
 	draw_border = function(){}
 	draw_reload_feedback = function(){}
 
 #endregion
 
-#region state machine
+#region state machine debaixo da terra
 
+	//andando debaixo da terra
 	state_walk = function()
 	{
 		image_blend = c_white
@@ -203,6 +211,7 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 		}
 	}
 	
+	//carregando dash
 	state_dash_load = function()
 	{
 		image_blend = c_orange;
@@ -239,6 +248,7 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 		}
 	}
 	
+	//indo pra frente
 	state_dash_released = function()
 	{
 		
@@ -265,7 +275,91 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 
 #endregion
 
-max_y = 100000;
+#region state machine acima da terra
+
+	gravity_force = .6;
+	max_y_outside = 32
+	on_ground = false;
+	outside_speed = 5;
+	jump_force = 5;
+	
+	check_horizontal_movement = function()
+	{
+		return( keyboard_check(ord("D")) - keyboard_check(ord("A")))
+	}
+	check_confirm = function()
+	{
+		return keyboard_check_pressed(vk_space);
+	}
+
+	state_outside = function()
+	{
+		on_ground = instance_place(x,y+1,obj_collision);
+	
+		var _hspd = outside_speed * check_horizontal_movement();
+	
+		hspd = lerp(hspd , _hspd , .1);
+	
+		if(!on_ground)
+		{
+			vspd += gravity_force;
+		}
+	
+	
+	
+		var _direction = point_direction(x,y,mouse_x,mouse_y);
+		var _spd = mouse_check_button(mb_left);
+		
+		var _point = _direction;
+	
+		angle_direction = lerp_angle(angle_direction,_point , .1)
+		angle_direction = wrap(angle_direction,0,359.9);
+	
+		if(sign(_hspd) != 0) 
+		{
+			look_at = sign(_hspd);
+		}
+		
+		
+		if(on_ground)
+		{
+			if(mouse_check_button_pressed(mb_middle))
+			{
+				if(room == rm_real_world)
+				{
+					room_goto(rm_gameplay)
+				}
+				else
+				{
+					room_goto(rm_real_world)
+				}	
+				
+			}
+			
+			if(can_cave && number_is_between(angle_direction,180+1,360-1) && mouse_check_button_pressed(mb_left))
+			{
+				state = state_walk;
+				y = -max_y_outside+1
+				vspd = 8;
+				inside_ground = true;
+			}
+			else
+			if(check_confirm())
+			{
+				vspd = -8;
+			}
+		}
+	}
+
+	if(y<=-max_y_outside || !can_cave)
+	{
+		inside_ground = false;
+		state = state_outside;
+	}
+
+#endregion
+
+max_y = (CHUNK_MAX * CHUNK_HEIGHT) + CHUNK_HEIGHT;
 collision=function()
 {
 	var _multiply = speed_multiply_timer > 0 ? current_speed_multiply : 1
@@ -277,10 +371,40 @@ collision=function()
 	current_energy -= max(_movement , still_energy_cost);
 	current_energy = wrap(current_energy , 0 , energy_max);
 	
-	x += __x;
-	y += __y;
+	if(!inside_ground)
+	{
+		for(var i = 0 ; i < floor(abs(__x)) ; i++)
+		{
+			if(!instance_place(x+sign(__x),y,obj_collision))
+			{
+				x += sign(__x);
+			}
+		}
+		
+		for(var i = 0 ; i < floor(abs(__y)) ; i++)
+		{
+			if(!instance_place(x,y+sign(__y),obj_collision))
+			{
+				y += sign(__y);
+			}
+		}
+	}
+	else
+	{
+		x += __x;
+		y += __y;
+	}
+	
+	
 	
 	var _offset = 0
 	x = clamp(x , _offset , room_width - _offset);
-	y = clamp(-32 , y , max_y);
+	y = min(y , max_y);
+	
+	if(inside_ground) && y < -max_y_outside
+	{
+		inside_ground = false;
+		vspd = -8;
+		state = state_outside;
+	}
 }

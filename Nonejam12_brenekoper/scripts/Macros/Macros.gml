@@ -6,6 +6,7 @@
 #macro GAME_NAME game_display_name
 window_set_caption(GAME_NAME);
 
+
 //save
 #macro SAVE_NAME string_lettersdigits(GAME_NAME)+".json"
 #macro GAME_INFO global.game_save //os dois são a mesma coisa eu só tenho os dois pq eu as vezes escrevo outro
@@ -28,9 +29,9 @@ window_set_caption(GAME_NAME);
 
 global.camera_zoom = 1
 #macro CAMERA_ZOOM global.camera_zoom
-
 global.gameplay_room = false;
 #macro GAMEPLAY_ROOM global.gameplay_room
+
 
 #macro DBG_TYPE_STRING "s"
 #macro DBG_TYPE_INT	   "i"
@@ -68,8 +69,9 @@ global.death = false;
 #macro SCRIB_RAIBOW  "[rainbow]"
 #macro SCRIB_RAIBOW0 "[/rainbow]"
 
-
-
-
-
 #endregion
+
+
+#macro CHUNKS_OFFSET 2
+#macro CHUNK_HEIGHT (CAMERA_BASE_HEIGHT*.4)
+#macro CHUNK_MAX 130

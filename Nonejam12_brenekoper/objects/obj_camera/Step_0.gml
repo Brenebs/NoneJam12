@@ -3,12 +3,26 @@
 
 if(global.pause) return;
 
+var _player_outside = false;
+
 if(instance_exists(alvo))
 {
 	camera_second_acel = lerp(camera_second_acel,(point_distance(x,y,alvo.x,alvo.y) > distance_to_follow),.01)
 	
 	x=lerp(x,alvo.x + offset.x,acel * camera_second_acel);
-	y=lerp(y,alvo.y + offset.y,acel * camera_second_acel);
+	
+	var __y = alvo.y + offset.y
+	
+	if(alvo.y<0)
+	{
+		__y = -150
+	}
+	else
+	{
+		__y = max(__y , (CAMERA_HEIGHT/2) - 100)
+	}
+	
+	y=lerp(y,__y,acel * camera_second_acel);
 }
 
 if(DEBUG_BUILD)
@@ -27,7 +41,7 @@ if(DEBUG_BUILD)
 }
 
 
-var _y = max(y - (CAMERA_HEIGHT/2) , 0);
+var _y = y - (CAMERA_HEIGHT/2)
 var _x = (x - (CAMERA_WIDTH/2))
 
 if(lock_camera_x)

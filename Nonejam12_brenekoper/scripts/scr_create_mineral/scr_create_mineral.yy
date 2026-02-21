@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_create_mineral",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_create_mineral",
+  "parent":{
+    "name":"CandyGenerator",
+    "path":"folders/Scripts/CandyGenerator.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
