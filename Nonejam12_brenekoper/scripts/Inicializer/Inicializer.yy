@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"Inicializer",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"Inicializer",
+  "parent":{
+    "name":"Utilitários",
+    "path":"folders/Scripts/Utilitários.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
