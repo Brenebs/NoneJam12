@@ -42,3 +42,34 @@ global.pause = false;
 global.death = false;
 
 
+#region Scribble
+
+#macro SCRIB_WAVE "[wave]"
+#macro SCRIB_WAVE0 "[/wave]"
+
+#macro SCRIB_SHAKE  "[shake]"
+#macro SCRIB_SHAKE0 "[/shake]"
+
+#macro SCRIB_WOOBLE  "[wobble]"
+#macro SCRIB_WOOBLE0 "[/wobble]"
+
+#macro SCRIB_PULSE  "[pulse]"
+#macro SCRIB_PULSE0 "[/pulse]"
+
+#macro SCRIB_WHEEL  "[wheel]"
+#macro SCRIB_WHEEL0 "[/wheel]"
+
+#macro SCRIB_JITTER  "[jitter]"
+#macro SCRIB_JITTER0 "[/jitter]"
+
+#macro SCRIB_BLINK  "[blink]"
+#macro SCRIB_BLINK0 "[/blink]"
+
+#macro SCRIB_RAIBOW  "[rainbow]"
+#macro SCRIB_RAIBOW0 "[/rainbow]"
+
+
+
+
+
+#endregion
