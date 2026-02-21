@@ -13,7 +13,6 @@ if(DEBUG_BUILD)
 {
 	if(keyboard_check_pressed(vk_f1))
 	{
-		
 		if(dbg_view_exists(my_debugger) || is_debug_overlay_open())
 		{
 			debug_destroy()
@@ -23,15 +22,6 @@ if(DEBUG_BUILD)
 			debug_create()
 		}
 	}
-}
-
-
-if(GAME_MODE == CAKE_IND)
-{
-	var _y = max(y - (CAMERA_HEIGHT/2) , 0);
-	var _x = clamp(x - (CAMERA_WIDTH/2) , 0 , room_width - CAMERA_WIDTH)
-	
-	camera_set_view_pos(view_camera[0] , _x  , _y );
 }
 
 var _x = 0;

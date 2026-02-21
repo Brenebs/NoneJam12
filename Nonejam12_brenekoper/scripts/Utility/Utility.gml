@@ -215,7 +215,40 @@ function better_array_create(_lenght = 1 , _val = undefined)
 		_array[i] = _val;
 	}
 	
-	return _array;
+	return variable_clone(_array);
+}
+
+#macro PLAYER_ARRAY []
+function get_nearest_player(_x = x , _y = y)
+{
+	var _array = PLAYER_ARRAY;
+	
+	var _player = noone
+	var _dist = infinity;
+	var _len = array_length(_array);
+	
+	for(var i = 0 ; i < _len ; i++)
+	{
+		if(instance_exists(_array[i]))
+		{
+			var _ins = instance_nearest(_x,_y,_array[i]);
+			
+			if(!instance_exists(_ins))
+			{
+				continue;
+			}
+			
+			var __dist = point_distance(_x,_y, _ins.x,_ins.y);
+			
+			if(_dist > __dist)
+			{
+				_dist = __dist;
+				_player = _ins;
+			}
+		}
+	}
+
+	return _player;
 }
 
 
