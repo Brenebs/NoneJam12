@@ -27,7 +27,11 @@
   "physicsShape":1,
   "physicsShapePoints":[],
   "physicsStartAwake":true,
-  "properties":[],
+  "properties":[
+    {"$GMObjectProperty":"v2","%Name":"mineral_number","filters":[],"listItems":[],"multiselect":false,"name":"mineral_number","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"1","varType":1,},
+    {"$GMObjectProperty":"v2","%Name":"life","filters":[],"listItems":[],"multiselect":false,"name":"life","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"10","varType":0,},
+    {"$GMObjectProperty":"v2","%Name":"resistency","filters":[],"listItems":[],"multiselect":false,"name":"resistency","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"1","varType":1,},
+  ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,

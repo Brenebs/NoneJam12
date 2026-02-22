@@ -43,9 +43,12 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 			var _current = ds_list_find_value(_list , i);
 			
 			_current.scale=1.5;
+			
+			var _mult = min(_damage_multiply,_current.life)
+			
 			_current.life -= damage * _damage_multiply;
 			_current.white_timer = clamp(timer_offset_attacks-1 , 0 ,5);
-			current_energy -= (_current.resistency * damage_energy_cost_multiply) * _damage_multiply;
+			current_energy -= (_current.resistency * damage_energy_cost_multiply) * _mult;
 			
 			if(_current.life<=0)
 			{
@@ -127,6 +130,11 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 			draw_player();
 			draw_drill();
 		}
+		
+		if(state == state_dash_load)
+		{
+			progress_hollow_circle(x - 32 , y - 32,current_dash_load_timer+2,dash_load_timer,5 , 8, 32)
+		}
 	}
 	
 	draw_player = function()
@@ -154,8 +162,7 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 			
 		drill.x = x + _x;
 		drill.y = y + _y;
-		drill.image_angle = angle_direction;
-		draw_sprite_ext(spr_drill	 ,0,x + _x ,y + _y , xscale , yscale , angle_direction , image_blend , 1);
+		draw_sprite_ext(spr_drill	 ,0,x + _x ,y + _y , xscale , yscale , drill.image_angle , image_blend , 1);
 	}
 	
 	draw_gui = function()
@@ -170,6 +177,17 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 
 #region state machine debaixo da terra
 
+	rotate_drill = function(_direction , _force)
+	{
+
+		angle_direction = lerp_angle(angle_direction,_direction , _force)
+		angle_direction = wrap(angle_direction,0,359.9);
+		
+		drill.image_angle = lerp_angle(angle_direction,_direction , _force*.8)
+		drill.image_angle = wrap(drill.image_angle,0,359.9);
+		
+	}
+
 	//andando debaixo da terra
 	state_walk = function()
 	{
@@ -177,10 +195,12 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 		
 	
 		var _direction = point_direction(x,y,mouse_x,mouse_y);
-		var _spd = mouse_check_button(mb_left) && (point_distance(x,y,mouse_x,mouse_y) > 16);
+		var _spd = mouse_check_button(mb_left) && (point_distance(x,y,mouse_x,mouse_y) > 16) && !is_mouse_over_debug_overlay();
 		
-		var _hspd = lengthdir_x(1,_direction)
-		var _vspd = lengthdir_y(1,_direction)
+		rotate_drill(_direction, .1 + (_spd*.2))
+		
+		var _hspd = lengthdir_x(1,angle_direction)
+		var _vspd = lengthdir_y(1,angle_direction)
 	
 		h_spd	= _hspd * current_speed * _spd;
 		hspd	= lerp(hspd , h_spd , aceleration * acel_after_attack);
@@ -188,14 +208,11 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 		v_spd	= _vspd * current_speed * _spd;
 		vspd	= lerp(vspd , v_spd , aceleration * acel_after_attack)
 	
-		var _point = _direction;
 		if(_spd || (abs(hspd) + abs(vspd))>1)
 		{
 			check_entity_to_drill();
 		}
-	
-		angle_direction = lerp_angle(angle_direction,_point , .1)
-		angle_direction = wrap(angle_direction,0,359.9);
+		
 	
 		if(number_is_between(angle_direction,90,270)) look_at = -1
 		else look_at = 1;
@@ -221,8 +238,7 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 		
 		var _direction = point_direction(x,y,mouse_x,mouse_y);
 	
-		angle_direction = lerp_angle(angle_direction,_direction , .5)
-		angle_direction = wrap(angle_direction,0,359.9);
+		rotate_drill(_direction, .3)
 	
 		if(number_is_between(angle_direction,90,270)) look_at = -1
 		else look_at = 1;
@@ -235,11 +251,15 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 			state = state_dash_released;
 			current_dash_timer = 0;
 			
+			rotate_drill(_direction, .8)
+			
 			var _x = lengthdir_x(dash_distance_max ,angle_direction)
 			var _y = lengthdir_y(dash_distance_max ,angle_direction)
 			var _dist = point_distance(x,y,x+_x,y+_y) / dash_flow_timer;
 			
-			dash_speed = _dist;
+			var _frc =.5 + (current_dash_load_timer / dash_load_timer)*.5
+			
+			dash_speed = _dist * _frc;
 			
 			hspd = lengthdir_x(dash_speed,angle_direction);
 			vspd = lengthdir_y(dash_speed,angle_direction);
@@ -311,9 +331,7 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 		var _spd = mouse_check_button(mb_left);
 		
 		var _point = _direction;
-	
-		angle_direction = lerp_angle(angle_direction,_point , .1)
-		angle_direction = wrap(angle_direction,0,359.9);
+		rotate_drill(_direction, .6)
 	
 		if(sign(_hspd) != 0) 
 		{
@@ -367,9 +385,6 @@ collision=function()
 	var __x = hspd * _multiply
 	var __y = vspd * _multiply
 	
-	var _movement = (abs(__x) + abs(__y))/50 * move_energy_cost
-	current_energy -= max(_movement , still_energy_cost);
-	current_energy = wrap(current_energy , 0 , energy_max);
 	
 	if(!inside_ground)
 	{
@@ -391,6 +406,11 @@ collision=function()
 	}
 	else
 	{
+		
+		var _movement = (abs(__x) + abs(__y))/50 * move_energy_cost
+		current_energy -= max(_movement , still_energy_cost);
+		current_energy = wrap(current_energy , 0 , energy_max);
+		
 		x += __x;
 		y += __y;
 	}
@@ -408,3 +428,76 @@ collision=function()
 		state = state_outside;
 	}
 }
+
+
+#region
+
+	my_debugger = noone;
+
+	debug_create = function()
+	{
+		my_debugger = dbg_view("CAMERA OPTIONS",true)
+
+		//dbg_section("Player");
+		//dbg_text("Coisas");
+		//dbg_checkbox(ref_create(self , "variable_name"),"")
+		//dbg_slider(ref_create(self , "variable_name") , 0 , 3,"TEXTO: ",0.1)
+		//dbg_text_input(	ref_create(self , "variable_name")	,"TEXTO: "	,DBG_TYPE_REAL)
+		
+		dbg_section("Movimentação");
+		
+			dbg_text_input(ref_create(self , "speed_walking")	 , "speed_walking"		, DBG_TYPE_REAL);
+			dbg_text_input(ref_create(self , "current_speed")	 , "current_speed"		, DBG_TYPE_REAL);
+			dbg_text_input(ref_create(self , "aceleration"	)	 , "aceleration"		, DBG_TYPE_REAL);
+			dbg_text_input(ref_create(self , "move_energy_cost") , "move_energy_cost"	, DBG_TYPE_REAL);
+		
+		dbg_section("Dash");
+		
+			dbg_text_input(ref_create(self , "dash_load_timer"	)		, "dash_load_timer"		, DBG_TYPE_INT);
+			dbg_text_input(ref_create(self , "dash_distance_max"	)	, "dash_distance_max"	, DBG_TYPE_INT);
+			dbg_text_input(ref_create(self , "dash_flow_timer"	)		, "dash_flow_timer"		, DBG_TYPE_INT);
+			
+			dbg_text_input(ref_create(self , "dash_damage_multiply"	)	, "dash_damage_multiply"		, DBG_TYPE_REAL);
+			
+			dbg_text_input(ref_create(self , "dash_bust_energy_cost")	, "dash_bust_energy_cost"		, DBG_TYPE_REAL);
+			dbg_text_input(ref_create(self , "state_dash_energy_cost")	, "state_dash_energy_cost"		, DBG_TYPE_REAL);
+		
+		dbg_section("Broca");
+		
+			dbg_text_input(ref_create(self , "damage")						, "damage"						, DBG_TYPE_REAL);
+			dbg_text_input(ref_create(self , "dash_damage_multiply")		, "dash_damage_multiply"		, DBG_TYPE_REAL);
+			
+			dbg_text_input(ref_create(self , "damage_energy_cost_multiply")	, "damage_energy_cost_multiply"	, DBG_TYPE_REAL);
+																			  
+			dbg_text_input(ref_create(self , "timer_offset_attacks")		, "timer_offset_attacks"		, DBG_TYPE_INT);
+			dbg_text_input(ref_create(self , "dash_timer_offset_attacks")	, "dash_timer_offset_attacks"	, DBG_TYPE_INT);
+																			  
+			dbg_text_input(ref_create(self , "push_force_when_attack")		, "push_force_when_attack"		, DBG_TYPE_REAL);
+			dbg_text_input(ref_create(self , "push_force_when_attack_dash")	, "push_force_when_attack_dash"	, DBG_TYPE_REAL);
+		
+		dbg_section("Energy");
+		
+			dbg_text_input(ref_create(self , "energy_max")			, "energy_max"		, DBG_TYPE_REAL);
+			dbg_text_input(ref_create(self , "current_energy")		, "current_energy"	, DBG_TYPE_REAL);
+			
+			
+			dbg_text_input(ref_create(self , "still_energy_cost")			, "still_energy_cost"			, DBG_TYPE_REAL);
+			dbg_text_input(ref_create(self , "move_energy_cost")			, "move_energy_cost"			, DBG_TYPE_REAL);
+			dbg_text_input(ref_create(self , "dash_bust_energy_cost")		, "dash_bust_energy_cost"		, DBG_TYPE_REAL);
+			dbg_text_input(ref_create(self , "damage_energy_cost_multiply")	, "damage_energy_cost_multiply"	, DBG_TYPE_REAL);
+			dbg_text_input(ref_create(self , "state_dash_energy_cost")		, "state_dash_energy_cost"		, DBG_TYPE_REAL);
+			
+	
+	}
+
+	debug_destroy = function()
+	{
+		if(dbg_view_exists(my_debugger))
+		{
+			dbg_view_delete(my_debugger);
+		}
+	
+		show_debug_overlay(false);
+	}
+
+#endregion
