@@ -9,7 +9,10 @@
     "name":"Ui",
     "path":"folders/Objects/Ui.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"obj_screen",
+    "path":"objects/obj_screen/obj_screen.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
