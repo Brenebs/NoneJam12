@@ -15,6 +15,15 @@ if(DEBUG_BUILD)
 			debug_create()
 		}
 	}
+	
+	if(keyboard_check_pressed(vk_f12))
+	{
+		save_game()
+	}
+	if(keyboard_check_pressed(vk_f11))
+	{
+		load_game()
+	}
 }
 
 if(global.pause) return;

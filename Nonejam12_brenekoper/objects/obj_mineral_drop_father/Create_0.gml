@@ -13,6 +13,10 @@ being_collected = function()
 	{
 		instance_destroy();
 	}
+	else
+	{
+		timer_to_be_collected = 30;
+	}
 	
 }
 

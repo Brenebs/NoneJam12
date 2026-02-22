@@ -5,8 +5,10 @@
 
 #macro SLOT_WIDTH 64
 
-global.drops_colected = better_array_create(SLOTS_MINERAL_MIN,undefined)
-global.drop_selected = 0;
+global.drop_selected  = 0;
+#macro INVENTORY_OPTION_SELECTED global.drop_selected
+#macro INVENTORY global.game_save.drops_colected
+
 
 function add_drop(_object , _sprite ,  _value = 5 , _number_to_add = 1 , _stack_base = 2 , _rarity = 1)
 {
@@ -15,13 +17,13 @@ function add_drop(_object , _sprite ,  _value = 5 , _number_to_add = 1 , _stack_
 	var _is_full = true;
 	var _index_to_add = -4;
 	
-	var _num = array_length(global.drops_colected);
+	var _num = array_length(INVENTORY);
 	for(var i = 0 ; i < _num ; i++)
 	{
-		if(!is_undefined(global.drops_colected[i]))
+		if(!is_undefined(INVENTORY[i]))
 		{
 			
-			var _current = global.drops_colected[i];
+			var _current = INVENTORY[i];
 			
 			var _same_object = _current.slot_object == _object
 			var _same_sprite = _current.slot_sprite == _sprite 
@@ -34,10 +36,10 @@ function add_drop(_object , _sprite ,  _value = 5 , _number_to_add = 1 , _stack_
 				"TENTANDO ADICIONAR : \n" +
 				"_same_object" + $"{_same_object}\n" +
 				"_same_sprite" + $"{_same_sprite}\n" +
-				"_same_value " + $"{_same_value }\n" +
+				"_same_value " + $"{_same_value}\n" +
 				"_same_rarity" + $"{_same_rarity}\n" +
-				"_same_stack " + $"{_same_stack }\n" +
-				"_can_fit	 " + $"{_can_fit	}\n" 
+				"_same_stack " + $"{_same_stack}\n" +
+				"_can_fit	 " + $"{_can_fit}\n" 
 			
 			)
 			
@@ -67,9 +69,15 @@ function add_drop(_object , _sprite ,  _value = 5 , _number_to_add = 1 , _stack_
 		if(_has_to_create_new)
 		{
 			var _new_construct = new create_drop_index(_object , _sprite , _value , _stack_base , _rarity);
-			global.drops_colected[_index_to_add] = _new_construct;
+			INVENTORY[_index_to_add] = _new_construct;
 		}
-		global.drops_colected[_index_to_add].add_value(_number_to_add);
+		
+		if(!variable_struct_exists(INVENTORY[_index_to_add] , "add_value"))
+		{
+			INVENTORY[_index_to_add].add_value = add_value_to_drop;
+		}
+		
+		INVENTORY[_index_to_add].add_value(_number_to_add);
 		
 		
 		return true;
@@ -87,22 +95,25 @@ function create_drop_index(_object , _sprite , _value , _stack_base , _rarity) c
 	slot_stack_base			  = _stack_base
 	slot_stack_current_number = 0
 	
-	static add_value = function(_value)
-	{
-		slot_stack_current_number += _value;
+	add_value = add_value_to_drop;
+	
+}
+
+function add_value_to_drop(_value)
+{
+	slot_stack_current_number += _value;
 		
-		if(slot_stack_current_number > slot_stack_base)
-		{
-			var _rest = slot_stack_current_number - slot_stack_base;
-			slot_stack_current_number = slot_stack_base;
+	if(slot_stack_current_number > slot_stack_base)
+	{
+		var _rest = slot_stack_current_number - slot_stack_base;
+		slot_stack_current_number = slot_stack_base;
 			
-			if(!add_drop(slot_object , slot_sprite , slot_value , _rest , slot_stack_base , slot_rarity))
+		if(!add_drop(slot_object , slot_sprite , slot_value , _rest , slot_stack_base , slot_rarity))
+		{
+			//show_message(self)
 			{
-				with(other)
-				{
-					var _ins = instance_create_depth(x,y,depth,object_index);
-					_ins.number_to_add = _rest;
-				}
+				var _ins = instance_create_layer(obj_player.x,obj_player.y,"Drops",slot_object);
+				_ins.number_to_add = _rest;
 			}
 		}
 	}

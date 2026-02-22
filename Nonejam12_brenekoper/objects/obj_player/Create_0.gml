@@ -74,33 +74,6 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 		}
 		ds_list_destroy(_list);
 	}
-	
-	inventory_handler = function()
-	{	
-		global.drop_selected += mouse_wheel_down() - mouse_wheel_up()
-		global.drop_selected = wrap(global.drop_selected,0,array_length(global.drops_colected)-1)
-
-		if(mouse_check_button(mb_middle))
-		{
-			drop_mineral()
-		}
-	}
-	
-	drop_mineral =  function()
-	{
-		var _drop = global.drops_colected[global.drop_selected];
-		
-		if(_drop == undefined) return;
-				
-		var _ins = instance_create_depth(x,y,depth+5,_drop.slot_object);
-		_ins.sprite_index = _drop.slot_sprite;				
-		_ins.value		  = _drop.slot_value;				
-		_ins.rarity 	  = _drop.slot_rarity;				
-		_ins.stack_max	  = _drop.slot_stack_base;			
-		_ins.number_to_add= _drop.slot_stack_current_number;
-				
-		global.drops_colected[global.drop_selected] = undefined;
-	}
 
 #endregion
 
@@ -193,21 +166,21 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 	{
 		var _x = 64;
 		var _y = GUI_HEIGHT - 16
-		var _num = array_length(global.drops_colected);
+		var _num = array_length(INVENTORY);
 		for(var i = 0 ; i < _num ; i++)
 		{
 			var __x = _x + (i*SLOT_WIDTH);
-			draw_sprite(spr_hud,i==global.drop_selected,__x,_y);
+			draw_sprite(spr_hud,i==INVENTORY_OPTION_SELECTED,__x,_y);
 			
-			if(global.drops_colected[i]!=undefined)
+			if(INVENTORY[i]!=undefined)
 			{
-				draw_sprite_ext(global.drops_colected[i].slot_sprite,0,__x,_y - (SLOT_WIDTH/2),2,2,0,c_white,1)
+				draw_sprite_ext(INVENTORY[i].slot_sprite,0,__x,_y - (SLOT_WIDTH/2),2,2,0,c_white,1)
 				
 				draw_set_valign(fa_bottom)
 				draw_set_halign(fa_center)
 				
 				draw_set_color(c_black);
-				var _txt = $"[scale,2]{global.drops_colected[i].slot_stack_current_number}"
+				var _txt = $"[scale,2]{INVENTORY[i].slot_stack_current_number}"
 				draw_text_scribble(__x  , _y , _txt);
 				draw_set_color(c_white);
 				draw_text_scribble(__x -1 , _y -1 , _txt);
@@ -217,7 +190,7 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 			}
 		}
 		
-		draw_text(_x-16 , _y - 80 , global.drop_selected)
+		draw_text(_x-16 , _y - 80 , INVENTORY_OPTION_SELECTED)
 	}
 	
 	draw_gui = function()
@@ -232,8 +205,63 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 
 #endregion
 
-#region state machine debaixo da terra
+#region funções
 
+	check_interactables = function()
+	{
+		var _ins = instance_place(x,y,obj_interact_item_father);
+		if(_ins)
+		{
+			if(_ins.can_be_interacted(id))
+			{
+				_ins.is_hovered = true;
+				
+				if(check_confirm())
+				{
+					_ins.when_interacted(id)
+				}
+			}
+		}
+	}
+	
+	inventory_handler = function()
+	{	
+		INVENTORY_OPTION_SELECTED += mouse_wheel_down() - mouse_wheel_up()
+		INVENTORY_OPTION_SELECTED = wrap(INVENTORY_OPTION_SELECTED,0,array_length(INVENTORY)-1)
+
+		if(mouse_check_button(mb_middle) && !inside_ground)
+		{
+			drop_mineral()
+		}
+	}
+	
+	drop_mineral =  function()
+	{
+		var _drop = INVENTORY[INVENTORY_OPTION_SELECTED];
+		
+		if(_drop == undefined) return;
+				
+		var _ins = instance_create_layer(x,y,"Drops",_drop.slot_object);
+		_ins.sprite_index = _drop.slot_sprite;				
+		_ins.value		  = _drop.slot_value;				
+		_ins.rarity 	  = _drop.slot_rarity;				
+		_ins.stack_max	  = _drop.slot_stack_base;			
+		_ins.number_to_add= _drop.slot_stack_current_number;
+				
+		INVENTORY[INVENTORY_OPTION_SELECTED] = undefined;
+	}
+	
+	check_horizontal_movement = function()
+	{
+		return( keyboard_check(ord("D")) - keyboard_check(ord("A")))
+	}
+	
+	check_confirm = function()
+	{
+		return keyboard_check_pressed(vk_space);
+	}
+	
+	//lerp circular que aponta a broca pro canto certo
 	rotate_drill = function(_direction , _force)
 	{
 
@@ -244,6 +272,12 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 		drill.image_angle = wrap(drill.image_angle,0,359.9);
 		
 	}
+
+#endregion
+
+#region state machine debaixo da terra
+
+	
 
 	//andando debaixo da terra
 	state_walk = function()
@@ -359,15 +393,6 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 	on_ground = false;
 	outside_speed = 5;
 	jump_force = 5;
-	
-	check_horizontal_movement = function()
-	{
-		return( keyboard_check(ord("D")) - keyboard_check(ord("A")))
-	}
-	check_confirm = function()
-	{
-		return keyboard_check_pressed(vk_space);
-	}
 
 	state_outside = function()
 	{
@@ -398,18 +423,7 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 		
 		if(on_ground)
 		{
-			if(mouse_check_button_pressed(mb_middle))
-			{
-				if(room == rm_real_world)
-				{
-					room_goto(rm_gameplay)
-				}
-				else
-				{
-					room_goto(rm_real_world)
-				}	
-				
-			}
+			check_interactables();
 			
 			if(can_cave && number_is_between(angle_direction,180+1,360-1) && mouse_check_button_pressed(mb_left))
 			{
@@ -548,16 +562,16 @@ collision=function()
 		
 			dbg_button("Add Slot" , function()
 			{
-				array_push(global.drops_colected,undefined);
+				array_push(INVENTORY,undefined);
 			})
 			
 			dbg_button("Remove Slot" , function()
 			{
-				if(array_length(global.drops_colected) > SLOTS_MINERAL_MIN)
+				if(array_length(INVENTORY) > SLOTS_MINERAL_MIN)
 				{
-					var _ins = array_pop(global.drops_colected);
+					var _ins = array_pop(INVENTORY);
 					
-					global.drop_selected = qwrap(global.drop_selected,0,array_length(global.drops_colected)-1)
+					INVENTORY_OPTION_SELECTED = qwrap(INVENTORY_OPTION_SELECTED,0,array_length(INVENTORY)-1)
 					
 					delete _ins;
 				}

@@ -1,7 +1,7 @@
 
-Player coletar recursos, salvar num array
+/////////Player coletar recursos, salvar num array
 
-Fazer debug pra testar as propriedades do player on the go
+///////////Fazer debug pra testar as propriedades do player on the go
 
 Cadastrar valor de cada minério
 

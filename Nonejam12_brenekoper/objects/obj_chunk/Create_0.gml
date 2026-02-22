@@ -28,7 +28,7 @@ if(id_chunk == 0)
 var _num = _area_max//irandom(_area_max)
 for(var i = 0 ; i < _num ; i++)
 {
-	var _ins = instance_create_depth(irandom_range(bbox_left , bbox_right) , irandom_range(__y,bbox_bottom),depth-2,my_array[i])
+	var _ins = instance_create_layer(irandom_range(bbox_left , bbox_right) , irandom_range(__y,bbox_bottom),"Minerals",my_array[i])
 }
 
 

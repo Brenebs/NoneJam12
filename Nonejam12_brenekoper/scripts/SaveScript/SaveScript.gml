@@ -1,0 +1,89 @@
+
+//cria uma opção no menu de opção ou acessibilidade numérico, definindo um valor maximo, minimo e quanto que ele é alterado ao ir para direita/esquerda
+function create_options_numeric(_value , _value_min = 0 , _value_max = 1, _value_change_snap = 0.1) constructor
+{
+	value			  = _value
+	value_min		  = _value_min
+	value_max		  = _value_max
+	value_change_snap = _value_change_snap
+}
+
+//informção importante do jogo que deve ser salvo
+function create_saveable_info() constructor
+{
+	//volume
+	volume_main		= new create_options_numeric(.5);
+	volume_sfx		= new create_options_numeric(.5);
+	volume_music	= new create_options_numeric(.5);
+	
+	//variaveis de resolução
+	fullscreen = false;
+	
+	drops_colected = better_array_create(SLOTS_MINERAL_MIN,undefined)
+	
+	
+	
+}
+
+
+global.game_save = new create_saveable_info();
+
+
+//coisas que devem ser atualizadas após mexer numa variavel 
+function update_save()
+{
+	//audio_group_set_gain(ag_musics	,GAME_INFO.volume_music.value	* GAME_INFO.volume_main.value,100);
+	//audio_group_set_gain(ag_sfx		,GAME_INFO.volume_sfx.value		* GAME_INFO.volume_main.value,100);
+	
+	window_set_fullscreen(GAME_INFO.fullscreen);
+}
+
+#region save load de fato
+
+	function save_game()
+	{
+		var file = file_text_open_write(working_directory + SAVE_NAME);
+	
+		var _txt = json_stringify(global.game_save,true);
+		file_text_write_string(file, _txt);
+	
+		file_text_close(file);
+	}
+
+	function load_game()
+	{
+	
+		var file = file_text_open_read(working_directory + SAVE_NAME);
+	
+		var _txt = "nope"
+		if(file!=-1)
+		{
+			var _content = "";
+			while(true)
+			{
+				if(file_text_eof(file))
+				{
+					break;
+				}
+				else
+				{
+					_content += file_text_readln(file);
+				}
+			}
+		
+			_txt = json_parse(_content)
+		
+			show_debug_message($"old arquivo save = {_txt}");
+			struct_copy_missing_variables(global.game_save,_txt);
+			show_debug_message($"novo arquivo save = {_txt}");
+			
+			delete global.game_save;
+			global.game_save = _txt;
+		
+			file_text_close(file);
+		}
+		
+	}
+	call_later(1,time_source_units_frames,load_game);
+	
+#endregion
