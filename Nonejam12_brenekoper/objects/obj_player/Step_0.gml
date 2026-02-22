@@ -31,6 +31,7 @@ if(global.pause) return;
 inventory_handler();
 
 current_timer_offset_attacks = max_timer(current_timer_offset_attacks);
+drill_white_timer			 = max_timer(drill_white_timer);
 speed_multiply_timer		 = max_timer(speed_multiply_timer);
-acel_after_attack = lerp(acel_after_attack , 1 , .1);
+acel_after_attack			 = lerp(acel_after_attack , 1 , .1);
 

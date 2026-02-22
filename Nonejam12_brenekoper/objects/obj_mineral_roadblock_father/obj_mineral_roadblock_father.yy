@@ -3,10 +3,16 @@
   "%Name":"obj_mineral_roadblock_father",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":2,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":1,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
   "name":"obj_mineral_roadblock_father",
-  "overriddenProperties":[],
+  "overriddenProperties":[
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_mineral_father","path":"objects/obj_mineral_father/obj_mineral_father.yy",},"propertyId":{"name":"life","path":"objects/obj_mineral_father/obj_mineral_father.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"30",},
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_mineral_father","path":"objects/obj_mineral_father/obj_mineral_father.yy",},"propertyId":{"name":"mineral_number","path":"objects/obj_mineral_father/obj_mineral_father.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"10",},
+  ],
   "parent":{
     "name":"Roadblock",
     "path":"folders/Objects/Minérios/Roadblock.yy",
@@ -28,7 +34,11 @@
   "physicsShape":1,
   "physicsShapePoints":[],
   "physicsStartAwake":true,
-  "properties":[],
+  "properties":[
+    {"$GMObjectProperty":"v2","%Name":"drop","filters":[
+        "GMObject",
+      ],"listItems":[],"multiselect":false,"name":"drop","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resource":{"name":"obj_mineral_drop_2","path":"objects/obj_mineral_drop_2/obj_mineral_drop_2.yy",},"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"obj_mineral_drop_2","varType":5,},
+  ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,

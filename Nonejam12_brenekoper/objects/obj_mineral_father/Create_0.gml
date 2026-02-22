@@ -8,8 +8,6 @@ white_timer = 0;
 //image_xscale = scale;
 //image_yscale = scale;
 
-life = 10;
-
 mineral_drop = obj_mineral_drop_father;
 
 var _name = object_get_name(object_index);
@@ -23,8 +21,6 @@ if(object_exists(_asset))
 {
 	mineral_drop = _asset;
 }
-
-resistency = 1;
 
 destroy_function = function()
 {

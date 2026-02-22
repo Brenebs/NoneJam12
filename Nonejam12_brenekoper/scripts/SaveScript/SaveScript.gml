@@ -23,6 +23,8 @@ function create_saveable_info() constructor
 	
 	coins = 0;
 	
+	max_roadblock_destroyed = 0;
+	
 }
 
 

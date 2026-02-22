@@ -9,6 +9,8 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 #region mineirando
 
 	inside_ground = true;
+	
+	drill_level = 2;
 
 	damage = 1;
 	dash_damage_multiply = 1.5;
@@ -24,6 +26,8 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 	current_speed_multiply = 0
 	
 	acel_after_attack = 1;
+	
+	drill_white_timer = 0;
 	
 	check_entity_to_drill = function(_damage_multiply = 1 , _timer_betwen_hits = timer_offset_attacks , oposite_speed = push_force_when_attack)
 	{
@@ -46,9 +50,20 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 			
 			var _mult = min(_damage_multiply,_current.life)
 			
-			_current.life -= damage * _damage_multiply;
-			_current.white_timer = clamp(timer_offset_attacks-1 , 0 ,5);
-			current_energy -= (_current.resistency * damage_energy_cost_multiply) * _mult;
+			
+			var _can_attack = drill_level >= _current.resistency;
+			current_energy -= (!_can_attack*.5) + (damage_energy_cost_multiply) * _mult;
+			if(_can_attack)
+			{
+				_current.white_timer = clamp(timer_offset_attacks-1 , 0 ,5);
+				_current.life -= damage * _damage_multiply;
+			}
+			else
+			{
+				drill_white_timer = clamp(timer_offset_attacks-3 , 0 ,5);
+				oposite_speed*=1.2
+			}
+		
 			
 			if(_current.life<=0)
 			{
@@ -147,6 +162,8 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 			return;
 		}
 		
+		if(drill_white_timer>0) gpu_set_fog(true , c_dkgray , 1,0);
+		
 		var _dist = 8
 		var _x = lengthdir_x(_dist , angle_direction);
 		var _y = lengthdir_y(_dist*.8 , angle_direction);
@@ -160,6 +177,8 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 		drill.x = x + _x;
 		drill.y = y + _y;
 		draw_sprite_ext(spr_drill	 ,0,x + _x ,y + _y , xscale , yscale , drill.image_angle , image_blend , 1);
+		
+		gpu_set_fog(false , c_white , 1,0);
 	}
 	
 	draw_drop_bar = function()
@@ -231,7 +250,7 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 		INVENTORY_OPTION_SELECTED += mouse_wheel_down() - mouse_wheel_up()
 		INVENTORY_OPTION_SELECTED = wrap(INVENTORY_OPTION_SELECTED,0,array_length(INVENTORY)-1)
 
-		if(mouse_check_button(mb_middle) && inside_ground)
+		if(mouse_check_button(mb_middle) || keyboard_check_pressed(ord("Q")) && inside_ground)
 		{
 			drop_mineral()
 		}
