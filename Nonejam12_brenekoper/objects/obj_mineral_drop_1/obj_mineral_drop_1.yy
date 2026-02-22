@@ -7,6 +7,7 @@
   "overriddenProperties":[
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_mineral_drop_father","path":"objects/obj_mineral_drop_father/obj_mineral_drop_father.yy",},"propertyId":{"name":"value","path":"objects/obj_mineral_drop_father/obj_mineral_drop_father.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"5",},
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_mineral_drop_father","path":"objects/obj_mineral_drop_father/obj_mineral_drop_father.yy",},"propertyId":{"name":"stack_max","path":"objects/obj_mineral_drop_father/obj_mineral_drop_father.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"16",},
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_mineral_drop_father","path":"objects/obj_mineral_drop_father/obj_mineral_drop_father.yy",},"propertyId":{"name":"number_to_add","path":"objects/obj_mineral_drop_father/obj_mineral_drop_father.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"3",},
   ],
   "parent":{
     "name":"Drops",
@@ -29,7 +30,9 @@
   "physicsShape":1,
   "physicsShapePoints":[],
   "physicsStartAwake":true,
-  "properties":[],
+  "properties":[
+    {"$GMObjectProperty":"v2","%Name":"variable_name","filters":[],"listItems":[],"multiselect":false,"name":"variable_name","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
+  ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,

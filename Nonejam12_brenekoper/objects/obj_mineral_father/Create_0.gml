@@ -30,7 +30,8 @@ destroy_function = function()
 {
 	repeat(mineral_number)
 	{
-		instance_create_depth(x,y,depth-50,mineral_drop);
+		var _ins = instance_create_depth(x,y,depth-50,mineral_drop);
+		_ins.rarity = resistency;
 	}
 	
 	instance_destroy();

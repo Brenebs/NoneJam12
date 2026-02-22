@@ -3,8 +3,8 @@
   "%Name":"organização",
   "name":"organização",
   "parent":{
-    "name":"Notes",
-    "path":"folders/Notes.yy",
+    "name":"A_Notes",
+    "path":"folders/A_Notes.yy",
   },
   "resourceType":"GMNotes",
   "resourceVersion":"2.0",

@@ -75,7 +75,32 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 		ds_list_destroy(_list);
 	}
 	
+	inventory_handler = function()
+	{	
+		global.drop_selected += mouse_wheel_down() - mouse_wheel_up()
+		global.drop_selected = wrap(global.drop_selected,0,array_length(global.drops_colected)-1)
+
+		if(mouse_check_button(mb_middle))
+		{
+			drop_mineral()
+		}
+	}
 	
+	drop_mineral =  function()
+	{
+		var _drop = global.drops_colected[global.drop_selected];
+		
+		if(_drop == undefined) return;
+				
+		var _ins = instance_create_depth(x,y,depth+5,_drop.slot_object);
+		_ins.sprite_index = _drop.slot_sprite;				
+		_ins.value		  = _drop.slot_value;				
+		_ins.rarity 	  = _drop.slot_rarity;				
+		_ins.stack_max	  = _drop.slot_stack_base;			
+		_ins.number_to_add= _drop.slot_stack_current_number;
+				
+		global.drops_colected[global.drop_selected] = undefined;
+	}
 
 #endregion
 
@@ -115,7 +140,6 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 #endregion
 
 #region se desenhando 
-
 
 	draw_entity = function()
 	{
@@ -165,9 +189,42 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 		draw_sprite_ext(spr_drill	 ,0,x + _x ,y + _y , xscale , yscale , drill.image_angle , image_blend , 1);
 	}
 	
+	draw_drop_bar = function()
+	{
+		var _x = 64;
+		var _y = GUI_HEIGHT - 16
+		var _num = array_length(global.drops_colected);
+		for(var i = 0 ; i < _num ; i++)
+		{
+			var __x = _x + (i*SLOT_WIDTH);
+			draw_sprite(spr_hud,i==global.drop_selected,__x,_y);
+			
+			if(global.drops_colected[i]!=undefined)
+			{
+				draw_sprite_ext(global.drops_colected[i].slot_sprite,0,__x,_y - (SLOT_WIDTH/2),2,2,0,c_white,1)
+				
+				draw_set_valign(fa_bottom)
+				draw_set_halign(fa_center)
+				
+				draw_set_color(c_black);
+				var _txt = $"[scale,2]{global.drops_colected[i].slot_stack_current_number}"
+				draw_text_scribble(__x  , _y , _txt);
+				draw_set_color(c_white);
+				draw_text_scribble(__x -1 , _y -1 , _txt);
+				
+				draw_set_halign(fa_left)
+				draw_set_valign(fa_top)
+			}
+		}
+		
+		draw_text(_x-16 , _y - 80 , global.drop_selected)
+	}
+	
 	draw_gui = function()
 	{
 		draw_healthbar(20,20,100 + energy_max,30,current_energy/energy_max * 100 , c_black , c_red , c_white , 0,true , true);
+		
+		draw_drop_bar()
 	}
 	
 	draw_border = function(){}
@@ -430,7 +487,7 @@ collision=function()
 }
 
 
-#region
+#region DEBUGGER
 
 	my_debugger = noone;
 
@@ -487,6 +544,27 @@ collision=function()
 			dbg_text_input(ref_create(self , "damage_energy_cost_multiply")	, "damage_energy_cost_multiply"	, DBG_TYPE_REAL);
 			dbg_text_input(ref_create(self , "state_dash_energy_cost")		, "state_dash_energy_cost"		, DBG_TYPE_REAL);
 			
+		dbg_section("Inventário")
+		
+			dbg_button("Add Slot" , function()
+			{
+				array_push(global.drops_colected,undefined);
+			})
+			
+			dbg_button("Remove Slot" , function()
+			{
+				if(array_length(global.drops_colected) > SLOTS_MINERAL_MIN)
+				{
+					var _ins = array_pop(global.drops_colected);
+					
+					global.drop_selected = qwrap(global.drop_selected,0,array_length(global.drops_colected)-1)
+					
+					delete _ins;
+				}
+			})
+			
+			
+			dbg_button("Free current slot" , drop_mineral);
 	
 	}
 

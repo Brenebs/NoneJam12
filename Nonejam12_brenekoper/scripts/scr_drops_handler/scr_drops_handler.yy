@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_drops_handler",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_drops_handler",
+  "parent":{
+    "name":"CandyGenerator",
+    "path":"folders/Scripts/CandyGenerator.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
