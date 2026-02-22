@@ -73,6 +73,6 @@ create_chunk_on_id = function(_id = 0)
 var _sep_elevators = 10
 for(var i = 10 ; i < CHUNK_MAX ; i+= _sep_elevators)
 {
-	var _index = instance_create_layer(room_width/2 , i*CHUNK_HEIGHT + CHUNK_HEIGHT , "Chunks"  , obj_interact_item_father);
+	var _index = instance_create_layer(room_width/2 , i*CHUNK_HEIGHT + CHUNK_HEIGHT , "Chunks"  , obj_teleport_botton);
 		_index.id_chunk = i div 10;
 }

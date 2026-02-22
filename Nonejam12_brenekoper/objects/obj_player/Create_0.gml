@@ -131,6 +131,7 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 
 	draw_entity = function()
 	{
+		if(image_alpha <=0) return;
 		
 		if(number_is_between(angle_direction,1,180-1))
 		{
@@ -332,8 +333,6 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 
 #region state machine debaixo da terra
 
-	
-
 	//andando debaixo da terra
 	state_walk = function()
 	{
@@ -440,6 +439,7 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 	
 	state_goup = function()
 	{
+		image_alpha = 0;
 		vspd = lerp(vspd , -100 , .05);
 	}
 	
@@ -452,6 +452,16 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 		if(instance_place(x,y,elevator_follow))
 		{
 			state = state_walk;
+			image_alpha = 1;
+			chosing_level = false;
+			
+			x = elevator_follow.x
+			y = elevator_follow.y
+			
+			var _direction = random_range(270-5,270+5);
+			hspd = lengthdir_x(5 , _direction);
+			vspd = lengthdir_y(5 , _direction);
+			angle_direction = _direction;
 		}
 		
 	}
@@ -554,6 +564,7 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 				{
 					elevator_follow = _index;
 					
+					image_alpha = 0;
 					enter_ground(state_godown)
 				}
 			}
@@ -617,6 +628,7 @@ collision=function()
 	if(inside_ground) && y < -max_y_outside
 	{
 		exit_ground();
+		image_alpha = 1;
 	}
 }
 
