@@ -147,6 +147,8 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 		{
 			progress_hollow_circle(x - 32 , y - 32,current_dash_load_timer+2,dash_load_timer,5 , 8, 32)
 		}
+		
+		draw_option_on_elevator();
 	}
 	
 	draw_player = function()
@@ -221,6 +223,14 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 		draw_drop_bar()
 	}
 	
+	draw_option_on_elevator = function()
+	{
+		if(chosing_level)
+		{
+			draw_text(x+16,y-16,current_choose);
+		}
+	}
+	
 	draw_border = function(){}
 	draw_reload_feedback = function(){}
 
@@ -230,11 +240,13 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 
 	check_interactables = function()
 	{
+		var _return = true;
 		var _ins = instance_place(x,y,obj_interact_item_father);
 		if(_ins)
 		{
 			if(_ins.can_be_interacted(id))
 			{
+				_return = false;
 				_ins.is_hovered = true;
 				
 				if(check_confirm())
@@ -243,6 +255,25 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 				}
 			}
 		}
+		
+		return _return;
+	}
+	
+	exit_ground = function(_state = state_outside)
+	{
+		inside_ground = false;
+		vspd = -8;
+		state = _state;
+		
+		y = min(y , -max_y_outside)
+	}
+	
+	enter_ground = function(_state = state_walk)
+	{
+		state = _state;
+		y = max(y , -max_y_outside+1)
+		vspd = 8;
+		inside_ground = true;
 	}
 	
 	inventory_handler = function()
@@ -308,6 +339,7 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 	{
 		image_blend = c_white
 		
+		check_interactables();
 	
 		var _direction = point_direction(x,y,mouse_x,mouse_y);
 		var _spd = mouse_check_button(mb_left) && (point_distance(x,y,mouse_x,mouse_y) > 16) && !is_mouse_over_debug_overlay();
@@ -405,6 +437,24 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 		
 		check_entity_to_drill(dash_damage_multiply,dash_timer_offset_attacks,push_force_when_attack_dash);
 	}
+	
+	state_goup = function()
+	{
+		vspd = lerp(vspd , -100 , .05);
+	}
+	
+	state_godown = function()
+	{
+		
+		x = lerp(x , elevator_follow.x , .05 * acel_after_attack)
+		y = lerp(y , elevator_follow.y , .02 * acel_after_attack)
+		
+		if(instance_place(x,y,elevator_follow))
+		{
+			state = state_walk;
+		}
+		
+	}
 
 	state = state_walk;
 
@@ -420,6 +470,8 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 
 	state_outside = function()
 	{
+		image_blend = c_white
+		
 		on_ground = instance_place(x,y+1,obj_collision);
 	
 		var _hspd = outside_speed * check_horizontal_movement();
@@ -430,8 +482,6 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 		{
 			vspd += gravity_force;
 		}
-	
-	
 	
 		var _direction = point_direction(x,y,mouse_x,mouse_y);
 		var _spd = mouse_check_button(mb_left);
@@ -447,19 +497,65 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 		
 		if(on_ground)
 		{
-			check_interactables();
+			var _can = check_interactables();
 			
 			if(can_cave && number_is_between(angle_direction,180+1,360-1) && mouse_check_button_pressed(mb_left))
 			{
-				state = state_walk;
-				y = -max_y_outside+1
-				vspd = 8;
-				inside_ground = true;
+				enter_ground();
 			}
 			else
-			if(check_confirm())
+			if(_can && check_confirm())
 			{
 				vspd = -8;
+			}
+		}
+	}
+	
+	state_select = function()
+	{
+		
+		image_blend = c_white
+		
+		on_ground = instance_place(x,y+1,obj_collision);
+		hspd = lerp(hspd , 0 , .1);
+		if(!on_ground)
+		{
+			vspd += gravity_force;
+		}
+		
+		
+		chosing_level = true;
+		current_choose += keyboard_check_pressed(ord("D")) + keyboard_check_pressed(ord("S")) - ( keyboard_check_pressed(ord("W")) + keyboard_check_pressed(ord("A")) )
+		current_choose = wrap(current_choose , 0 , GAME_INFO.max_chunk_achiev div 10);
+		
+		if(check_confirm())
+		{
+			if(current_choose <= 0)
+			{
+				state = state_outside;
+				chosing_level = false;
+				
+			}
+			else
+			{
+				var _index = noone
+				with(obj_interact_item_father)
+				{
+					if(variable_instance_exists(id , "id_chunk"))
+					{
+						if(id_chunk == other.current_choose)
+						{
+							_index = id;
+						}
+					}
+				}
+				
+				if(_index != noone)
+				{
+					elevator_follow = _index;
+					
+					enter_ground(state_godown)
+				}
 			}
 		}
 	}
@@ -469,6 +565,11 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 		inside_ground = false;
 		state = state_outside;
 	}
+	
+	chosing_level = false;
+	current_choose = max(0,GAME_INFO.max_chunk_achiev div 10);
+	elevator_follow = noone;
+	
 
 #endregion
 
@@ -477,9 +578,8 @@ collision=function()
 {
 	var _multiply = speed_multiply_timer > 0 ? current_speed_multiply : 1
 	
-	var __x = hspd * _multiply
-	var __y = vspd * _multiply
-	
+	var __x = hspd * _multiply;
+	var __y = vspd * _multiply;
 	
 	if(!inside_ground)
 	{
@@ -510,17 +610,13 @@ collision=function()
 		y += __y;
 	}
 	
-	
-	
 	var _offset = 0
 	x = clamp(x , _offset , room_width - _offset);
 	y = min(y , max_y);
 	
 	if(inside_ground) && y < -max_y_outside
 	{
-		inside_ground = false;
-		vspd = -8;
-		state = state_outside;
+		exit_ground();
 	}
 }
 

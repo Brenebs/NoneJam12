@@ -5,7 +5,21 @@ is_hovered = false;
 
 when_interacted = function(_player = obj_player)
 {
-	show_message("bolinhas!")
+	if(y < 0)
+	{
+		with(_player)
+		{
+			state = state_select;
+		}
+	}
+	else
+	{
+		with(_player)
+		{
+			state = state_goup;
+		}
+	}
+	
 }
 
 can_be_interacted = function(_player = obj_player)

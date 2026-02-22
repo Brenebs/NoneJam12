@@ -147,6 +147,7 @@ with(_mineral)
 	add_interval(131,155 ,  , .1 , 2 , 10);
 }
 
+
 //var _mineral = new create_minerals(obj_mineral_roadblock_father)
 //with(_mineral)
 //{

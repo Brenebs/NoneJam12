@@ -25,6 +25,8 @@ function create_saveable_info() constructor
 	
 	max_roadblock_destroyed = 0;
 	
+	max_chunk_achiev = 0;
+	
 }
 
 
