@@ -197,6 +197,8 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 	{
 		draw_healthbar(20,20,100 + energy_max,30,current_energy/energy_max * 100 , c_black , c_red , c_white , 0,true , true);
 		
+		draw_text(20,50,GAME_INFO.coins);
+		
 		draw_drop_bar()
 	}
 	

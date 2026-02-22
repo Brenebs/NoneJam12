@@ -5,8 +5,8 @@
   "managed":true,
   "name":"obj_mineral_drop_2",
   "overriddenProperties":[
-    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_mineral_drop_father","path":"objects/obj_mineral_drop_father/obj_mineral_drop_father.yy",},"propertyId":{"name":"value","path":"objects/obj_mineral_drop_father/obj_mineral_drop_father.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"5",},
-    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_mineral_drop_father","path":"objects/obj_mineral_drop_father/obj_mineral_drop_father.yy",},"propertyId":{"name":"stack_max","path":"objects/obj_mineral_drop_father/obj_mineral_drop_father.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"16",},
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_mineral_drop_father","path":"objects/obj_mineral_drop_father/obj_mineral_drop_father.yy",},"propertyId":{"name":"value","path":"objects/obj_mineral_drop_father/obj_mineral_drop_father.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"15",},
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_mineral_drop_father","path":"objects/obj_mineral_drop_father/obj_mineral_drop_father.yy",},"propertyId":{"name":"stack_max","path":"objects/obj_mineral_drop_father/obj_mineral_drop_father.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"4",},
   ],
   "parent":{
     "name":"Drops",

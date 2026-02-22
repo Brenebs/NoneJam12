@@ -8,6 +8,7 @@
 global.drop_selected  = 0;
 #macro INVENTORY_OPTION_SELECTED global.drop_selected
 #macro INVENTORY global.game_save.drops_colected
+#macro SELL_ARRAY obj_sell_manager.array_selling
 
 
 function add_drop(_object , _sprite ,  _value = 5 , _number_to_add = 1 , _stack_base = 2 , _rarity = 1)

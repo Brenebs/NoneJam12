@@ -21,7 +21,7 @@ function create_saveable_info() constructor
 	
 	drops_colected = better_array_create(SLOTS_MINERAL_MIN,undefined)
 	
-	
+	coins = 0;
 	
 }
 
