@@ -229,7 +229,7 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 		INVENTORY_OPTION_SELECTED += mouse_wheel_down() - mouse_wheel_up()
 		INVENTORY_OPTION_SELECTED = wrap(INVENTORY_OPTION_SELECTED,0,array_length(INVENTORY)-1)
 
-		if(mouse_check_button(mb_middle) && !inside_ground)
+		if(mouse_check_button(mb_middle) && inside_ground)
 		{
 			drop_mineral()
 		}
@@ -247,6 +247,9 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 		_ins.rarity 	  = _drop.slot_rarity;				
 		_ins.stack_max	  = _drop.slot_stack_base;			
 		_ins.number_to_add= _drop.slot_stack_current_number;
+		
+		_ins.timer_to_be_collected = GAME_SPEED*2;
+		
 				
 		INVENTORY[INVENTORY_OPTION_SELECTED] = undefined;
 	}
