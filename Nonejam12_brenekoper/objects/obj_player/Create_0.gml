@@ -163,8 +163,18 @@ drill.owner = id;
 	
 	draw_player = function()
 	{
-		var _alp = current_timer_invincible > 0 ? wave(.5,.8,3) : 1;
-		draw_sprite_ext(sprite_index,image_index,x,y,xscale * look_at , yscale , image_angle + angle , image_blend , image_alpha * _alp);
+		if(inside_ground)
+		{
+		
+			var _alp = current_timer_invincible > 0 ? wave(.5,.8,3) : 1;
+			draw_sprite_ext(sprite_index,image_index,x,y,xscale * look_at , yscale , image_angle + angle , image_blend , image_alpha * _alp);
+		
+			var _sep = (360 / 8);
+			var _ind = ( (angle_direction + (_sep/2)) div _sep)
+		
+			draw_sprite_ext(spr_player_head,_ind,x,y - 16,xscale , yscale , image_angle + angle , image_blend , image_alpha * _alp);
+		}
+		
 	}
 	
 	draw_drill = function()

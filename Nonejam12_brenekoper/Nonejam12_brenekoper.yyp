@@ -123,7 +123,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.14.3.217",
+    "IDEVersion":"2024.14.2.213",
   },
   "name":"Nonejam12_brenekoper",
   "resources":[
@@ -700,6 +700,7 @@
     {"id":{"name":"spr_mineral_drop_8","path":"sprites/spr_mineral_drop_8/spr_mineral_drop_8.yy",},},
     {"id":{"name":"spr_mineral_drop_9","path":"sprites/spr_mineral_drop_9/spr_mineral_drop_9.yy",},},
     {"id":{"name":"spr_player_cake","path":"sprites/spr_player_cake/spr_player_cake.yy",},},
+    {"id":{"name":"spr_player_head","path":"sprites/spr_player_head/spr_player_head.yy",},},
     {"id":{"name":"spr_portal","path":"sprites/spr_portal/spr_portal.yy",},},
     {"id":{"name":"spr_sell_dbg","path":"sprites/spr_sell_dbg/spr_sell_dbg.yy",},},
     {"id":{"name":"spr_sell_itens","path":"sprites/spr_sell_itens/spr_sell_itens.yy",},},
