@@ -5,6 +5,8 @@ scale = 1;
 
 white_timer = 0;
 
+life_max = life;
+
 //image_xscale = scale;
 //image_yscale = scale;
 

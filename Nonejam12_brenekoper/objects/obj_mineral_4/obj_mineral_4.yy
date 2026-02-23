@@ -5,7 +5,7 @@
   "managed":true,
   "name":"obj_mineral_4",
   "overriddenProperties":[
-    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_mineral_father","path":"objects/obj_mineral_father/obj_mineral_father.yy",},"propertyId":{"name":"life","path":"objects/obj_mineral_father/obj_mineral_father.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"5000",},
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_mineral_father","path":"objects/obj_mineral_father/obj_mineral_father.yy",},"propertyId":{"name":"life","path":"objects/obj_mineral_father/obj_mineral_father.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"1000",},
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_mineral_father","path":"objects/obj_mineral_father/obj_mineral_father.yy",},"propertyId":{"name":"resistency","path":"objects/obj_mineral_father/obj_mineral_father.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"1",},
   ],
   "parent":{
