@@ -1,5 +1,7 @@
 function UiElement(_x, _y, _w, _h, _x_center = _w * .5, _y_center = _h * .5) constructor {
 	
+	owner = noone;
+	
 	//	Transform
 	width = _w;
 	height = _h;
@@ -85,6 +87,8 @@ function UiButton(_x, _y, _w, _h, _x_center = _w * .5, _y_center = _h * .5) : Ui
 	depth = 6;
 	
 	prompt = false;
+	prompt_text = "Tem certeza?";
+	prompt_color = #ff4444;
 	
 	press_confirm = false;
 	
@@ -93,8 +97,8 @@ function UiButton(_x, _y, _w, _h, _x_center = _w * .5, _y_center = _h * .5) : Ui
 	pushed = false;
 	prompt_flag = false;
 	
-	_system_update = fx() {
-		navigate();
+	_system_update = fx(_input = true) {
+		navigate(_input);
 		update();
 	}
 	
@@ -111,7 +115,7 @@ function UiButton(_x, _y, _w, _h, _x_center = _w * .5, _y_center = _h * .5) : Ui
 	_system_draw = fx(_xoff = 0, _yoff = 0, _a = 1, _c = #ffffff) {
 		
 		#region Util Variables
-		
+			
 			var _x = x + x_offset + _xoff;
 			var _y = y + y_offset + _yoff;
 		
@@ -130,6 +134,14 @@ function UiButton(_x, _y, _w, _h, _x_center = _w * .5, _y_center = _h * .5) : Ui
 			
 			var _button_depth = depth;
 			var _button_side_offset = 3;
+			
+			var _color = color;
+			
+			if prompt_flag {
+				_matrix_x += lengthdir_x(2, current_time * 1.66);
+				
+				_color = prompt_color;
+			}
 			
 		#endregion
 		
@@ -179,23 +191,26 @@ function UiButton(_x, _y, _w, _h, _x_center = _w * .5, _y_center = _h * .5) : Ui
 		#endregion
 		
 		#region	Main Draw
-		
+			
 			_new_matrix = matrix_build(
 				_matrix_x, _matrix_y, 0,
 				0, 0, angle,
 				x_scale, y_scale, 1
 			);
 			matrix_set(matrix_world, _new_matrix);
-		
-			//	Rect
-			draw_sprite_stretched_ext(sprite, 1, _x1, _y1 + _button_depth, width, height - _button_depth, color, _alpha);
-			if hover draw_sprite_stretched_ext(sprite, 2, _x1, _y1 + _button_depth, width, height - _button_depth, color, _alpha * .66);
 			
-			draw_sprite_stretched_ext(sprite, 0, _x1, _y1 + ((_button_depth - _button_side_offset) * push_anim), width, height - _button_depth, color, _alpha);
-			if hover draw_sprite_stretched_ext(sprite, 2, _x1, _y1 + ((_button_depth - _button_side_offset) * push_anim), width, height - _button_depth, color, _alpha * .66);
+			//	Rect
+			draw_sprite_stretched_ext(sprite, 1, _x1, _y1 + _button_depth, width, height - _button_depth, _color, _alpha);
+			if hover draw_sprite_stretched_ext(sprite, 2, _x1, _y1 + _button_depth, width, height - _button_depth, _color, _alpha * .66);
+			
+			draw_sprite_stretched_ext(sprite, 0, _x1, _y1 + ((_button_depth - _button_side_offset) * push_anim), width, height - _button_depth, _color, _alpha);
+			if hover draw_sprite_stretched_ext(sprite, 2, _x1, _y1 + ((_button_depth - _button_side_offset) * push_anim), width, height - _button_depth, _color, _alpha * .66);
 			
 			//	Text
 			var _txt = text();
+			
+			if prompt_flag _txt = prompt_text;
+			
 			draw_set_font(fnt_p);
 			draw_set_halign(fa_center);
 			draw_set_valign(fa_middle);
@@ -259,7 +274,7 @@ function UiButton(_x, _y, _w, _h, _x_center = _w * .5, _y_center = _h * .5) : Ui
 		matrix_set(matrix_world, _default_matrix);
 	}
 	
-	navigate = fx() {
+	navigate = fx(_input) {
 		
 		//	Setup
 		var _x1 = x - x_center + x_offset;
@@ -268,7 +283,7 @@ function UiButton(_x, _y, _w, _h, _x_center = _w * .5, _y_center = _h * .5) : Ui
 		var _x2 = _x1 + width;
 		var _y2 = _y1 + height;
 		
-		var _hover = point_in_rectangle(MOUSE_GUI_X, MOUSE_GUI_Y, _x1, _y1, _x2, _y2);
+		var _hover = point_in_rectangle(MOUSE_GUI_X, MOUSE_GUI_Y, _x1, _y1, _x2, _y2) and _input;
 		
 		if (_hover and (window_get_cursor() != cr_handpoint)) {
 			if WINDOWS_CURSOR window_set_cursor(cr_handpoint);	
@@ -282,7 +297,7 @@ function UiButton(_x, _y, _w, _h, _x_center = _w * .5, _y_center = _h * .5) : Ui
 		
 		var _pushed = _hover and mouse_check_button(mb_left) and press_confirm;
 		var _released = !_pushed and pushed;
-		var _true_released = _hover and mouse_check_button_released(mb_left);
+		var _true_released = _hover and mouse_check_button_released(mb_left) and press_confirm;
 		
 		if (_hover and !hover) awake();
 		else if (!_hover and hover) sleep();
@@ -290,7 +305,13 @@ function UiButton(_x, _y, _w, _h, _x_center = _w * .5, _y_center = _h * .5) : Ui
 		if _released release()
 		
 		if _true_released {
-			action();
+			if (!prompt or prompt_flag) {
+				action();
+				prompt_flag = false;
+			}
+			else {
+				prompt_flag = true;
+			}
 			true_release();
 		}
 		
@@ -309,6 +330,8 @@ function UiButton(_x, _y, _w, _h, _x_center = _w * .5, _y_center = _h * .5) : Ui
 	}
 	sleep = fx() {
 		if WINDOWS_CURSOR window_set_cursor(cr_default);
+		
+		prompt_flag = false;
 	}
 	press = fx() {
 		sfx_play(sfx_ui_press);
@@ -323,6 +346,13 @@ function UiButton(_x, _y, _w, _h, _x_center = _w * .5, _y_center = _h * .5) : Ui
 	
 	action = fx() {};
 }
-	
+
+//	Enums
+enum UI_EVENT {
+	EMPTY,
+	DESTROY,
+	DEACTIVATE
+}
+
 //	Macros
 #macro WINDOWS_CURSOR true

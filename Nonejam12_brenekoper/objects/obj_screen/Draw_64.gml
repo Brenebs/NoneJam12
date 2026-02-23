@@ -1,2 +1,2 @@
 
-draw_content();
+draw_screen();

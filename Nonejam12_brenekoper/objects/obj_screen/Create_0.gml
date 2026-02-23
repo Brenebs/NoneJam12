@@ -5,15 +5,18 @@ content = [];
 push_content = fx() {
 	for (var i = 0; i < argument_count; i++) {
 		var _element = argument[i];
+		
+		_element.owner = id;
+		
 		array_push(content, _element);
 	}
 }
 
-update_content = fx() {
+update_content = fx(_input) {
 	for (var i = 0; i < array_length(content); i++) {
 		var _element = content[i];
 		
-		_element._system_update();
+		_element._system_update(_input);
 	}
 }
 
@@ -25,36 +28,57 @@ draw_content = fx() {
 	}
 }
 
-var _y = GUI_HEIGHT * .1;
+close = fx() {
+	anim_event = UI_EVENT.DESTROY;
+	locked = true;
+	anim_target = 0;
+	anim_flag = false;
+}
 
-var _button_test1 = new UiButton(GUI_WIDTH * .9, _y, 80, 32); _y += 35;
-var _button_test2 = new UiButton(GUI_WIDTH * .9, _y, 80, 32); _y += 35;
-var _button_test3 = new UiButton(GUI_WIDTH * .9, _y, 80, 32); _y += 35;
-var _button_test4 = new UiButton(GUI_WIDTH * .9, _y, 80, 32); _y += 35;
-var _button_test5 = new UiButton(GUI_WIDTH * .9, _y, 80, 32); _y += 35;
-var _button_test6 = new UiButton(GUI_WIDTH * .9, _y, 80, 32); _y += 35;
-var _button_test7 = new UiButton(GUI_WIDTH * .9, _y, 80, 32); _y += 35;
-var _button_test8 = new UiButton(GUI_WIDTH * .9, _y, 80, 32); _y += 35;
-var _button_test9 = new UiButton(GUI_WIDTH * .9, _y, 80, 32); _y += 35;
+anim_event = UI_EVENT.EMPTY;
+anim_flag = false;
 
-_button_test1.text = fx() { return "say gex" };
-_button_test2.text = fx() { return "sesbian lex" };
-_button_test3.text = fx() { return "pay gorn" };
-_button_test4.text = fx() { return "pesbian lorn" };
-_button_test5.text = fx() { return "sla" };
-_button_test6.text = fx() { return "falange" };
-_button_test7.text = fx() { return "abluble" };
-_button_test8.text = fx() { return ":D" };
-_button_test9.text = fx() { return ">:]" };
+anim_event_update = fx() {
+	if !anim_flag {
+		
+		switch(anim_event) {
+			case UI_EVENT.DEACTIVATE: {
+				
+				active = false;
+				
+			} break;
+			
+			case UI_EVENT.DESTROY: {
+				
+				instance_destroy();
+				
+			} break;
+		}
+		
+		anim_flag = true;
+	}
+}
 
-push_content(
-	_button_test1,
-	_button_test2,
-	_button_test3,
-	_button_test4,
-	_button_test5,
-	_button_test6,
-	_button_test7,
-	_button_test8,
-	_button_test9,
-);
+//	Atributes
+bg_alpha = .5;
+bg_color = #000000;
+
+//	States
+active = false;
+locked = false;
+
+//	Animation
+anim = 0;
+anim_target = 1;
+anim_acc = .125;
+
+draw_background = fx() {
+	draw_set_alpha(bg_alpha);
+	draw_rectangle_colour(0, 0, GUI_WIDTH, GUI_HEIGHT, bg_color, bg_color, bg_color, bg_color, false);
+	draw_set_alpha(1);
+}
+
+draw_screen = fx() {
+	draw_background();
+	draw_content();
+}

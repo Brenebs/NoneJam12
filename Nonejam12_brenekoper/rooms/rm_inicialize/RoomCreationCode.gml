@@ -1,1 +1,1 @@
-room_goto(rm_gameplay);
+room_goto(rm_main_menu);
