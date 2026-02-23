@@ -20,6 +20,7 @@ camera_second_acel = 0;
 		var _old = CAMERA_ZOOM;
 		CAMERA_ZOOM = lerp(CAMERA_ZOOM , camera_zoom , _lerp)
 		camera_set_view_size(view_camera[0],CAMERA_BASE_WIDTH * CAMERA_ZOOM , CAMERA_BASE_HEIGHT * CAMERA_ZOOM);
+		surface_resize(application_surface, CAMERA_WIDTH, CAMERA_HEIGHT)
 		
 		var _dif = CAMERA_ZOOM - _old;
 		camera_set_view_pos(view_camera[0],CAMERA_X - _dif,CAMERA_Y - _dif)

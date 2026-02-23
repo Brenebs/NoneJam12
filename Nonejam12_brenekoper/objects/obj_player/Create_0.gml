@@ -205,13 +205,15 @@ drill.owner = id;
 			
 			if(INVENTORY[i]!=undefined)
 			{
-				draw_sprite_ext(INVENTORY[i].slot_sprite,0,__x,_y - (SLOT_WIDTH/2),2,2,0,c_white,1)
+				draw_sprite_ext(INVENTORY[i].slot_sprite,0,__x,_y - (SLOT_WIDTH/2),1,1,0,c_white,1)
 				
 				draw_set_valign(fa_bottom)
 				draw_set_halign(fa_center)
 				
+				
+				
 				draw_set_color(c_black);
-				var _txt = $"[scale,2]{INVENTORY[i].slot_stack_current_number}"
+				var _txt = $"{INVENTORY[i].slot_stack_current_number}"
 				draw_text_scribble(__x  , _y , _txt);
 				draw_set_color(c_white);
 				draw_text_scribble(__x -1 , _y -1 , _txt);

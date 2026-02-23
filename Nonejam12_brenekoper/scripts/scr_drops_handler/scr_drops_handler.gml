@@ -3,7 +3,7 @@
 
 #macro SLOTS_MINERAL_MIN 2
 
-#macro SLOT_WIDTH 64
+#macro SLOT_WIDTH 32
 
 global.drop_selected  = 0;
 #macro INVENTORY_OPTION_SELECTED global.drop_selected
