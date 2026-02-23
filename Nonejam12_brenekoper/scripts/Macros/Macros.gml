@@ -81,3 +81,7 @@ global.death = false;
 
 //	Autismo
 #macro fx function
+
+#macro SHADOW_OFFSET 3
+#macro SHADOW_TEXT_OFFSET 1
+#macro SHADOW_ALPHA .33

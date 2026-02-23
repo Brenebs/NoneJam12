@@ -255,6 +255,20 @@ function array_choose(_array) {
     return _array[irandom(array_length(_array)-1)];
 }
 
+function color_to_string(_value) {
+	    var _b = (_value >> 16) & 0xFF;
+		var _g = (_value >> 8) & 0xFF;
+		var _r = _value & 0xFF;
+		
+		var _digits = "0123456789ABCDEF";
+		
+		var _hex_r = string_copy(_digits, (_r div 16) + 1, 1) + string_copy(_digits, (_r mod 16) + 1, 1);
+		var _hex_g = string_copy(_digits, (_g div 16) + 1, 1) + string_copy(_digits, (_g mod 16) + 1, 1);
+		var _hex_b = string_copy(_digits, (_b div 16) + 1, 1) + string_copy(_digits, (_b mod 16) + 1, 1);
+		
+		return "#" + _hex_r + _hex_g + _hex_b;
+	}
+
 #region Structs
 	
 	
