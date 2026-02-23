@@ -1,15 +1,13 @@
 {
   "$GMObject":"",
-  "%Name":"obj_drill_hitbox",
-  "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-  ],
+  "%Name":"obj_hitbox_hurt_player",
+  "eventList":[],
   "managed":true,
-  "name":"obj_drill_hitbox",
+  "name":"obj_hitbox_hurt_player",
   "overriddenProperties":[],
   "parent":{
-    "name":"Entidades",
-    "path":"folders/Objects/Entidades.yy",
+    "name":"Enemies",
+    "path":"folders/Objects/Entidades/Enemies.yy",
   },
   "parentObjectId":null,
   "persistent":false,
@@ -30,9 +28,9 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_drill",
-    "path":"sprites/spr_drill/spr_drill.yy",
+    "name":"spr_hitbox_hurt_player",
+    "path":"sprites/spr_hitbox_hurt_player/spr_hitbox_hurt_player.yy",
   },
   "spriteMaskId":null,
-  "visible":false,
+  "visible":true,
 }

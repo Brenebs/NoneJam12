@@ -1,15 +1,10 @@
 
 /////////Player coletar recursos, salvar num array
-
 ///////////Fazer debug pra testar as propriedades do player on the go
-
-Cadastrar valor de cada minério - Exige loop concluido
-
 ////////////Player vender os itens
+//////////////Adicionar elevadores que teleportam pra alguns andar 
 
 Sistema de energia realmente funcionar
-
-Adicionar elevadores que teleportam pra alguns andar 
 
 Inimigos
 
@@ -17,6 +12,7 @@ Sistema de bolos
 
 Npcs bonitinhos
 
+Cadastrar valor de cada minério - Exige loop concluido
 
 Cadastrar as propriedades de cada minério - Exige loop concluido
 	- nivel pra quebrar

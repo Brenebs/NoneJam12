@@ -1,4 +1,9 @@
 /// @description Inserir descrição aqui
 // Você pode escrever seu código neste editor
-/*
-instance_destroy(id , false);
+
+// Inherit the parent event
+event_inherited();
+
+if(global.pause) return;
+
+state();

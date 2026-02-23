@@ -5,6 +5,7 @@ angle_direction = 0;
 shoot_speed = 0;
 
 drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
+drill.owner = id;
 
 #region mineirando
 
@@ -31,7 +32,7 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 	
 	check_entity_to_drill = function(_damage_multiply = 1 , _timer_betwen_hits = timer_offset_attacks , oposite_speed = push_force_when_attack)
 	{
-		if(current_timer_offset_attacks>0) return;
+		if(current_timer_offset_attacks>0 || current_timer_invincible > 0) return;
 		
 		var _list = ds_list_create();	
 		var push_once = true;
@@ -104,6 +105,13 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 	damage_energy_cost_multiply = 2;
 	state_dash_energy_cost = .1;
 
+
+	timer_stunned = 0;
+	defensive_multipliyer = 2;
+	timer_invincible = GAME_SPEED*.8;
+	current_timer_invincible = 0
+	
+
 #endregion
 
 #region dash
@@ -154,7 +162,8 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 	
 	draw_player = function()
 	{
-		draw_sprite_ext(sprite_index,image_index,x,y,xscale * look_at , yscale , image_angle + angle , image_blend , 1);
+		var _alp = current_timer_invincible > 0 ? wave(.5,.8,3) : 1;
+		draw_sprite_ext(sprite_index,image_index,x,y,xscale * look_at , yscale , image_angle + angle , image_blend , image_alpha * _alp);
 	}
 	
 	draw_drill = function()
@@ -329,6 +338,11 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 		
 	}
 
+	can_i_be_hurt = function(_other)
+	{
+		return current_timer_invincible <=0;
+	}
+
 #endregion
 
 #region state machine debaixo da terra
@@ -443,6 +457,19 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 		vspd = lerp(vspd , -100 , .05);
 	}
 	
+	state_hurt = function()
+	{
+		hspd	= lerp(hspd , 0 , aceleration * acel_after_attack * .8);
+		vspd	= lerp(vspd , 0 , aceleration * acel_after_attack * .8);
+		
+		timer_stunned--;
+		
+		if(timer_stunned<=0)
+		{
+			state = state_walk;
+		}
+	}
+	
 	state_godown = function()
 	{
 		
@@ -455,8 +482,8 @@ drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 			image_alpha = 1;
 			chosing_level = false;
 			
-			x = elevator_follow.x
-			y = elevator_follow.y
+			x = elevator_follow.x;
+			y = elevator_follow.y;
 			
 			var _direction = random_range(270-5,270+5);
 			hspd = lengthdir_x(5 , _direction);

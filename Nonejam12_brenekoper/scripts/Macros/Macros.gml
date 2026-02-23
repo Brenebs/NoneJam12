@@ -19,9 +19,6 @@ window_set_caption(GAME_NAME);
 #macro GUI_WIDTH display_get_gui_width()
 #macro GUI_HEIGHT display_get_gui_height()
 
-#macro MOUSE_GUI_X device_mouse_x_to_gui(0)
-#macro MOUSE_GUI_Y device_mouse_y_to_gui(0)
-
 #macro CAMERA_X camera_get_view_x(view_camera[0])
 #macro CAMERA_Y camera_get_view_y(view_camera[0])
 #macro CAMERA_WIDTH camera_get_view_width(view_camera[0])
@@ -78,6 +75,3 @@ global.death = false;
 #macro CHUNKS_OFFSET 2
 #macro CHUNK_HEIGHT (CAMERA_BASE_HEIGHT*.4)
 #macro CHUNK_MAX 130
-
-//	Autismo
-#macro fx function

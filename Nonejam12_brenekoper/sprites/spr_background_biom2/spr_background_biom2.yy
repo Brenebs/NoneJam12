@@ -80,6 +80,9 @@
   },
   "swatchColours":null,
   "swfPrecision":0.5,
+  "tags":[
+    "sla",
+  ],
   "textureGroupId":{
     "name":"Default",
     "path":"texturegroups/Default",
