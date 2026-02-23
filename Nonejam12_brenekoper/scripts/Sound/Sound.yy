@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"Sound",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"Sound",
+  "parent":{
+    "name":"Utilitários",
+    "path":"folders/Scripts/Utilitários.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

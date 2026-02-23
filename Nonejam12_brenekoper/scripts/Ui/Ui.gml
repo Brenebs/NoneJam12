@@ -194,18 +194,22 @@ function UiButton(_x, _y, _w, _h, _x_center = _w * .5, _y_center = _h * .5) : Ui
 		
 		if (_hover and mouse_check_button_pressed(mb_left)) {
 			press_confirm = true;
+			press();
 		}
 		else if !_hover press_confirm = false;
 		
 		var _pushed = _hover and mouse_check_button(mb_left) and press_confirm;
-		var _released = _hover and mouse_check_button_released(mb_left);
+		var _released = !_pushed and pushed;
+		var _true_released = _hover and mouse_check_button_released(mb_left);
 		
 		if (_hover and !hover) awake();
 		else if (!_hover and hover) sleep();
 		
-		if _released {
+		if _released release()
+		
+		if _true_released {
 			action();
-			react();
+			true_release();
 		}
 		
 		pushed = _pushed;
@@ -216,6 +220,8 @@ function UiButton(_x, _y, _w, _h, _x_center = _w * .5, _y_center = _h * .5) : Ui
 		x_scale = 1.025;
 		y_scale = 1.025;
 		
+		sfx_play([sfx_ui_awake_1, sfx_ui_awake_2, sfx_ui_awake_3], .5, .1);
+		
 		angle = choose(-4, 4);
 	}
 	
@@ -223,7 +229,15 @@ function UiButton(_x, _y, _w, _h, _x_center = _w * .5, _y_center = _h * .5) : Ui
 		
 	}
 	
-	react = fx() {
+	press = fx() {
+		sfx_play(sfx_ui_press);
+	}
+	
+	release = fx() {
+		sfx_play(sfx_ui_release);
+	}
+	
+	true_release = fx() {
 		x_scale = 1.05;
 		y_scale = 1.05;
 	}

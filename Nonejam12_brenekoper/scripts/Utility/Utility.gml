@@ -251,6 +251,9 @@ function get_nearest_player(_x = x , _y = y)
 	return _player;
 }
 
+function array_choose(_array) {
+    return _array[irandom(array_length(_array)-1)];
+}
 
 #region Structs
 	
