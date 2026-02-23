@@ -123,7 +123,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.14.2.213",
+    "IDEVersion":"2024.14.3.217",
   },
   "name":"Nonejam12_brenekoper",
   "resources":[
@@ -191,6 +191,7 @@
     {"id":{"name":"obj_selling_machine","path":"objects/obj_selling_machine/obj_selling_machine.yy",},},
     {"id":{"name":"obj_teleport_botton","path":"objects/obj_teleport_botton/obj_teleport_botton.yy",},},
     {"id":{"name":"obj_teleport_top","path":"objects/obj_teleport_top/obj_teleport_top.yy",},},
+    {"id":{"name":"obj_transition","path":"objects/obj_transition/obj_transition.yy",},},
     {"id":{"name":"obj_ui_manager","path":"objects/obj_ui_manager/obj_ui_manager.yy",},},
     {"id":{"name":"rm_gameplay","path":"rooms/rm_gameplay/rm_gameplay.yy",},},
     {"id":{"name":"rm_inicialize","path":"rooms/rm_inicialize/rm_inicialize.yy",},},

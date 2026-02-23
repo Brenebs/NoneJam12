@@ -154,7 +154,8 @@ drill.owner = id;
 		
 		if(state == state_dash_load)
 		{
-			progress_hollow_circle(x - 32 , y - 32,current_dash_load_timer+2,dash_load_timer,5 , 8, 32)
+			//progress_hollow_circle(x - 32 , y - 32,current_dash_load_timer+2,dash_load_timer,5 , 8, 32)
+			draw_donut(x - 32 , y - 32, 5, 8, 14, current_dash_load_timer / dash_load_timer);
 		}
 		
 		draw_option_on_elevator();

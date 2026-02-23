@@ -16,7 +16,8 @@ if(instance_exists(obj_sell_manager))
 		
 		var _min = SELL_ARRAY[id_selling].timer_to_sell
 		var _max = SELL_ARRAY[id_selling].timer_to_sell_max
-		progress_hollow_circle(x,y-32,_min , _max , 12 , 14 , 128);
+		//progress_hollow_circle(x,y-32,_min , _max , 12 , 14 , 128);
+		draw_donut(x, y - 32, 12, 14, 24, _min / _max);
 		
 		draw_sprite(_selling_item.slot_sprite , 0 , x , y - 32);
 		

@@ -75,4 +75,18 @@ function progress_hollow_circle(_x, _y, _value, _max, r1, r2, sn, istart = r1/2)
 	}
 	draw_primitive_end();
 }
-
+	
+function draw_donut(_x, _y, _r1, _r2, _segment_n, _progress = 1, _angle_offset = -90, _color = #ffffff, _alpha = 1) {
+    var i = 0;
+    draw_primitive_begin(pr_trianglestrip);
+    repeat (_segment_n + 1){
+        var _d, _dx, _dy;
+        _d = (i / _segment_n) * (360 * -_progress) + _angle_offset;
+        _dx = lengthdir_x(1, _d);
+        _dy = lengthdir_y(1, _d);
+        draw_vertex_color(_x + _dx * _r1, _y + _dy * _r1, _color, _alpha);
+        draw_vertex_color(_x + _dx * _r2, _y + _dy * _r2, _color, _alpha);
+        i += 1;
+    }
+    draw_primitive_end();
+}
