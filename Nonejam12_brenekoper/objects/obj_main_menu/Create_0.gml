@@ -28,7 +28,7 @@ var _play_button = new UiButton(_x, _y, _w, _h);
 with(_play_button) {
 	text = fx() { return "Jogar" };
 	action = fx() {
-		room_goto(rm_gameplay);
+		instance_create_depth(0, 0, 0, obj_transition).action = fx() { room_goto(rm_gameplay) };
 	}
 }
 

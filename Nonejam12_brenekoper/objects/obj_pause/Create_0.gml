@@ -30,7 +30,7 @@ if (room != rm_real_world) {
 		text = fx() { return "Desistir" };
 		prompt = true;
 		action = fx() {
-			room_goto(rm_real_world);
+			instance_create_depth(0, 0, 0, obj_transition).action = fx() { room_goto(rm_real_world) };
 		}
 	}
 	push_content(_give_up_button);
@@ -51,7 +51,7 @@ with(_menu_button) {
 	text = fx() { return "Menu Principal" };
 	prompt = true;
 	action = fx() {
-		room_goto(rm_main_menu);
+		instance_create_depth(0, 0, 0, obj_transition).action = fx() { room_goto(rm_main_menu) };
 	}
 }
 push_content(_menu_button);

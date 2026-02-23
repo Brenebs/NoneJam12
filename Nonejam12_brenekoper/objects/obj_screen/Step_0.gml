@@ -1,5 +1,5 @@
 
-update_content(!locked);
+update_content(!locked and !instance_exists(obj_transition));
 
 //	Animation
 anim = lerp(anim, anim_target, anim_acc);
