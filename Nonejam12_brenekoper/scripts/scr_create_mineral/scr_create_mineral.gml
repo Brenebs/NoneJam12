@@ -72,13 +72,13 @@ with(_peanut)
 var _white_chocolate = new create_minerals(obj_mineral_4)
 with(_white_chocolate)
 {
-	add_interval(31,55 ,  , .1 , 2 , 10);
+	add_interval(31,55 , 40 , .1 , 2 , 10);
 }
 
 var _coconut = new create_minerals(obj_mineral_5)
 with(_coconut)
 {
-	add_interval(34,54 ,  , .1 , 2 , 10);
+	add_interval(34,54 , 50 , .1 , 2 , 10);
 }
 
 var _caramelow = new create_minerals(obj_mineral_6)

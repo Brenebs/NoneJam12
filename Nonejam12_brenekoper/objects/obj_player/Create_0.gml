@@ -14,6 +14,7 @@ drill.owner = id;
 	drill_level = 2;
 
 	damage = 1;
+	damage_level = 0;
 	dash_damage_multiply = 1.5;
 	
 	current_timer_offset_attacks = 0;
@@ -161,18 +162,34 @@ drill.owner = id;
 		draw_option_on_elevator();
 	}
 	
+	draw_head_inground = function(_alp)
+	{
+		var _sep = (360 / 8);
+		var _ind = ( (angle_direction + (_sep/2)) div _sep)
+		draw_sprite_ext(spr_player_head,_ind,x,y - 12,xscale , yscale , image_angle + angle , image_blend , image_alpha * _alp);
+	}
+	
+	draw_body_inground = function(_alp)
+	{
+		draw_sprite_ext(sprite_index,image_index,x,y,xscale * look_at , yscale , image_angle + angle , image_blend , image_alpha * _alp);
+	}
+	
 	draw_player = function()
 	{
 		if(inside_ground)
 		{
-		
 			var _alp = current_timer_invincible > 0 ? wave(.5,.8,3) : 1;
-			draw_sprite_ext(sprite_index,image_index,x,y,xscale * look_at , yscale , image_angle + angle , image_blend , image_alpha * _alp);
-		
-			var _sep = (360 / 8);
-			var _ind = ( (angle_direction + (_sep/2)) div _sep)
-		
-			draw_sprite_ext(spr_player_head,_ind,x,y - 16,xscale , yscale , image_angle + angle , image_blend , image_alpha * _alp);
+			var _offset = 30;
+			if(!number_is_between(angle_direction,90 - _offset,90 + _offset))
+			{
+				draw_body_inground(_alp);
+				draw_head_inground(_alp);
+			}
+			else
+			{
+				draw_head_inground(_alp);
+				draw_body_inground(_alp);
+			}
 		}
 		
 	}
@@ -281,6 +298,12 @@ drill.owner = id;
 		
 		return _return;
 	}
+	
+	update_damage = function()
+	{
+		damage = power(2 , damage_level);
+	}
+	update_damage();
 	
 	exit_ground = function(_state = state_outside)
 	{
@@ -708,6 +731,11 @@ collision=function()
 		dbg_section("Broca");
 		
 			dbg_text_input(ref_create(self , "damage")						, "damage"						, DBG_TYPE_REAL);
+			dbg_text_input(ref_create(self , "damage_level")				, "damage_level"				, DBG_TYPE_REAL);
+
+			dbg_button("Free current slot" , update_damage);
+			
+			dbg_text_input(ref_create(self , "drill_level")					, "drill_level"					, DBG_TYPE_REAL);
 			dbg_text_input(ref_create(self , "dash_damage_multiply")		, "dash_damage_multiply"		, DBG_TYPE_REAL);
 			
 			dbg_text_input(ref_create(self , "damage_energy_cost_multiply")	, "damage_energy_cost_multiply"	, DBG_TYPE_REAL);
