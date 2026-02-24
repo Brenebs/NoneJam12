@@ -142,7 +142,8 @@ drill.owner = id;
 	{
 		if(image_alpha <=0) return;
 		
-		if(number_is_between(angle_direction,1,180-1))
+		var _difference = -10;
+		if(number_is_between(angle_direction,_difference,180-_difference))
 		{
 			draw_drill();
 			draw_player();
@@ -177,6 +178,9 @@ drill.owner = id;
 	draw_player_normal = function(_alp)
 	{
 		draw_sprite_ext(sprite_index,image_index,x,bbox_bottom,xscale * look_at , yscale , image_angle + angle , image_blend , image_alpha * _alp);
+		
+		if(can_cave) return;
+		draw_sprite_ext(spr_litou_hat,0,x,bbox_top - wave(1,4,2) , xscale * look_at , yscale , 0 , image_blend , 1);
 	}
 	
 	draw_player = function()
@@ -207,7 +211,6 @@ drill.owner = id;
 	{
 		if(!can_cave) 
 		{
-			draw_sprite_ext(spr_litou_hat,0,x,y - 10 - wave(1,-1,2) , xscale * look_at , yscale , 0 , image_blend , 1);
 			return;
 		}
 		
@@ -215,13 +218,13 @@ drill.owner = id;
 		
 		var _dist = 8
 		var _x = lengthdir_x(_dist , angle_direction);
-		var _y = lengthdir_y(_dist*.8 , angle_direction);
+		var _y = lengthdir_y(_dist*.8 , angle_direction) - 4;
 		
-		if(!inside_ground) _y -= 12
+		if(!inside_ground) _y -= 8
 		
-		draw_sprite_ext(spr_drill_base,0,x + _x ,y + _y , xscale , yscale , 0 , image_blend , 1);
+		draw_sprite_ext(spr_drill_base,0,x + _x ,y + _y , 1.1 , 1 , angle_direction , image_blend , 1);
 	
-		_dist = 6
+		_dist = 14
 		_x += lengthdir_x(_dist , angle_direction);
 		_y += lengthdir_y(_dist , angle_direction);
 			
