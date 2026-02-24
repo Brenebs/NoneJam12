@@ -1,7 +1,9 @@
 {
   "$GMObject":"",
   "%Name":"obj_ui_manager",
-  "eventList":[],
+  "eventList":[
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+  ],
   "managed":true,
   "name":"obj_ui_manager",
   "overriddenProperties":[],
@@ -10,7 +12,7 @@
     "path":"folders/Objects/Ui.yy",
   },
   "parentObjectId":null,
-  "persistent":false,
+  "persistent":true,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
   "physicsFriction":0.2,

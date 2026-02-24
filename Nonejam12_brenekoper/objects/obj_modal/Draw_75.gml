@@ -1,0 +1,1 @@
+draw_screen(0, GUI_HEIGHT * anim);

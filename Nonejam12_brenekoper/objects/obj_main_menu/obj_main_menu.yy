@@ -8,8 +8,8 @@
   "name":"obj_main_menu",
   "overriddenProperties":[],
   "parent":{
-    "name":"Children",
-    "path":"folders/Objects/Ui/Children.yy",
+    "name":"Screens",
+    "path":"folders/Objects/Ui/Children/Screens.yy",
   },
   "parentObjectId":{
     "name":"obj_screen",

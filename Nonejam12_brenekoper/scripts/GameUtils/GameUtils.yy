@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"GameUtils",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"GameUtils",
+  "parent":{
+    "name":"Utilitários",
+    "path":"folders/Scripts/Utilitários.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

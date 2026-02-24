@@ -44,26 +44,6 @@ function UiElement(_x, _y, _w, _h, _x_center = _w * .5, _y_center = _h * .5) con
 		
 		var _alpha = alpha * _a;
 		
-		#region Matrix
-		//var _default_matrix = matrix_get(matrix_world);
-		
-		//var _matrix_x = x - x_center * x_scale;
-		//var _matrix_y = y - y_center * y_scale;
-		
-		//var _new_matrix = matrix_build(
-		//	_matrix_x, _matrix_y, 0,
-		//	0, 0, angle,
-		//	x_scale, y_scale, 1
-		//);
-		
-		////	Start Drawing
-		//matrix_set(matrix_world, _new_matrix);
-		
-		////	Do Stuff
-		
-		//matrix_set(matrix_world, _default_matrix);
-		#endregion
-		
 		draw();
 		
 		//	Debug
@@ -72,14 +52,89 @@ function UiElement(_x, _y, _w, _h, _x_center = _w * .5, _y_center = _h * .5) con
 		draw_set_alpha(1);
 	}
 }
+
+function UiText(_x, _y, _w, _h, _x_center = _w * .5, _y_center = _h * .5)  : UiElement(_x, _y, _w, _h, _x_center, _y_center) constructor {
+	
+	//	Parameters
+	text = fx() { return "" };
+	text_color = #ffffff;
+	text_scale = 1;
+	text_scribble = false;
+	text_halign = fa_center;
+	text_valign = fa_middle;
+	text_font = fnt_p;
+	
+	_system_draw = fx(_xoff = 0, _yoff = 0, _a = 1, _c = #ffffff) {
+		
+		var _x = x + x_offset + _xoff;
+		var _y = y + y_offset + _yoff;
+		
+		//	Text
+		var _txt = text();
+	
+		draw_set_font(text_font);
+		draw_set_halign(text_halign);
+		draw_set_valign(text_valign);
+		draw_set_alpha(.5);
+		if text_scribble {
+			draw_text_scribble_ext(
+				_x + SHADOW_TEXT_OFFSET,
+				_y + SHADOW_TEXT_OFFSET,
+				$"[scale, {text_scale}][#000000]{_txt}",
+				width - SHADOW_TEXT_OFFSET * 2
+			);
+		}
+		else {
+			draw_text_ext_transformed_colour(
+				_x + SHADOW_TEXT_OFFSET,
+				_y + SHADOW_TEXT_OFFSET,
+				_txt,
+				1,
+				width - SHADOW_TEXT_OFFSET * 2,
+				text_scale, text_scale,
+				0,
+				0, 0, 0, 0,
+				draw_get_alpha()
+			);
+		}
+		draw_set_alpha(1);
+		if text_scribble {
+			draw_text_scribble_ext(
+				_x,
+				_y,
+				$"[scale, {text_scale}][{color_to_string(text_color)}]{_txt}",
+				width - SHADOW_TEXT_OFFSET * 2
+			);
+		}
+		else {
+			draw_text_ext_transformed_colour(
+				_x,
+				_y,
+				_txt,
+				1,
+				width - SHADOW_TEXT_OFFSET * 2,
+				text_scale, text_scale,
+				0,
+				text_color, text_color, text_color, text_color,
+				draw_get_alpha()
+			);
+		}
+		draw_set_font(-1);
+		draw_set_halign(fa_left);
+		draw_set_valign(fa_top);
+	}
+}
 	
 function UiButton(_x, _y, _w, _h, _x_center = _w * .5, _y_center = _h * .5) : UiElement(_x, _y, _w, _h, _x_center, _y_center) constructor {
 	
 	//	Parameters
 	text = fx() { return "" };
-	text_colour = #ffffff;
+	text_color = #ffffff;
 	text_scale = 1;
 	text_scribble = false;
+	text_halign = fa_center;
+	text_valign = fa_middle;
+	text_font = fnt_p;
 	
 	sprite = spr_button;
 	color = #8888ff;
@@ -211,9 +266,9 @@ function UiButton(_x, _y, _w, _h, _x_center = _w * .5, _y_center = _h * .5) : Ui
 			
 			if prompt_flag _txt = prompt_text;
 			
-			draw_set_font(fnt_p);
-			draw_set_halign(fa_center);
-			draw_set_valign(fa_middle);
+			draw_set_font(text_font);
+			draw_set_halign(text_halign);
+			draw_set_valign(text_valign);
 			draw_set_alpha(.5);
 			if text_scribble {
 				draw_text_scribble_ext(
@@ -241,7 +296,7 @@ function UiButton(_x, _y, _w, _h, _x_center = _w * .5, _y_center = _h * .5) : Ui
 				draw_text_scribble_ext(
 					0,
 					_button_side_offset * push_anim - _button_depth,
-					$"[scale, {text_scale}][{color_to_string(text_colour)}]{_txt}",
+					$"[scale, {text_scale}][{color_to_string(text_color)}]{_txt}",
 					width - SHADOW_TEXT_OFFSET * 2
 				);
 			}
@@ -254,7 +309,7 @@ function UiButton(_x, _y, _w, _h, _x_center = _w * .5, _y_center = _h * .5) : Ui
 					width - SHADOW_TEXT_OFFSET * 2,
 					text_scale, text_scale,
 					0,
-					text_colour, text_colour, text_colour, text_colour,
+					text_color, text_color, text_color, text_color,
 					draw_get_alpha()
 				);
 			}

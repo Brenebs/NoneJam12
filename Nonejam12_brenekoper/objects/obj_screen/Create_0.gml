@@ -1,4 +1,6 @@
 
+obj_ui_manager.add_screen(id);
+
 //	Container
 content = [];
 
@@ -20,11 +22,11 @@ update_content = fx(_input) {
 	}
 }
 
-draw_content = fx() {
+draw_content = fx(_x = 0, _y = 0, _a = 1) {
 	for (var i = 0; i < array_length(content); i++) {
 		var _element = content[i];
 		
-		_element._system_draw();
+		_element._system_draw(_x, _y, _a);
 	}
 }
 
@@ -62,6 +64,8 @@ anim_event_update = fx() {
 //	Atributes
 bg_alpha = .5;
 bg_color = #000000;
+bg_w = GUI_WIDTH;
+bg_h = GUI_HEIGHT;
 
 //	States
 active = false;
@@ -72,13 +76,13 @@ anim = 0;
 anim_target = 1;
 anim_acc = .125;
 
-draw_background = fx() {
-	draw_set_alpha(bg_alpha);
-	draw_rectangle_colour(0, 0, GUI_WIDTH, GUI_HEIGHT, bg_color, bg_color, bg_color, bg_color, false);
+draw_background = fx(_x = 0, _y = 0, _alpha = 1) {
+	draw_set_alpha(bg_alpha * _alpha);
+	draw_rectangle_colour(_x, _y, _x + bg_w, _y + bg_h, bg_color, bg_color, bg_color, bg_color, false);
 	draw_set_alpha(1);
 }
 
-draw_screen = fx() {
-	draw_background();
-	draw_content();
+draw_screen = fx(_x = 0, _y = 0) {
+	draw_background(_x, _y);
+	draw_content(_x, _y);
 }

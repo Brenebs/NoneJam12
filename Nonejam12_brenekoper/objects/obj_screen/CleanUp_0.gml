@@ -1,3 +1,1 @@
-global.pause = false;
-
 obj_ui_manager.remove_screen(id);

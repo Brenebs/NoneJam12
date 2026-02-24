@@ -19,6 +19,8 @@ function create_saveable_info() constructor
 	//variaveis de resolução
 	fullscreen = false;
 	
+	use_mouse = false;
+	
 	drops_colected = better_array_create(SLOTS_MINERAL_MIN,undefined)
 	
 	coins = 0;
@@ -89,5 +91,6 @@ function update_save()
 		
 	}
 	call_later(1,time_source_units_frames,load_game);
+	call_later(5,time_source_units_frames,update_save);
 	
 #endregion

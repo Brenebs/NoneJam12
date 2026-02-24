@@ -255,6 +255,7 @@ function array_choose(_array) {
     return _array[irandom(array_length(_array)-1)];
 }
 
+
 function color_to_string(_value) {
 	    var _b = (_value >> 16) & 0xFF;
 		var _g = (_value >> 8) & 0xFF;
