@@ -6,7 +6,7 @@
   "name":"obj_mineral_13",
   "overriddenProperties":[
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_mineral_father","path":"objects/obj_mineral_father/obj_mineral_father.yy",},"propertyId":{"name":"mineral_number","path":"objects/obj_mineral_father/obj_mineral_father.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"1",},
-    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_mineral_father","path":"objects/obj_mineral_father/obj_mineral_father.yy",},"propertyId":{"name":"life","path":"objects/obj_mineral_father/obj_mineral_father.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"5000000000000",},
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_mineral_father","path":"objects/obj_mineral_father/obj_mineral_father.yy",},"propertyId":{"name":"life","path":"objects/obj_mineral_father/obj_mineral_father.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"262144000",},
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_mineral_father","path":"objects/obj_mineral_father/obj_mineral_father.yy",},"propertyId":{"name":"resistency","path":"objects/obj_mineral_father/obj_mineral_father.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"4",},
   ],
   "parent":{

@@ -166,12 +166,17 @@ drill.owner = id;
 	{
 		var _sep = (360 / 8);
 		var _ind = ( (angle_direction + (_sep/2)) div _sep)
-		draw_sprite_ext(spr_player_head,_ind,x,y - 12,xscale , yscale , image_angle + angle , image_blend , image_alpha * _alp);
+		draw_sprite_ext(spr_player_cake_head,_ind,x,y - 12,xscale , yscale , image_angle + angle , image_blend , image_alpha * _alp);
 	}
 	
 	draw_body_inground = function(_alp)
 	{
 		draw_sprite_ext(sprite_index,image_index,x,y,xscale * look_at , yscale , image_angle + angle , image_blend , image_alpha * _alp);
+	}
+	
+	draw_player_normal = function(_alp)
+	{
+		draw_sprite_ext(sprite_index,image_index,x,bbox_bottom,xscale * look_at , yscale , image_angle + angle , image_blend , image_alpha * _alp);
 	}
 	
 	draw_player = function()
@@ -191,6 +196,10 @@ drill.owner = id;
 				draw_body_inground(_alp);
 			}
 		}
+		else
+		{
+			draw_player_normal(1);
+		}
 		
 	}
 	
@@ -207,6 +216,8 @@ drill.owner = id;
 		var _dist = 8
 		var _x = lengthdir_x(_dist , angle_direction);
 		var _y = lengthdir_y(_dist*.8 , angle_direction);
+		
+		if(!inside_ground) _y -= 12
 		
 		draw_sprite_ext(spr_drill_base,0,x + _x ,y + _y , xscale , yscale , 0 , image_blend , 1);
 	
@@ -311,6 +322,8 @@ drill.owner = id;
 		vspd = -8;
 		state = _state;
 		
+		sprite_index = spr_player_normal_jump;
+		
 		y = min(y , -max_y_outside)
 	}
 	
@@ -320,6 +333,8 @@ drill.owner = id;
 		y = max(y , -max_y_outside+1)
 		vspd = 8;
 		inside_ground = true;
+		
+		sprite_index = spr_player_cake;
 	}
 	
 	inventory_handler = function()
@@ -554,6 +569,13 @@ drill.owner = id;
 		if(!on_ground)
 		{
 			vspd += gravity_force;
+			
+			sprite_index = vspd > 0 ? spr_player_normal_fall : spr_player_normal_jump;
+		}
+		else
+		{
+			
+			sprite_index = (_hspd == 0) ? spr_player_normal_idle : spr_player_normal_walk;
 		}
 	
 		var _direction = point_direction(x,y,mouse_x,mouse_y);
@@ -580,6 +602,7 @@ drill.owner = id;
 			if(_can && check_confirm())
 			{
 				vspd = -8;
+				image_index = 0;
 			}
 		}
 	}
@@ -588,6 +611,8 @@ drill.owner = id;
 	{
 		
 		image_blend = c_white
+		
+		sprite_index = spr_player_normal_idle;
 		
 		on_ground = instance_place(x,y+1,obj_collision);
 		hspd = lerp(hspd , 0 , .1);
