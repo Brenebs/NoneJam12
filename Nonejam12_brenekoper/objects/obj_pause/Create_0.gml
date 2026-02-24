@@ -24,7 +24,8 @@ push_content(_resume_button);
 
 _y += _y_offset;
 
-if (room != rm_real_world) {
+//tem q alterar pq n troca mais de sala
+if (CURRENT_WORLD) {
 	var _give_up_button = new UiButton(_x, _y, _w, _h);
 	with(_give_up_button) {
 		text = fx() { return "Desistir" };

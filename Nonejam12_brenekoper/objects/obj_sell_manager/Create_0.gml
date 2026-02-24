@@ -21,7 +21,7 @@ selling_itens = function()
 {
 	var _num = array_length(array_selling)
 
-	var _potency = room == rm_real_world ? 1 : .25;
+	var _potency = CURRENT_WORLD ? 1 : .25;
 
 	space_free = false;
 	for(var i = 0 ;i < _num ; i++)

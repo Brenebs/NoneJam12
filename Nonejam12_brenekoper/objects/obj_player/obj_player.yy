@@ -41,6 +41,9 @@
     "name":"spr_player_cake",
     "path":"sprites/spr_player_cake/spr_player_cake.yy",
   },
-  "spriteMaskId":null,
+  "spriteMaskId":{
+    "name":"spr_player_cake",
+    "path":"sprites/spr_player_cake/spr_player_cake.yy",
+  },
   "visible":true,
 }

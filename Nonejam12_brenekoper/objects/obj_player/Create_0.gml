@@ -31,7 +31,7 @@ drill.owner = id;
 	
 	drill_white_timer = 0;
 	
-	max_vspd = 5;
+	max_vspd = 15;
 	
 	check_entity_to_drill = function(_damage_multiply = 1 , _timer_betwen_hits = timer_offset_attacks , oposite_speed = push_force_when_attack)
 	{
@@ -179,7 +179,14 @@ drill.owner = id;
 	
 	draw_player_normal = function(_alp)
 	{
-		draw_sprite_ext(sprite_index,image_index,x,bbox_bottom,xscale * look_at , yscale , image_angle + angle , image_blend , image_alpha * _alp);
+		if(!CURRENT_WORLD)
+		{
+			draw_sprite_ext(sprite_index,image_index,x,bbox_bottom,xscale * look_at , yscale , image_angle + angle , image_blend , image_alpha * _alp);
+		}
+		else
+		{
+			draw_sprite_ext(sprite_index,image_index,x,bbox_top,xscale * look_at , yscale , image_angle + angle + 180 , image_blend , image_alpha * _alp);
+		}
 		
 		if(can_cave) return;
 		draw_sprite_ext(spr_litou_hat,0,x,bbox_top - wave(1,4,2) , xscale * look_at , yscale , 0 , image_blend , 1);
@@ -222,7 +229,7 @@ drill.owner = id;
 		var _x = lengthdir_x(_dist , angle_direction);
 		var _y = lengthdir_y(_dist*.8 , angle_direction) - 4;
 		
-		if(!inside_ground) _y -= 8
+		//if(!inside_ground) _y -= 8
 		
 		draw_sprite_ext(spr_drill_base,0,x + _x ,y + _y , 1.1 , 1 , angle_direction , image_blend , 1);
 	
@@ -374,7 +381,8 @@ drill.owner = id;
 	
 	check_horizontal_movement = function()
 	{
-		return( keyboard_check(ord("D")) - keyboard_check(ord("A")))
+		var _return = ( keyboard_check(ord("D")) - keyboard_check(ord("A")));
+		return _return
 	}
 	
 	check_confirm = function()
@@ -565,7 +573,9 @@ drill.owner = id;
 	{
 		image_blend = c_white
 		
-		on_ground = instance_place(x,y+1,obj_collision);
+		var _frc = !CURRENT_WORLD ? 1 : -1;
+		
+		on_ground = instance_place(x,y+_frc,obj_collision);
 	
 		var _hspd = outside_speed * check_horizontal_movement();
 	
@@ -573,10 +583,10 @@ drill.owner = id;
 	
 		if(!on_ground)
 		{
-			vspd += gravity_force;
-			vspd = min(vspd , max_vspd)
+			vspd += gravity_force * _frc;
+			vspd = clamp(vspd , -max_vspd  , max_vspd);
 			
-			sprite_index = vspd > 0 ? spr_player_normal_fall : spr_player_normal_jump;
+			sprite_index = (vspd * _frc) > 0 ? spr_player_normal_fall : spr_player_normal_jump;
 		}
 		else
 		{
@@ -607,7 +617,7 @@ drill.owner = id;
 			else
 			if(_can && check_confirm())
 			{
-				vspd = -8;
+				vspd = -8 * _frc;
 				image_index = 0;
 			}
 		}
@@ -691,6 +701,9 @@ collision=function()
 	
 	if(!inside_ground)
 	{
+		
+		if(CURRENT_WORLD) __x *= -1;
+		
 		for(var i = 0 ; i < floor(abs(__x)) ; i++)
 		{
 			if(!instance_place(x+sign(__x),y,obj_collision))

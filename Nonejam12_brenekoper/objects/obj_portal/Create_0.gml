@@ -8,12 +8,14 @@ when_interacted = function()
 	if(room == rm_real_world)
 	{
 		save_game()
-		instance_create_depth(0, 0, 0, obj_transition).action = fx() { room_goto(rm_gameplay) };
+		obj_camera.change_world();
+		//instance_create_depth(0, 0, 0, obj_transition).action = fx() { room_goto(rm_gameplay) };
 	}
 	else
 	{
 		save_game()
-		instance_create_depth(0, 0, 0, obj_transition).action = fx() { room_goto(rm_real_world) };
+		obj_camera.change_world();
+		//instance_create_depth(0, 0, 0, obj_transition).action = fx() { room_goto(rm_real_world) };
 	}	
 }
 

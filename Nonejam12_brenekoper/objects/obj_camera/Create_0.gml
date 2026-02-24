@@ -10,6 +10,8 @@ offset = new vector2();
 
 camera_second_acel = 0;
 
+camera_angle = 0;
+
 #region update camera functions
 
 	update_camera = function(_lerp = 1)
@@ -40,6 +42,34 @@ camera_second_acel = 0;
 
 my_debugger = noone;
 
+change_world = function()
+{
+		
+	//camera_zoom = .25;
+	//camera_zoom_acel = .1;
+		
+	call_later(.75,time_source_units_seconds,function()
+	{
+		CURRENT_WORLD = !CURRENT_WORLD;
+		
+		obj_player.can_cave = (!CURRENT_WORLD)
+		
+	})
+	
+	//call_later(2,time_source_units_seconds,function()
+	//{
+	//	camera_zoom = .5;
+	//	camera_zoom_acel = .15;
+	//})
+	
+	call_later(2.5,time_source_units_seconds,function()
+	{
+		//CAMERA_ZOOM = camera_zoom;
+		camera_angle = CURRENT_WORLD * 180;
+	})
+		
+}
+
 debug_create = function()
 {
 	my_debugger = dbg_view("CAMERA OPTIONS",true)
@@ -49,6 +79,11 @@ debug_create = function()
 	var _ref = ref_create(self , "camera_zoom")
 
 	dbg_slider(_ref , 0 , 3,"ZOOM: ",0.1)
+	
+	var _ref = ref_create(self , "camera_angle")
+	dbg_slider(_ref , 0 , 360,"Angle: ",5)
+	
+	dbg_button("Troca mundo" , change_world)
 	
 }
 

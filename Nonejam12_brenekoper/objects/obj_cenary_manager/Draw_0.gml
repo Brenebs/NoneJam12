@@ -21,7 +21,7 @@ for(var i = 0 ; i < _num ; i++)
 	if(i == 0)
 	{
 		//_y = max(_y , CAMERA_Y + CAMERA_HEIGHT);
-		_scl = 2.0;
+		_scl = 2.5;
 		
 		if(CAMERA_Y < -4000)
 		{

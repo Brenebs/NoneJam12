@@ -5,6 +5,12 @@ if(global.pause) return;
 
 var _player_outside = false;
 
+
+camera_angle = lerp_angle(camera_angle,CURRENT_WORLD * 180);
+camera_angle = wrap(camera_angle,0,359.99)
+//camera_angle = 0;
+camera_set_view_angle(view_camera[0],camera_angle);
+
 if(instance_exists(alvo))
 {
 	camera_second_acel = lerp(camera_second_acel,(point_distance(x,y,alvo.x,alvo.y) > distance_to_follow),.01)
@@ -15,7 +21,7 @@ if(instance_exists(alvo))
 	
 	if(alvo.y<0)
 	{
-		__y = min(-150,__y);
+		__y = min(-300 * CAMERA_ZOOM,__y);
 	}
 	else
 	{
