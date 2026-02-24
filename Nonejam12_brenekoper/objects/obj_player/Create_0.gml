@@ -31,6 +31,8 @@ drill.owner = id;
 	
 	drill_white_timer = 0;
 	
+	max_vspd = 5;
+	
 	check_entity_to_drill = function(_damage_multiply = 1 , _timer_betwen_hits = timer_offset_attacks , oposite_speed = push_force_when_attack)
 	{
 		if(current_timer_offset_attacks>0 || current_timer_invincible > 0) return;
@@ -572,6 +574,7 @@ drill.owner = id;
 		if(!on_ground)
 		{
 			vspd += gravity_force;
+			vspd = min(vspd , max_vspd)
 			
 			sprite_index = vspd > 0 ? spr_player_normal_fall : spr_player_normal_jump;
 		}
@@ -664,8 +667,11 @@ drill.owner = id;
 
 	if(y<=-max_y_outside || !can_cave)
 	{
+		exit_ground();
 		inside_ground = false;
 		state = state_outside;
+		vspd = 0;
+		y = ystart;
 	}
 	
 	chosing_level = false;
@@ -716,7 +722,7 @@ collision=function()
 	x = clamp(x , _offset , room_width - _offset);
 	y = min(y , max_y);
 	
-	if(inside_ground) && y < -max_y_outside
+	if(inside_ground) && (y < -max_y_outside ||  (y < -max_y_outside + 28 && vspd<0 )) 
 	{
 		exit_ground();
 		image_alpha = 1;

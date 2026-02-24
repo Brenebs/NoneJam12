@@ -16,6 +16,12 @@ if(DEBUG_BUILD)
 		}
 	}
 	
+	if(DEBUG_BUILD && keyboard_check(vk_add))
+	{
+		vspd = 0.1
+		y-=10;
+	}
+	
 	if(keyboard_check_pressed(vk_f12))
 	{
 		save_game()

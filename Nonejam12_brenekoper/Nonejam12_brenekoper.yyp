@@ -649,6 +649,7 @@
     {"id":{"name":"spr_background_biom3","path":"sprites/spr_background_biom3/spr_background_biom3.yy",},},
     {"id":{"name":"spr_background_biom4","path":"sprites/spr_background_biom4/spr_background_biom4.yy",},},
     {"id":{"name":"spr_background_biom5","path":"sprites/spr_background_biom5/spr_background_biom5.yy",},},
+    {"id":{"name":"spr_background_ninesliced","path":"sprites/spr_background_ninesliced/spr_background_ninesliced.yy",},},
     {"id":{"name":"spr_button","path":"sprites/spr_button/spr_button.yy",},},
     {"id":{"name":"spr_camera_dbg","path":"sprites/spr_camera_dbg/spr_camera_dbg.yy",},},
     {"id":{"name":"spr_candy_world_bg1","path":"sprites/spr_candy_world_bg1/spr_candy_world_bg1.yy",},},

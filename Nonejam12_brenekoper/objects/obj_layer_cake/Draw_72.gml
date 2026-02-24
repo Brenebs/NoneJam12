@@ -16,6 +16,6 @@ for(var i = bioms_len-1 ; i >= 0 ; i--)
 	
 	var _alpha = bioms[i , 2];
 	
-	draw_sprite_tiled_ext(bioms[i,0],0,0,0,1,1,c_white,_alpha);
+	draw_sprite_tiled_ext(bioms[i,0],0,0,-6,1,1,c_white,_alpha);
 	
 }

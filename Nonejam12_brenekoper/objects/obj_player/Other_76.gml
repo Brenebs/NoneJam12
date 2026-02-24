@@ -8,7 +8,7 @@ if (event_data[? "event_type"] == "sprite event")
     switch (event_data[? "message"])
     {
         case "same_sprite":
-           image_index = image_index-1;
+           image_index = image_index-.5;
         break;
     }
 }

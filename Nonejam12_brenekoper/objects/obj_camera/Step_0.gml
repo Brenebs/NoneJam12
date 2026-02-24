@@ -15,7 +15,7 @@ if(instance_exists(alvo))
 	
 	if(alvo.y<0)
 	{
-		__y = -150
+		__y = min(-150,__y);
 	}
 	else
 	{
