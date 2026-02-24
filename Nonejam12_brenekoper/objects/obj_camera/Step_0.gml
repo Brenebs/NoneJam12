@@ -80,7 +80,7 @@ else
 	_y = CAMERA_Y + (CAMERA_HEIGHT/2)
 }
 
-audio_listener_set_position(0, _x, _y, 0);
+audio_listener_set_position(0, round(_x), round(_y), 0);
 
 if(check_camera())
 {

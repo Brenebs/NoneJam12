@@ -45,8 +45,8 @@ my_debugger = noone;
 change_world = function()
 {
 		
-	//camera_zoom = .25;
-	//camera_zoom_acel = .1;
+	camera_zoom = .25;
+	camera_zoom_acel = .1;
 		
 	call_later(.75,time_source_units_seconds,function()
 	{
@@ -56,17 +56,21 @@ change_world = function()
 		
 	})
 	
-	//call_later(2,time_source_units_seconds,function()
-	//{
-	//	camera_zoom = .5;
-	//	camera_zoom_acel = .15;
-	//})
-	
-	call_later(2.5,time_source_units_seconds,function()
+	call_later(1,time_source_units_seconds,function()
 	{
-		//CAMERA_ZOOM = camera_zoom;
-		camera_angle = CURRENT_WORLD * 180;
+		camera_zoom = .5;
+		camera_zoom_acel = .02;
 	})
+	call_later(1.25,time_source_units_seconds,function()
+	{
+		camera_zoom_acel = .1;
+	})
+	
+	call_later(1.5,time_source_units_seconds,function()
+	{
+		update_camera(1);
+		camera_angle = CURRENT_WORLD * 180;
+	}) 
 		
 }
 
