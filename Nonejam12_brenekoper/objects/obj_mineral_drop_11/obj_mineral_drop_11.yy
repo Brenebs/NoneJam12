@@ -1,13 +1,12 @@
 {
   "$GMObject":"",
   "%Name":"obj_mineral_drop_11",
-  "eventList":[],
+  "eventList":[
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+  ],
   "managed":true,
   "name":"obj_mineral_drop_11",
-  "overriddenProperties":[
-    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_mineral_drop_father","path":"objects/obj_mineral_drop_father/obj_mineral_drop_father.yy",},"propertyId":{"name":"value","path":"objects/obj_mineral_drop_father/obj_mineral_drop_father.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"5",},
-    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_mineral_drop_father","path":"objects/obj_mineral_drop_father/obj_mineral_drop_father.yy",},"propertyId":{"name":"stack_max","path":"objects/obj_mineral_drop_father/obj_mineral_drop_father.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"16",},
-  ],
+  "overriddenProperties":[],
   "parent":{
     "name":"Drops",
     "path":"folders/Objects/Minérios/Drops.yy",
