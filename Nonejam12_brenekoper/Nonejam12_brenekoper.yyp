@@ -555,6 +555,7 @@
     {"id":{"name":"Macros","path":"scripts/Macros/Macros.yy",},},
     {"id":{"name":"PauseInstanceHandler","path":"scripts/PauseInstanceHandler/PauseInstanceHandler.yy",},},
     {"id":{"name":"SaveScript","path":"scripts/SaveScript/SaveScript.yy",},},
+    {"id":{"name":"scr_change_world_functions","path":"scripts/scr_change_world_functions/scr_change_world_functions.yy",},},
     {"id":{"name":"scr_create_mineral","path":"scripts/scr_create_mineral/scr_create_mineral.yy",},},
     {"id":{"name":"scr_drops_handler","path":"scripts/scr_drops_handler/scr_drops_handler.yy",},},
     {"id":{"name":"scribble_add_macro","path":"scripts/scribble_add_macro/scribble_add_macro.yy",},},

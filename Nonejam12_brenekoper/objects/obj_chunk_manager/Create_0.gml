@@ -1,4 +1,5 @@
 
+timer_to_check_player = 0;
 
 player_current_chunk = 0;
 

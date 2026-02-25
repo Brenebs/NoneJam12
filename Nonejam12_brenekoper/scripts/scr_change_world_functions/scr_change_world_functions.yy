@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_change_world_functions",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_change_world_functions",
+  "parent":{
+    "name":"CandyGenerator",
+    "path":"folders/Scripts/CandyGenerator.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
