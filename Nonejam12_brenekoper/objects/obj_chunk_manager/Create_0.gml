@@ -157,9 +157,25 @@ deactivate_instances = function()
 		{
 			show_message($"eu sou {object_get_name(object_index)} - id {id}");
 			
-			array_push(_ins.deactivated_list)
+			if(object_is_ancestor(object_index , obj_interact_item_father) || object_index == obj_item_dispenser)
+			{
+				show_message($"fui guardado  {object_get_name(object_index)} - id {id}");
+				array_push(_ins.deactivated_list , _ins);
+				instance_deactivate_object(id);
+			}
 		}
 	}
+}
+
+reactivate_instances = function()
+{
+	var _num = array_length(deactivated_list);
+	for(var i = 0 ; i < _num ; i++)
+	{
+		instance_activate_object(deactivated_list[i]);
+	}
+	
+	deactivated_list = [];
 }
 
 

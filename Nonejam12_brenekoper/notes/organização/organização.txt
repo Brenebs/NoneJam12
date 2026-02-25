@@ -25,3 +25,15 @@ Cadastrar propriedades de cada drop - Exige loop concluido
 	
 	- valor
 	- quanto pode stackar
+	
+re colocar os sprites dos blocos e faze-los terem sombra diferente
+
+////////////////desativar as instancias na parte de cima
+
+sistema de fogão
+
+sistema de tnt
+
+sistema de broca autonoma
+	
+////////////parte de cima ainda ta bugada, desbloquear x da camera lá

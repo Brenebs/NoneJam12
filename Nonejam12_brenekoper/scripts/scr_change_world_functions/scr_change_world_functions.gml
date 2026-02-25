@@ -53,12 +53,16 @@ function update_game_mid_jump()
 	// indo pro mundo real
 	if(CURRENT_WORLD)
 	{
+		obj_camera.lock_camera_x = false;
 		reset_everything();	
 	}
 	else
 	//indo pro mundo doce
 	{
 		generate_world();
+		
+		obj_camera.lock_camera_x = true;
+		
 		//deactivate_instances();	
 	}
 	

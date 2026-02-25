@@ -38,3 +38,22 @@ destroy_function = function()
 	
 	instance_destroy();
 }
+
+draw_mineral = function()
+{
+	
+	draw_sprite_ext(sprite_index , 1 , x,y,image_xscale * scale, image_yscale * scale,image_angle,image_blend , 1);
+
+	
+	if(white_timer)
+	{
+		gpu_set_fog(true , c_white , 1,0);
+	}
+
+	draw_sprite_ext(sprite_index , 0 , x,y,image_xscale * scale, image_yscale * scale,image_angle,image_blend , 1);
+
+	if(white_timer)
+	{
+		gpu_set_fog(false , c_white , 1,0);
+	}
+}
