@@ -22,6 +22,14 @@ if(instance_exists(alvo))
 	if(alvo.y<0)
 	{
 		__y = min(-300 * CAMERA_ZOOM,__y);
+		
+		with(obj_player)
+		{
+			if(state != state_prepare_fall)
+			{
+				__y = max(__y , global.camera_min_y);
+			}
+		}
 	}
 	else
 	{

@@ -33,6 +33,8 @@ drill.owner = id;
 	
 	max_vspd = 15;
 	
+	have_drill = true;
+	
 	check_entity_to_drill = function(_damage_multiply = 1 , _timer_betwen_hits = timer_offset_attacks , oposite_speed = push_force_when_attack)
 	{
 		if(current_timer_offset_attacks>0 || current_timer_invincible > 0) return;
@@ -145,7 +147,14 @@ drill.owner = id;
 		if(image_alpha <=0) return;
 		
 		var _difference = -10;
-		if(number_is_between(angle_direction,_difference,180-_difference))
+		
+		var _back = number_is_between(angle_direction,_difference,180-_difference);
+		if(CURRENT_WORLD)
+		{
+			_back = !_back;
+		}
+			
+		if(_back)
 		{
 			draw_drill();
 			draw_player();
@@ -188,8 +197,8 @@ drill.owner = id;
 			draw_sprite_ext(sprite_index,image_index,x,bbox_top,xscale * look_at , yscale , image_angle + angle + 180 , image_blend , image_alpha * _alp);
 		}
 		
-		if(can_cave) return;
-		draw_sprite_ext(spr_litou_hat,0,x,bbox_top - wave(1,4,2) , xscale * look_at , yscale , 0 , image_blend , 1);
+		if(can_cave || !have_drill) return;
+		draw_sprite_ext(spr_litou_hat,0,x,bbox_bottom + wave(1,4,2) , xscale * look_at , yscale , angle + 180 , image_blend , 1);
 	}
 	
 	draw_player = function()
@@ -218,16 +227,22 @@ drill.owner = id;
 	
 	draw_drill = function()
 	{
-		if(!can_cave) 
+		if(!can_cave || !have_drill) 
 		{
 			return;
 		}
+		
 		
 		if(drill_white_timer>0) gpu_set_fog(true , c_dkgray , 1,0);
 		
 		var _dist = 8
 		var _x = lengthdir_x(_dist , angle_direction);
 		var _y = lengthdir_y(_dist*.8 , angle_direction) - 4;
+		
+		if(CURRENT_WORLD)
+		{
+			_y += 10
+		}
 		
 		//if(!inside_ground) _y -= 8
 		
@@ -682,6 +697,61 @@ drill.owner = id;
 		state = state_outside;
 		vspd = 0;
 		y = ystart;
+	}
+	
+	state_prepare_fall = function()
+	{
+		can_cave = true;	
+		have_drill = true;
+		sprite_index = spr_player_normal_prepare_jump;
+		
+		var _direction = CURRENT_WORLD ? 270 : 90;
+		rotate_drill(_direction, .2)
+		
+		hspd = 0;
+		vspd = 0;
+	}
+	state_falling = function()
+	{
+		have_drill = false;
+		image_blend = c_white
+		
+		var _frc = !CURRENT_WORLD ? 1 : -1;
+		
+		on_ground = instance_place(x,y+_frc,obj_collision);
+	
+		var _hspd = outside_speed * check_horizontal_movement();
+		hspd = lerp(hspd , _hspd , .1);
+		
+		var _diff = 16;
+		x = clamp(x,room_width/2-_diff,room_width/2+_diff)
+	
+		sprite_index = spr_player_normal_falling;
+		
+		angle += 8.5
+
+		
+		if(on_ground)
+		{
+			have_drill = true;
+			angle = 0;
+			
+			obj_game_control.can_pause = true;
+			
+			if(can_cave && mouse_check_button(mb_left))
+			{
+				enter_ground();
+			}
+			else
+			{
+				state = state_outside;
+			}
+		}
+		else
+		{
+			vspd += gravity_force * _frc;
+			vspd = clamp(vspd , -max_vspd  , max_vspd);
+		}
 	}
 	
 	chosing_level = false;
