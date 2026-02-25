@@ -50,5 +50,16 @@ function camera_change_world()
 
 function update_game_mid_jump()
 {
+	// indo pro mundo real
+	if(CURRENT_WORLD)
+	{
+		reset_everything();	
+	}
+	else
+	//indo pro mundo doce
+	{
+		generate_world();
+		//deactivate_instances();	
+	}
 	
 }

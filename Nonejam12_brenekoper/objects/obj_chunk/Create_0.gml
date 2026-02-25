@@ -13,6 +13,8 @@ image_xscale = room_width	/ sprite_get_width(sprite_index);
 //}
 
 
+have_to_die = false;
+
 my_array = variable_clone(global.array_chunks[id_chunk])
 my_array = array_shuffle(my_array)
 var _area_max = array_length(my_array);
@@ -65,4 +67,23 @@ reactivate_instances = function()
 	}
 	
 	deactivated_instances = [];
+}
+
+destroy_instances = function()
+{
+	var _num2 = array_length(my_array);
+	for(var j = 0 ; j < _num2 ; j++)
+	{
+		var _rock = my_array[j];
+		instance_activate_object(_rock);
+				
+		show_debug_message($"      j =  {j} - {_rock}")
+		instance_destroy(_rock , false);
+	}
+			
+	delete my_array;
+			
+	show_debug_message($"destruindo chunk - index {id_chunk} - {id}")
+			
+	instance_destroy(id);
 }
