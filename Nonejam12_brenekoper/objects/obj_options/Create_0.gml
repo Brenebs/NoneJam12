@@ -34,6 +34,7 @@ var _h = GUI_HEIGHT * .28;
 		depth = 5;
 		action = fx() {
 			GAME_INFO.volume_main.value = clamp(GAME_INFO.volume_main.value - GAME_INFO.volume_main.value_change_snap, GAME_INFO.volume_main.value_min, GAME_INFO.volume_main.value_max);
+			update_save();
 		}
 	}
 	push_content(_main_min_button);
@@ -53,6 +54,7 @@ var _h = GUI_HEIGHT * .28;
 		depth = 5;
 		action = fx() {
 			GAME_INFO.volume_main.value = clamp(GAME_INFO.volume_main.value + GAME_INFO.volume_main.value_change_snap, GAME_INFO.volume_main.value_min, GAME_INFO.volume_main.value_max);
+			update_save();
 		}
 	}
 	push_content(_main_max_button);
@@ -70,6 +72,7 @@ var _h = GUI_HEIGHT * .28;
 		depth = 5;
 		action = fx() {
 			GAME_INFO.volume_music.value = clamp(GAME_INFO.volume_music.value - GAME_INFO.volume_music.value_change_snap, GAME_INFO.volume_music.value_min, GAME_INFO.volume_music.value_max);
+			update_save();
 		}
 	}
 	push_content(_music_min_button);
@@ -89,6 +92,7 @@ var _h = GUI_HEIGHT * .28;
 		depth = 5;
 		action = fx() {
 			GAME_INFO.volume_music.value = clamp(GAME_INFO.volume_music.value + GAME_INFO.volume_music.value_change_snap, GAME_INFO.volume_music.value_min, GAME_INFO.volume_music.value_max);
+			update_save();
 		}
 	}
 	push_content(_music_max_button);
@@ -106,6 +110,7 @@ var _h = GUI_HEIGHT * .28;
 		depth = 5;
 		action = fx() {
 			GAME_INFO.volume_sfx.value = clamp(GAME_INFO.volume_sfx.value - GAME_INFO.volume_sfx.value_change_snap, GAME_INFO.volume_sfx.value_min, GAME_INFO.volume_sfx.value_max);
+			update_save();
 		}
 	}
 	push_content(_sfx_min_button);
@@ -125,6 +130,7 @@ var _h = GUI_HEIGHT * .28;
 		depth = 5;
 		action = fx() {
 			GAME_INFO.volume_sfx.value = clamp(GAME_INFO.volume_sfx.value + GAME_INFO.volume_sfx.value_change_snap, GAME_INFO.volume_sfx.value_min, GAME_INFO.volume_sfx.value_max);
+			update_save();
 		}
 	}
 	push_content(_sfx_max_button);

@@ -3,6 +3,8 @@
   "%Name":"Nonejam12_brenekoper",
   "AudioGroups":[
     {"$GMAudioGroup":"v1","%Name":"audiogroup_default","exportDir":"","name":"audiogroup_default","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
+    {"$GMAudioGroup":"v1","%Name":"ag_sfx","exportDir":"","name":"ag_sfx","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-1,},
+    {"$GMAudioGroup":"v1","%Name":"ag_musics","exportDir":"","name":"ag_musics","resourceType":"GMAudioGroup","resourceVersion":"2.0","targets":-134217729,},
   ],
   "configs":{
     "children":[],

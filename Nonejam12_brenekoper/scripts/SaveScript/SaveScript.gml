@@ -16,18 +16,82 @@ function create_saveable_info() constructor
 	volume_sfx		= new create_options_numeric(.5);
 	volume_music	= new create_options_numeric(.5);
 	
-	//variaveis de resolução
+	//variaveis do menu de opções
 	fullscreen = false;
-	
 	use_mouse = false;
+	
+	//coisas que o player fez
 	
 	drops_colected = better_array_create(SLOTS_MINERAL_MIN,undefined)
 	
 	coins = 0;
+
+	enemies_killed = 0;
 	
 	max_roadblock_destroyed = 0;
-	
 	max_chunk_achiev = 0;
+	
+	//melhorias
+	
+	upgrades = {}
+	with(upgrades)
+	{
+		//Broca
+		drill_level				 = 0;
+		drill_damage			 = 0;
+		drill_eletric			 = 0;
+		drill_range				 = 0;
+		drill_speed				 = 0;
+		
+		//Dash
+		dash_unlocked			 = 0;
+		dash_colector			 = 0;
+		dash_distance			 = 0;
+		dash_eficiency			 = 0;
+		dash_damage				 = 0;
+		dash_load				 = 0; 
+		dash_critic				 = 0;
+		
+		//Energy
+		energy_max				 = 0; //carga maxima
+		energy_movement			 = 0; //movimentação eficiente
+		energy_drill_damage		 = 0; //broca eficiente
+		energy_still			 = 0; //motor eficiente
+		energy_invencibility	 = 0; //Invencibidade ao tomar dano
+		energy_resistency		 = 0; //resistencia a danos
+		energy_leech			 = 0; //sangue suga
+		
+		//Extras
+		ext_slot_total			 = 0;
+		ext_slot_lenght			 = 0;
+		
+		ext_selling_slots		 = 0;
+		ext_selling_clients		 = 0;
+		
+		ext_magnet				 = 0;
+		
+		ext_auto_drill			 = 0;
+		ext_auto_drill_eficiency = 0;
+		
+		ext_tnt					 = 0;
+		ext_tnt_area			 = 0;
+		ext_tnt_damage			 = 0;
+		
+		ext_more_drops			 = 0;
+		ext_lost_drops			 = 0;
+		ext_life_saver			 = 0;
+		ext_pointer				 = 0;
+		
+		//Fogão
+		cooker_number			 = 0;
+		cooker_faster			 = 0;
+		cooker_seasoning		 = 0;
+		cooker_ideal			 = 0;
+		cooker_propaganda		 = 0;
+		cooker_auto				 = 0;
+		cooker_selling			 = 0;
+		
+	}
 	
 }
 
@@ -38,8 +102,8 @@ global.game_save = new create_saveable_info();
 //coisas que devem ser atualizadas após mexer numa variavel 
 function update_save()
 {
-	//audio_group_set_gain(ag_musics	,GAME_INFO.volume_music.value	* GAME_INFO.volume_main.value,100);
-	//audio_group_set_gain(ag_sfx		,GAME_INFO.volume_sfx.value		* GAME_INFO.volume_main.value,100);
+	audio_group_set_gain(ag_musics	,GAME_INFO.volume_music.value	* GAME_INFO.volume_main.value,100);
+	audio_group_set_gain(ag_sfx		,GAME_INFO.volume_sfx.value		* GAME_INFO.volume_main.value,100);
 	
 	window_set_fullscreen(GAME_INFO.fullscreen);
 }

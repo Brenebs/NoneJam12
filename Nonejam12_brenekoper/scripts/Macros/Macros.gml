@@ -11,6 +11,8 @@ window_set_caption(GAME_NAME);
 #macro SAVE_NAME string_lettersdigits(GAME_NAME)+".json"
 #macro GAME_INFO global.game_save //os dois são a mesma coisa eu só tenho os dois pq eu as vezes escrevo outro
 #macro GAME_SAVE global.game_save //os dois são a mesma coisa eu só tenho os dois pq eu as vezes escrevo outro
+#macro UPGRADES global.game_save.upgrades
+#macro SKILL_THREE global.game_save.upgrades
 
 //facilitadores de functions
 #macro ROOM_WIDTH room_width

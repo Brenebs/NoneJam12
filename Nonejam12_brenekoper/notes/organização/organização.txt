@@ -15,10 +15,9 @@ Npcs bonitinhos
 Cadastrar valor de cada minério - Exige loop concluido
 
 Cadastrar as propriedades de cada minério - Exige loop concluido
-	- nivel pra quebrar
-	- resistência
-	- quantidade de drop
-	- quanto de vida tem (fazer ficar escuro, dps faço funcionar com image_index)
+	- ///////////////nivel pra quebrar
+	- quantidade de drop (coisa extra)
+	- ///////////////quanto de vida tem (fazer ficar escuro, dps faço funcionar com image_index)
 	- quantos drops são dropados
 	
 Cadastrar propriedades de cada drop - Exige loop concluido
@@ -26,7 +25,9 @@ Cadastrar propriedades de cada drop - Exige loop concluido
 	- valor
 	- quanto pode stackar
 	
-re colocar os sprites dos blocos e faze-los terem sombra diferente
+Criar todas as variavéis importantes no game_data
+	
+////////////////re colocar os sprites dos blocos e faze-los terem sombra diferente
 
 ////////////////desativar as instancias na parte de cima
 
