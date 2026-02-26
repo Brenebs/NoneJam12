@@ -1,9 +1,9 @@
 {
   "$GMObject":"",
-  "%Name":"obj_skill_slot1",
+  "%Name":"obj_skill_slot_sellspd2",
   "eventList":[],
   "managed":true,
-  "name":"obj_skill_slot1",
+  "name":"obj_skill_slot_sellspd2",
   "overriddenProperties":[],
   "parent":{
     "name":"Slot",
@@ -31,8 +31,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_ico_skill_slot1",
-    "path":"sprites/spr_ico_skill_slot1/spr_ico_skill_slot1.yy",
+    "name":"spr_ico_skill_slot_sellspd2",
+    "path":"sprites/spr_ico_skill_slot_sellspd2/spr_ico_skill_slot_sellspd2.yy",
   },
   "spriteMaskId":null,
   "visible":true,

@@ -1,13 +1,13 @@
 {
   "$GMObject":"",
-  "%Name":"obj_skill_slot1",
+  "%Name":"obj_skill_drill_damage4",
   "eventList":[],
   "managed":true,
-  "name":"obj_skill_slot1",
+  "name":"obj_skill_drill_damage4",
   "overriddenProperties":[],
   "parent":{
-    "name":"Slot",
-    "path":"folders/Objects/Skill Tree/Skills/Slot.yy",
+    "name":"Drill",
+    "path":"folders/Objects/Skill Tree/Skills/Drill.yy",
   },
   "parentObjectId":{
     "name":"obj_skill",
@@ -31,8 +31,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_ico_skill_slot1",
-    "path":"sprites/spr_ico_skill_slot1/spr_ico_skill_slot1.yy",
+    "name":"spr_ico_skill_drill_damage4",
+    "path":"sprites/spr_ico_skill_drill_damage4/spr_ico_skill_drill_damage4.yy",
   },
   "spriteMaskId":null,
   "visible":true,
