@@ -290,6 +290,11 @@ drill.owner = id;
 		var _x = 64;
 		var _y = GUI_HEIGHT - 16
 		var _num = array_length(INVENTORY);
+		
+		draw_set_valign(fa_bottom)
+		draw_set_halign(fa_center)
+		draw_set_font(fnt_pb);
+		
 		for(var i = 0 ; i < _num ; i++)
 		{
 			var __x = _x + (i*SLOT_WIDTH);
@@ -299,23 +304,18 @@ drill.owner = id;
 			{
 				draw_sprite_ext(INVENTORY[i].slot_sprite,0,__x,_y - (SLOT_WIDTH/2),1,1,0,c_white,1)
 				
-				draw_set_valign(fa_bottom)
-				draw_set_halign(fa_center)
+				__x += 4
+				var __y = _y + 1;
+				var _txt = $"{INVENTORY[i].slot_stack_current_number}";
 				
-				
-				
-				draw_set_color(c_black);
-				var _txt = $"{INVENTORY[i].slot_stack_current_number}"
-				draw_text_scribble(__x  , _y , _txt);
-				draw_set_color(c_white);
-				draw_text_scribble(__x -1 , _y -1 , _txt);
-				
-				draw_set_halign(fa_left)
-				draw_set_valign(fa_top)
+				draw_cool_text(__x , _y , _txt);
 			}
 		}
 		
-		draw_text(_x-16 , _y - 80 , INVENTORY_OPTION_SELECTED)
+		draw_set_font(-1);
+		draw_set_halign(fa_left)
+		draw_set_valign(fa_top)
+		
 	}
 	
 	draw_battery_life = function()
@@ -344,11 +344,24 @@ drill.owner = id;
 		draw_sprite_ext(spr_battery_bar,0,20,20 ,1,_scale		 , 0 , c_white , 1);
 	}
 	
+	x_gui_normal	= 22;
+	x_gui_candy		= 50;
+	x_gui		 	= x_gui_candy;
+	
 	draw_gui = function()
 	{
+		x_gui = lerp(x_gui , CURRENT_WORLD ? x_gui_normal : x_gui_candy,.1);
 		
+		draw_set_font(fnt_pb);
 		
-		draw_text(20,50,GAME_INFO.coins);
+		draw_cool_scribble_text(x_gui , 40 , $"[spr_money_icon]: {GAME_INFO.coins}");
+		
+		if(!CURRENT_WORLD)
+		{
+			draw_cool_text(x_gui , 55 , $"Altura: {max(round((y+max_y_outside)/32),0)} m");
+		}
+		
+		draw_set_font(-1);
 		
 		draw_battery_life();
 		
@@ -420,7 +433,7 @@ drill.owner = id;
 	
 	consume_energy = function(_value)
 	{
-		if(inside_ground && visible)
+		if(inside_ground && visible && image_alpha > 0.1)
 		{
 			current_energy -= _value
 		}
@@ -482,6 +495,58 @@ drill.owner = id;
 	can_i_be_hurt = function(_other)
 	{
 		return current_timer_invincible <=0;
+	}
+
+	max_y = (CHUNK_MAX * CHUNK_HEIGHT) + CHUNK_HEIGHT;
+	collision=function()
+	{
+		var _multiply = speed_multiply_timer > 0 ? current_speed_multiply : 1
+	
+		var __x = hspd * _multiply;
+		var __y = vspd * _multiply;
+	
+		if(!inside_ground)
+		{
+		
+			if(CURRENT_WORLD) __x *= -1;
+		
+			for(var i = 0 ; i < floor(abs(__x)) ; i++)
+			{
+				if(!instance_place(x+sign(__x),y,obj_collision))
+				{
+					x += sign(__x);
+				}
+			}
+		
+			for(var i = 0 ; i < floor(abs(__y)) ; i++)
+			{
+				if(!instance_place(x,y+sign(__y),obj_collision))
+				{
+					y += sign(__y);
+				}
+			}
+		}
+		else
+		{
+		
+			var _movement = (abs(__x) + abs(__y))/50 * move_energy_cost
+			consume_energy(max(_movement , still_energy_cost));
+		
+		
+			x += __x;
+			y += __y;
+		}
+	
+		var _offset = 0
+		x = clamp(x , _offset , room_width - _offset);
+		y = min(y , max_y);
+	
+		if(inside_ground) && !player_dead && (y < -max_y_outside ||  (y < -max_y_outside + 28 && vspd<0 )) 
+		{
+		
+			exit_ground();
+			image_alpha = 1;
+		}
 	}
 
 #endregion
@@ -598,6 +663,8 @@ drill.owner = id;
 	{
 		image_alpha = 0;
 		vspd = lerp(vspd , -100 , .05);
+		
+		current_energy = max(current_energy,1);
 	}
 	
 	state_hurt = function()
@@ -880,62 +947,155 @@ drill.owner = id;
 
 #endregion
 
-max_y = (CHUNK_MAX * CHUNK_HEIGHT) + CHUNK_HEIGHT;
-collision=function()
-{
-	var _multiply = speed_multiply_timer > 0 ? current_speed_multiply : 1
-	
-	var __x = hspd * _multiply;
-	var __y = vspd * _multiply;
-	
-	if(!inside_ground)
-	{
-		
-		if(CURRENT_WORLD) __x *= -1;
-		
-		for(var i = 0 ; i < floor(abs(__x)) ; i++)
-		{
-			if(!instance_place(x+sign(__x),y,obj_collision))
-			{
-				x += sign(__x);
-			}
-		}
-		
-		for(var i = 0 ; i < floor(abs(__y)) ; i++)
-		{
-			if(!instance_place(x,y+sign(__y),obj_collision))
-			{
-				y += sign(__y);
-			}
-		}
-	}
-	else
-	{
-		
-		var _movement = (abs(__x) + abs(__y))/50 * move_energy_cost
-		consume_energy(max(_movement , still_energy_cost));
-		
-		
-		x += __x;
-		y += __y;
-	}
-	
-	var _offset = 0
-	x = clamp(x , _offset , room_width - _offset);
-	y = min(y , max_y);
-	
-	if(inside_ground) && !player_dead && (y < -max_y_outside ||  (y < -max_y_outside + 28 && vspd<0 )) 
-	{
-		
-		exit_ground();
-		image_alpha = 1;
-	}
-}
+#region upgrades
 
+	update_upgrades_values = function()
+	{
+		//UPGRADES.drill_level				 
+		//UPGRADES.drill_damage			 
+		//UPGRADES.drill_eletric			 
+		//UPGRADES.drill_range				 
+		//UPGRADES.drill_speed				 
+//		//UPGRADES.
+		////Dash
+		//UPGRADES.dash_unlocked			 
+		//UPGRADES.dash_colector			 
+		//UPGRADES.dash_distance			 
+		//UPGRADES.dash_eficiency			 
+		//UPGRADES.dash_damage				 
+		//UPGRADES.dash_load				 
+		//UPGRADES.dash_critic				 
+//		//UPGRADES.
+		////Energy
+		//UPGRADES.energy_max				 
+		//UPGRADES.energy_movement			 
+		//UPGRADES.energy_drill_damage		 
+		//UPGRADES.energy_still			 
+		//UPGRADES.energy_invencibility	 
+		//UPGRADES.energy_resistency		 
+		//UPGRADES.energy_leech			 
+//		//UPGRADES.
+		////Extras
+		//UPGRADES.ext_slot_total			 
+		//UPGRADES.ext_slot_lenght			 
+//		//UPGRADES.
+		//UPGRADES.ext_selling_slots		 
+		//UPGRADES.ext_selling_clients		 
+//		//UPGRADES.
+		//UPGRADES.ext_magnet				 
+//		//UPGRADES.
+		//UPGRADES.ext_auto_drill			 
+		//UPGRADES.ext_auto_drill_eficiency 
+//		//UPGRADES.
+		//UPGRADES.ext_tnt					 
+		//UPGRADES.ext_tnt_area			 
+		//UPGRADES.ext_tnt_damage			 
+//		//UPGRADES.
+		//UPGRADES.ext_more_drops			 
+		//UPGRADES.ext_lost_drops			 
+		//UPGRADES.ext_life_saver			 
+		//UPGRADES.ext_pointer				 
+//		//UPGRADES.
+//		////Fogão
+		//UPGRADES.cooker_number			 
+		//UPGRADES.cooker_faster			 
+		//UPGRADES.cooker_seasoning		 
+		//UPGRADES.cooker_ideal			 
+		//UPGRADES.cooker_propaganda		 
+		//UPGRADES.cooker_auto				 
+		//UPGRADES.cooker_selling			 
+		
+	}
+	
+#endregion
 
 #region DEBUGGER
 
 	my_debugger = noone;
+
+	#region OLD DEBUG COM AS VARIAVEIS DO PLAYER
+	//debug_create = function()
+	//{
+	//	my_debugger = dbg_view("CAMERA OPTIONS",true)
+
+	//	//dbg_section("Player");
+	//	//dbg_text("Coisas");
+	//	//dbg_checkbox(ref_create(self , "variable_name"),"")
+	//	//dbg_slider(ref_create(self , "variable_name") , 0 , 3,"TEXTO: ",0.1)
+	//	//dbg_text_input(	ref_create(self , "variable_name")	,"TEXTO: "	,DBG_TYPE_REAL)
+		
+	//	dbg_section("Movimentação");
+		
+	//		dbg_text_input(ref_create(self , "speed_walking")	 , "speed_walking"		, DBG_TYPE_REAL);
+	//		dbg_text_input(ref_create(self , "current_speed")	 , "current_speed"		, DBG_TYPE_REAL);
+	//		dbg_text_input(ref_create(self , "aceleration"	)	 , "aceleration"		, DBG_TYPE_REAL);
+	//		dbg_text_input(ref_create(self , "move_energy_cost") , "move_energy_cost"	, DBG_TYPE_REAL);
+		
+	//	dbg_section("Dash");
+		
+	//		dbg_text_input(ref_create(self , "dash_load_timer"	)		, "dash_load_timer"		, DBG_TYPE_INT);
+	//		dbg_text_input(ref_create(self , "dash_distance_max"	)	, "dash_distance_max"	, DBG_TYPE_INT);
+	//		dbg_text_input(ref_create(self , "dash_flow_timer"	)		, "dash_flow_timer"		, DBG_TYPE_INT);
+			
+	//		dbg_text_input(ref_create(self , "dash_damage_multiply"	)	, "dash_damage_multiply"		, DBG_TYPE_REAL);
+			
+	//		dbg_text_input(ref_create(self , "dash_bust_energy_cost")	, "dash_bust_energy_cost"		, DBG_TYPE_REAL);
+	//		dbg_text_input(ref_create(self , "state_dash_energy_cost")	, "state_dash_energy_cost"		, DBG_TYPE_REAL);
+		
+	//	dbg_section("Broca");
+		
+	//		dbg_text_input(ref_create(self , "damage")						, "damage"						, DBG_TYPE_REAL);
+	//		dbg_text_input(ref_create(self , "damage_level")				, "damage_level"				, DBG_TYPE_REAL);
+
+	//		dbg_button("Free current slot" , update_damage);
+			
+	//		dbg_text_input(ref_create(self , "drill_level")					, "drill_level"					, DBG_TYPE_REAL);
+	//		dbg_text_input(ref_create(self , "dash_damage_multiply")		, "dash_damage_multiply"		, DBG_TYPE_REAL);
+			
+	//		dbg_text_input(ref_create(self , "damage_energy_cost_multiply")	, "damage_energy_cost_multiply"	, DBG_TYPE_REAL);
+																			  
+	//		dbg_text_input(ref_create(self , "timer_offset_attacks")		, "timer_offset_attacks"		, DBG_TYPE_INT);
+	//		dbg_text_input(ref_create(self , "dash_timer_offset_attacks")	, "dash_timer_offset_attacks"	, DBG_TYPE_INT);
+																			  
+	//		dbg_text_input(ref_create(self , "push_force_when_attack")		, "push_force_when_attack"		, DBG_TYPE_REAL);
+	//		dbg_text_input(ref_create(self , "push_force_when_attack_dash")	, "push_force_when_attack_dash"	, DBG_TYPE_REAL);
+		
+	//	dbg_section("Energy");
+		
+	//		dbg_text_input(ref_create(self , "energy_max")			, "energy_max"		, DBG_TYPE_REAL);
+	//		dbg_text_input(ref_create(self , "current_energy")		, "current_energy"	, DBG_TYPE_REAL);
+			
+			
+	//		dbg_text_input(ref_create(self , "still_energy_cost")			, "still_energy_cost"			, DBG_TYPE_REAL);
+	//		dbg_text_input(ref_create(self , "move_energy_cost")			, "move_energy_cost"			, DBG_TYPE_REAL);
+	//		dbg_text_input(ref_create(self , "dash_bust_energy_cost")		, "dash_bust_energy_cost"		, DBG_TYPE_REAL);
+	//		dbg_text_input(ref_create(self , "damage_energy_cost_multiply")	, "damage_energy_cost_multiply"	, DBG_TYPE_REAL);
+	//		dbg_text_input(ref_create(self , "state_dash_energy_cost")		, "state_dash_energy_cost"		, DBG_TYPE_REAL);
+			
+	//	dbg_section("Inventário")
+		
+	//		dbg_button("Add Slot" , function()
+	//		{
+	//			array_push(INVENTORY,undefined);
+	//		})
+			
+	//		dbg_button("Remove Slot" , function()
+	//		{
+	//			if(array_length(INVENTORY) > SLOTS_MINERAL_MIN)
+	//			{
+	//				var _ins = array_pop(INVENTORY);
+					
+	//				INVENTORY_OPTION_SELECTED = qwrap(INVENTORY_OPTION_SELECTED,0,array_length(INVENTORY)-1)
+					
+	//				delete _ins;
+	//			}
+	//		})
+			
+			
+	//		dbg_button("Free current slot" , drop_mineral);
+	
+	//}
+	#endregion
 
 	debug_create = function()
 	{
@@ -947,75 +1107,71 @@ collision=function()
 		//dbg_slider(ref_create(self , "variable_name") , 0 , 3,"TEXTO: ",0.1)
 		//dbg_text_input(	ref_create(self , "variable_name")	,"TEXTO: "	,DBG_TYPE_REAL)
 		
-		dbg_section("Movimentação");
+		dbg_section("Botões mágicos");
 		
-			dbg_text_input(ref_create(self , "speed_walking")	 , "speed_walking"		, DBG_TYPE_REAL);
-			dbg_text_input(ref_create(self , "current_speed")	 , "current_speed"		, DBG_TYPE_REAL);
-			dbg_text_input(ref_create(self , "aceleration"	)	 , "aceleration"		, DBG_TYPE_REAL);
-			dbg_text_input(ref_create(self , "move_energy_cost") , "move_energy_cost"	, DBG_TYPE_REAL);
-		
-		dbg_section("Dash");
-		
-			dbg_text_input(ref_create(self , "dash_load_timer"	)		, "dash_load_timer"		, DBG_TYPE_INT);
-			dbg_text_input(ref_create(self , "dash_distance_max"	)	, "dash_distance_max"	, DBG_TYPE_INT);
-			dbg_text_input(ref_create(self , "dash_flow_timer"	)		, "dash_flow_timer"		, DBG_TYPE_INT);
-			
-			dbg_text_input(ref_create(self , "dash_damage_multiply"	)	, "dash_damage_multiply"		, DBG_TYPE_REAL);
-			
-			dbg_text_input(ref_create(self , "dash_bust_energy_cost")	, "dash_bust_energy_cost"		, DBG_TYPE_REAL);
-			dbg_text_input(ref_create(self , "state_dash_energy_cost")	, "state_dash_energy_cost"		, DBG_TYPE_REAL);
+			dbg_button("Imortal"			 , update_upgrades_values);
+			dbg_button("DANO MAX"			 , update_upgrades_values);
+			dbg_button("Matar o player"		 , update_upgrades_values);
+			dbg_button("TP para o teleporte" , update_upgrades_values);
+			dbg_button("Atualizar variáveis" , update_upgrades_values);
+			dbg_button("SAVE"				 , update_upgrades_values);
 		
 		dbg_section("Broca");
 		
-			dbg_text_input(ref_create(self , "damage")						, "damage"						, DBG_TYPE_REAL);
-			dbg_text_input(ref_create(self , "damage_level")				, "damage_level"				, DBG_TYPE_REAL);
-
-			dbg_button("Free current slot" , update_damage);
-			
-			dbg_text_input(ref_create(self , "drill_level")					, "drill_level"					, DBG_TYPE_REAL);
-			dbg_text_input(ref_create(self , "dash_damage_multiply")		, "dash_damage_multiply"		, DBG_TYPE_REAL);
-			
-			dbg_text_input(ref_create(self , "damage_energy_cost_multiply")	, "damage_energy_cost_multiply"	, DBG_TYPE_REAL);
-																			  
-			dbg_text_input(ref_create(self , "timer_offset_attacks")		, "timer_offset_attacks"		, DBG_TYPE_INT);
-			dbg_text_input(ref_create(self , "dash_timer_offset_attacks")	, "dash_timer_offset_attacks"	, DBG_TYPE_INT);
-																			  
-			dbg_text_input(ref_create(self , "push_force_when_attack")		, "push_force_when_attack"		, DBG_TYPE_REAL);
-			dbg_text_input(ref_create(self , "push_force_when_attack_dash")	, "push_force_when_attack_dash"	, DBG_TYPE_REAL);
+			dbg_text_input(ref_create(UPGRADES , "drill_level")	  ,"drill_level"			, DBG_TYPE_INT);
+			dbg_text_input(ref_create(UPGRADES , "drill_damage")  ,"drill_damage"  			, DBG_TYPE_INT);
+			dbg_text_input(ref_create(UPGRADES , "drill_eletric") ,"drill_eletric" 			, DBG_TYPE_INT);
+			dbg_text_input(ref_create(UPGRADES , "drill_range"	) ,"drill_range"			, DBG_TYPE_INT);
+			dbg_text_input(ref_create(UPGRADES , "drill_speed")   ,"drill_speed"   			, DBG_TYPE_INT);
+		
+		dbg_section("Dash");
+		
+			dbg_text_input(ref_create(UPGRADES , "dash_unlocked")	, "dash_unlocked"		, DBG_TYPE_INT);
+			dbg_text_input(ref_create(UPGRADES , "dash_colector")	, "dash_colector"		, DBG_TYPE_INT);
+			dbg_text_input(ref_create(UPGRADES , "dash_distance")	, "dash_distance"		, DBG_TYPE_INT);
+			dbg_text_input(ref_create(UPGRADES , "dash_eficiency")	, "dash_eficiency"		, DBG_TYPE_INT);
+			dbg_text_input(ref_create(UPGRADES , "dash_damage")		, "dash_damage"			, DBG_TYPE_INT);
+			dbg_text_input(ref_create(UPGRADES , "dash_load")		, "dash_load"			, DBG_TYPE_INT);
+			dbg_text_input(ref_create(UPGRADES , "dash_critic")		, "dash_critic"			, DBG_TYPE_INT);
 		
 		dbg_section("Energy");
 		
-			dbg_text_input(ref_create(self , "energy_max")			, "energy_max"		, DBG_TYPE_REAL);
-			dbg_text_input(ref_create(self , "current_energy")		, "current_energy"	, DBG_TYPE_REAL);
-			
-			
-			dbg_text_input(ref_create(self , "still_energy_cost")			, "still_energy_cost"			, DBG_TYPE_REAL);
-			dbg_text_input(ref_create(self , "move_energy_cost")			, "move_energy_cost"			, DBG_TYPE_REAL);
-			dbg_text_input(ref_create(self , "dash_bust_energy_cost")		, "dash_bust_energy_cost"		, DBG_TYPE_REAL);
-			dbg_text_input(ref_create(self , "damage_energy_cost_multiply")	, "damage_energy_cost_multiply"	, DBG_TYPE_REAL);
-			dbg_text_input(ref_create(self , "state_dash_energy_cost")		, "state_dash_energy_cost"		, DBG_TYPE_REAL);
-			
-		dbg_section("Inventário")
+		dbg_text_input(ref_create(UPGRADES , "energy_max")			, "energy_max"			, DBG_TYPE_INT);
+		dbg_text_input(ref_create(UPGRADES , "energy_movement")		, "energy_movement"		, DBG_TYPE_INT);
+		dbg_text_input(ref_create(UPGRADES , "energy_drill_damage")	, "energy_drill_damage"	, DBG_TYPE_INT);
+		dbg_text_input(ref_create(UPGRADES , "energy_still")		, "energy_still"		, DBG_TYPE_INT);
+		dbg_text_input(ref_create(UPGRADES , "energy_invencibility"), "energy_invencibility", DBG_TYPE_INT);
+		dbg_text_input(ref_create(UPGRADES , "energy_resistency")	, "energy_resistency"	, DBG_TYPE_INT);
+		dbg_text_input(ref_create(UPGRADES , "energy_leech")		, "energy_leech"		, DBG_TYPE_INT);
 		
-			dbg_button("Add Slot" , function()
-			{
-				array_push(INVENTORY,undefined);
-			})
+		dbg_section("Extras");
+		
+		dbg_text_input(ref_create(UPGRADES , "ext_slot_total")				, "ext_slot_total"				, DBG_TYPE_INT);	
+		dbg_text_input(ref_create(UPGRADES , "ext_slot_lenght")				, "ext_slot_lenght"				, DBG_TYPE_INT);	
+		dbg_text_input(ref_create(UPGRADES , "ext_selling_slots")			, "ext_selling_slots"			, DBG_TYPE_INT);	
+		dbg_text_input(ref_create(UPGRADES , "ext_selling_clients")			, "ext_selling_clients"			, DBG_TYPE_INT);	
+		dbg_text_input(ref_create(UPGRADES , "ext_magnet")					, "ext_magnet"					, DBG_TYPE_INT);	
+		dbg_text_input(ref_create(UPGRADES , "ext_auto_drill")				, "ext_auto_drill"				, DBG_TYPE_INT);	
+		dbg_text_input(ref_create(UPGRADES , "ext_auto_drill_eficiency")	, "ext_auto_drill_eficiency"	, DBG_TYPE_INT);	
+		dbg_text_input(ref_create(UPGRADES , "ext_tnt")						, "ext_tnt"						, DBG_TYPE_INT);	
+		dbg_text_input(ref_create(UPGRADES , "ext_tnt_area")				, "ext_tnt_area	"				, DBG_TYPE_INT);	
+		dbg_text_input(ref_create(UPGRADES , "ext_tnt_damage")				, "ext_tnt_damage"				, DBG_TYPE_INT);	
+		dbg_text_input(ref_create(UPGRADES , "ext_more_drops")				, "ext_more_drops"				, DBG_TYPE_INT);	
+		dbg_text_input(ref_create(UPGRADES , "ext_lost_drops")				, "ext_lost_drops"				, DBG_TYPE_INT);	
+		dbg_text_input(ref_create(UPGRADES , "ext_life_saver")				, "ext_life_saver"				, DBG_TYPE_INT);	
+		dbg_text_input(ref_create(UPGRADES , "ext_pointer")					, "ext_pointer"					, DBG_TYPE_INT);	
 			
-			dbg_button("Remove Slot" , function()
-			{
-				if(array_length(INVENTORY) > SLOTS_MINERAL_MIN)
-				{
-					var _ins = array_pop(INVENTORY);
-					
-					INVENTORY_OPTION_SELECTED = qwrap(INVENTORY_OPTION_SELECTED,0,array_length(INVENTORY)-1)
-					
-					delete _ins;
-				}
-			})
-			
-			
-			dbg_button("Free current slot" , drop_mineral);
+		dbg_section("Cooker")
+		
+		dbg_text_input(ref_create(UPGRADES , "cooker_number")		, "cooker_number"		, DBG_TYPE_INT);	
+		dbg_text_input(ref_create(UPGRADES , "cooker_faster")		, "cooker_faster"		, DBG_TYPE_INT);	
+		dbg_text_input(ref_create(UPGRADES , "cooker_seasoning")	, "cooker_seasoning"	, DBG_TYPE_INT);	
+		dbg_text_input(ref_create(UPGRADES , "cooker_ideal")		, "cooker_ideal	"		, DBG_TYPE_INT);	
+		dbg_text_input(ref_create(UPGRADES , "cooker_propaganda")	, "cooker_propaganda"	, DBG_TYPE_INT);	
+		dbg_text_input(ref_create(UPGRADES , "cooker_auto")			, "cooker_auto"			, DBG_TYPE_INT);	
+		dbg_text_input(ref_create(UPGRADES , "cooker_selling")		, "cooker_selling"		, DBG_TYPE_INT);	
+		
+		//dbg_button("Free current slot" , drop_mineral);
 	
 	}
 

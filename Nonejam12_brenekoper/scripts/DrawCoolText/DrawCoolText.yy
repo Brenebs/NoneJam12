@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"DrawCoolText",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"DrawCoolText",
+  "parent":{
+    "name":"Utilitários",
+    "path":"folders/Scripts/Utilitários.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
