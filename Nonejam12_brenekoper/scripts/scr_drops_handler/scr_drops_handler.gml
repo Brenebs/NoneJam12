@@ -119,3 +119,26 @@ function add_value_to_drop(_value)
 		}
 	}
 }
+
+function drop_half(_x , _y)
+{
+	var _num = array_length(INVENTORY);
+	for(var i = 0 ; i < _num ; i++)
+	{
+		if(!is_undefined(INVENTORY[i]))
+		{
+			
+			var _current = INVENTORY[i];
+			
+			
+			var _number_to_loss = ceil(_current.slot_stack_current_number / 2)
+			repeat(_number_to_loss)
+			{
+				var _ins = instance_create_layer(_x , _y , "Minerals" , _current.slot_object);
+				_ins.timer_to_be_collected = 1000;
+			}
+			
+			_current.slot_stack_current_number -= _number_to_loss;
+		}
+	}
+}

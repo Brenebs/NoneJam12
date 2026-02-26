@@ -40,6 +40,32 @@ if(global.pause) return;
 
 inventory_handler();
 
+if(number_is_between(current_energy , 0 , percent_show_danger) && inside_ground)
+{
+	if(!danger_energy)
+	{
+		
+	}
+	danger_energy = true;	
+}
+else
+{
+	danger_energy = false;
+}
+
+if(current_energy <= 0)
+{
+	current_timer_death++;
+	if(current_timer_death >= max_timer_death)
+	{
+		trigger_death()
+	}
+}
+else
+{
+	current_timer_death = 0;
+}
+
 current_timer_offset_attacks = max_timer(current_timer_offset_attacks);
 drill_white_timer			 = max_timer(drill_white_timer);
 speed_multiply_timer		 = max_timer(speed_multiply_timer);

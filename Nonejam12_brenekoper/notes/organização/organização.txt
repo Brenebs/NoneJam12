@@ -12,7 +12,7 @@ Sistema de bolos
 
 Npcs bonitinhos
 
-Cadastrar valor de cada minério - Exige loop concluido
+/////////Cadastrar valor de cada minério - Exige loop concluido
 
 Cadastrar as propriedades de cada minério - Exige loop concluido
 	- ///////////////nivel pra quebrar

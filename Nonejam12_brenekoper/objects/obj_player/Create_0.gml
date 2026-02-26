@@ -58,7 +58,7 @@ drill.owner = id;
 			
 			
 			var _can_attack = drill_level >= _current.resistency;
-			current_energy -= (!_can_attack*.5) + (damage_energy_cost_multiply) * _mult;
+			consume_energy((!_can_attack*.5) + (damage_energy_cost_multiply) * _mult);
 			if(_can_attack)
 			{
 				_current.white_timer = clamp(timer_offset_attacks-1 , 0 ,5);
@@ -102,6 +102,15 @@ drill.owner = id;
 	
 	energy_max = 150;
 	current_energy = energy_max;
+	
+	percent_show_danger = 150 *.25;
+	danger_energy = false;
+	danger_energy_scale = 0;
+	danger_energy_scale_spring = 0;
+	
+	max_timer_death = GAME_SPEED*1.5;
+	current_timer_death = 0;
+	player_dead = false;
 	
 	still_energy_cost		= .02;
 	move_energy_cost		= 0.4;
@@ -176,6 +185,7 @@ drill.owner = id;
 	
 	draw_head_inground = function(_alp)
 	{
+		if(player_dead) return;
 		var _sep = (360 / 8);
 		var _ind = ( (angle_direction + (_sep/2)) div _sep)
 		draw_sprite_ext(spr_player_cake_head,_ind,x,y - 12,xscale , yscale , image_angle + angle , image_blend , image_alpha * _alp);
@@ -223,6 +233,13 @@ drill.owner = id;
 			draw_player_normal(1);
 		}
 		
+		danger_energy_scale_spring = spring_lerp(danger_energy_scale,danger_energy_scale_spring,danger_energy,.3,.2);
+		danger_energy_scale += danger_energy_scale_spring;
+	
+		if(danger_energy_scale > 0)
+		{
+			draw_sprite_ext(spr_battery_player,0,x + 32,y - 32,danger_energy_scale,danger_energy_scale,0,c_white,.2 + (danger_energy_scale*.5));
+		}
 	}
 	
 	draw_drill = function()
@@ -254,7 +271,16 @@ drill.owner = id;
 			
 		drill.x = x + _x;
 		drill.y = y + _y;
-		draw_sprite_ext(spr_drill	 ,0,x + _x ,y + _y , xscale , yscale , drill.image_angle , image_blend , 1);
+		
+		var _color = image_blend;
+		
+		if(danger_energy || current_energy <= 0)
+		{
+			var _frc = max(current_energy / percent_show_danger , 0)
+			_color = merge_colour(c_dkgray ,_color , _frc)
+		}
+		
+		draw_sprite_ext(spr_drill	 ,0,x + _x ,y + _y , xscale , yscale , drill.image_angle , _color , 1);
 		
 		gpu_set_fog(false , c_white , 1,0);
 	}
@@ -292,11 +318,39 @@ drill.owner = id;
 		draw_text(_x-16 , _y - 80 , INVENTORY_OPTION_SELECTED)
 	}
 	
+	draw_battery_life = function()
+	{
+		if(CURRENT_WORLD) return;
+		//draw_healthbar(20,20,100 + energy_max,30,current_energy/energy_max * 100 , c_black , c_red , c_white , 0,true , true);
+		
+		static _x = 20;
+		static _y = 20;
+		static _x_offset = 3;
+		static _y_offset = 4;
+		
+		var  _scale = energy_max / 150;
+		
+		var _hei = sprite_get_height(spr_battery_bar) * _scale - (_y_offset*2);
+		var _pot = current_energy/energy_max;
+		var _color = merge_colour(c_yellow , c_green,_pot);
+		if(current_energy < percent_show_danger)
+		{
+			_color = c_red;
+		}
+		
+		draw_healthbar(_x + _x_offset , _y + _y_offset + 2 , _x + 13 , _y + _y_offset + _hei,_pot*100,c_black , _color , _color , 3 , true , false);
+		var _frc = wave(64,0,2)
+		
+		draw_sprite_ext(spr_battery_bar,0,20,20 ,1,_scale		 , 0 , c_white , 1);
+	}
+	
 	draw_gui = function()
 	{
-		draw_healthbar(20,20,100 + energy_max,30,current_energy/energy_max * 100 , c_black , c_red , c_white , 0,true , true);
+		
 		
 		draw_text(20,50,GAME_INFO.coins);
+		
+		draw_battery_life();
 		
 		draw_drop_bar()
 	}
@@ -351,7 +405,7 @@ drill.owner = id;
 		
 		sprite_index = spr_player_normal_jump;
 		
-		y = min(y , -max_y_outside)
+		y = min(y , -max_y_outside);
 	}
 	
 	enter_ground = function(_state = state_walk)
@@ -362,6 +416,14 @@ drill.owner = id;
 		inside_ground = true;
 		
 		sprite_index = spr_player_cake;
+	}
+	
+	consume_energy = function(_value)
+	{
+		if(inside_ground && visible)
+		{
+			current_energy -= _value
+		}
 	}
 	
 	inventory_handler = function()
@@ -440,6 +502,8 @@ drill.owner = id;
 		
 		var _hspd = lengthdir_x(1,angle_direction)
 		var _vspd = lengthdir_y(1,angle_direction)
+		
+		var _frc_speed = (current_energy <= 0) ? current_speed / 3 : current_speed;
 	
 		h_spd	= _hspd * current_speed * _spd;
 		hspd	= lerp(hspd , h_spd , aceleration * acel_after_attack);
@@ -503,7 +567,7 @@ drill.owner = id;
 			hspd = lengthdir_x(dash_speed,angle_direction);
 			vspd = lengthdir_y(dash_speed,angle_direction);
 			
-			current_energy -= dash_bust_energy_cost;
+			consume_energy(dash_bust_energy_cost);
 		}
 	}
 	
@@ -511,12 +575,12 @@ drill.owner = id;
 	state_dash_released = function()
 	{
 		
-		current_energy -= state_dash_energy_cost;
+		consume_energy(state_dash_energy_cost);
 		
 		image_blend = c_red;
 		
-		var _hspd = lengthdir_x(dash_speed,angle_direction);
-		var _vspd = lengthdir_y(dash_speed,angle_direction);
+		var _hspd = lengthdir_x(dash_speed + ((current_energy < 0) * 5) , angle_direction);
+		var _vspd = lengthdir_y(dash_speed + ((current_energy < 0) * 5) , angle_direction);
 		
 		hspd = lerp(hspd ,_hspd,.3 * acel_after_attack)
 		vspd = lerp(vspd ,_vspd,.3 * acel_after_attack)
@@ -571,6 +635,56 @@ drill.owner = id;
 		}
 		
 	}
+	
+	
+	trigger_death = function()
+	{	
+		if(!player_dead)
+		{
+			
+			if(y - 64 <= 0)
+			{
+				exit_ground();
+				return;
+			}
+			
+			player_dead = true;
+			camera_set_zoom(.25);
+			state = state_death;
+			
+			drop_half(x,y);
+		
+			call_later(1.5 , time_source_units_seconds , function()
+			{
+				instance_create_depth(0, 0, 0, obj_transition).action = fx() 
+				{ 
+					with(obj_player)
+					{
+						exit_ground();
+						player_dead = false;
+						current_energy = 10;
+						vspd = 0;
+						
+					}
+					
+					with(obj_mineral_drop_father)
+					{
+						instance_destroy();
+					}
+					
+					obj_camera.y = obj_player.y-200
+					camera_set_zoom(.5,1);
+				};
+			})
+		}
+	}
+	state_death = function()
+	{
+		vspd = 0;
+		hspd = 0;
+
+		sprite_index = spr_player_normal_prepare_jump;
+	}
 
 	state = state_walk;
 
@@ -581,7 +695,6 @@ drill.owner = id;
 	gravity_force = .6;
 	max_y_outside = 32
 	on_ground = false;
-	outside_speed = 5;
 	jump_force = 5;
 
 	state_outside = function()
@@ -592,9 +705,12 @@ drill.owner = id;
 		
 		on_ground = instance_place(x,y+_frc,obj_collision);
 	
-		var _hspd = outside_speed * check_horizontal_movement();
+		var _hspd = speed_walking * check_horizontal_movement();
 	
 		hspd = lerp(hspd , _hspd , .1);
+	
+		current_energy = clamp(current_energy+.1 , 0 , energy_max);
+		
 	
 		if(!on_ground)
 		{
@@ -701,6 +817,7 @@ drill.owner = id;
 	
 	state_prepare_fall = function()
 	{
+		current_energy = lerp(current_energy , energy_max , .1);
 		can_cave = true;	
 		have_drill = true;
 		sprite_index = spr_player_normal_prepare_jump;
@@ -713,6 +830,8 @@ drill.owner = id;
 	}
 	state_falling = function()
 	{
+		current_energy = energy_max;
+		
 		have_drill = false;
 		image_blend = c_white
 		
@@ -720,7 +839,7 @@ drill.owner = id;
 		
 		on_ground = instance_place(x,y+_frc,obj_collision);
 	
-		var _hspd = outside_speed * check_horizontal_movement();
+		var _hspd = speed_walking * check_horizontal_movement();
 		hspd = lerp(hspd , _hspd , .1);
 		
 		var _diff = 16;
@@ -794,8 +913,8 @@ collision=function()
 	{
 		
 		var _movement = (abs(__x) + abs(__y))/50 * move_energy_cost
-		current_energy -= max(_movement , still_energy_cost);
-		current_energy = wrap(current_energy , 0 , energy_max);
+		consume_energy(max(_movement , still_energy_cost));
+		
 		
 		x += __x;
 		y += __y;
@@ -805,8 +924,9 @@ collision=function()
 	x = clamp(x , _offset , room_width - _offset);
 	y = min(y , max_y);
 	
-	if(inside_ground) && (y < -max_y_outside ||  (y < -max_y_outside + 28 && vspd<0 )) 
+	if(inside_ground) && !player_dead && (y < -max_y_outside ||  (y < -max_y_outside + 28 && vspd<0 )) 
 	{
+		
 		exit_ground();
 		image_alpha = 1;
 	}
