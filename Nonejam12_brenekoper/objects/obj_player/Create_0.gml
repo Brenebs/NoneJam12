@@ -7,6 +7,11 @@ shoot_speed = 0;
 drill = instance_create_depth(x,y,depth,obj_drill_hitbox)
 drill.owner = id;
 
+drill_sprites = [spr_drill_appearence_1 , spr_drill_appearence_2 , spr_drill_appearence_3, spr_drill_appearence_4];
+drill_image_index = 0;
+drill_image_speed = 0;
+current_drill_image_speed = 0;
+
 #region mineirando
 
 	inside_ground = true;
@@ -16,6 +21,7 @@ drill.owner = id;
 	damage = 1;
 	damage_level = 0;
 	dash_damage_multiply = 1.5;
+	critical_dash_damage_multiply = 1.2;
 	
 	current_timer_offset_attacks = 0;
 	timer_offset_attacks		 = 7;
@@ -103,10 +109,10 @@ drill.owner = id;
 	energy_max = 150;
 	current_energy = energy_max;
 	
-	percent_show_danger = 150 *.25;
-	danger_energy = false;
-	danger_energy_scale = 0;
-	danger_energy_scale_spring = 0;
+	percent_show_danger			 = 150 *.25;
+	danger_energy				 = false;
+	danger_energy_scale			 = 0;
+	danger_energy_scale_spring   = 0;
 	
 	max_timer_death = GAME_SPEED*1.5;
 	current_timer_death = 0;
@@ -115,10 +121,11 @@ drill.owner = id;
 	still_energy_cost		= .02;
 	move_energy_cost		= 0.4;
 	dash_bust_energy_cost	= 5;
+	life_steal_percent		= 0;
 	
 	damage_energy_cost_multiply = 2;
 	state_dash_energy_cost = .1;
-
+	
 
 	timer_stunned = 0;
 	defensive_multipliyer = 2;
@@ -130,11 +137,17 @@ drill.owner = id;
 
 #region dash
 
-	speed_walking=4;
-	current_speed=speed_walking;
-	aceleration = .10;
+	//movimentação
+	speed_walking = 4;
+	base_speed    = speed_walking;
+	current_speed = speed_walking;
+	aceleration   = .10;
 	
 	//dash
+	has_dash = false;
+	
+	dash_colector = false;
+	
 	//tempo pro dash terminar de carregar e realmente iniciar
 	dash_load_timer = GAME_SPEED;
 	current_dash_load_timer = 0
@@ -280,7 +293,10 @@ drill.owner = id;
 			_color = merge_colour(c_dkgray ,_color , _frc)
 		}
 		
-		draw_sprite_ext(spr_drill	 ,0,x + _x ,y + _y , xscale , yscale , drill.image_angle , _color , 1);
+		
+		var _sprite = drill_sprites[drill.image_index];
+		var _image = drill_image_index;
+		draw_sprite_ext(_sprite,_image,x + _x ,y + _y ,  xscale , yscale , drill.image_angle , _color , 1)
 		
 		gpu_set_fog(false , c_white , 1,0);
 	}
@@ -528,7 +544,6 @@ drill.owner = id;
 		}
 		else
 		{
-		
 			var _movement = (abs(__x) + abs(__y))/50 * move_energy_cost
 			consume_energy(max(_movement , still_energy_cost));
 		
@@ -575,6 +590,8 @@ drill.owner = id;
 	
 		v_spd	= _vspd * current_speed * _spd;
 		vspd	= lerp(vspd , v_spd , aceleration * acel_after_attack)
+		
+		current_drill_image_speed = abs(h_spd) + abs(v_spd)
 	
 		if(_spd || (abs(hspd) + abs(vspd))>1)
 		{
@@ -587,7 +604,7 @@ drill.owner = id;
 		
 		
 		
-		if(mouse_check_button(mb_right))
+		if(has_dash && mouse_check_button(mb_right))
 		{
 			state = state_dash_load;
 			
@@ -599,6 +616,9 @@ drill.owner = id;
 	//carregando dash
 	state_dash_load = function()
 	{
+		
+		current_drill_image_speed = 10;
+		
 		image_blend = c_orange;
 		
 		hspd	= lerp(hspd , 0 , aceleration);
@@ -649,6 +669,8 @@ drill.owner = id;
 		
 		hspd = lerp(hspd ,_hspd,.3 * acel_after_attack)
 		vspd = lerp(vspd ,_vspd,.3 * acel_after_attack)
+		
+		current_drill_image_speed = (abs(_hspd) + abs(_vspd)) * 2;
 		
 		current_dash_timer++;
 		if(current_dash_timer >= dash_flow_timer)
@@ -766,6 +788,8 @@ drill.owner = id;
 
 	state_outside = function()
 	{
+		current_drill_image_speed = 0;
+		
 		image_blend = c_white
 		
 		var _frc = !CURRENT_WORLD ? 1 : -1;
@@ -951,52 +975,65 @@ drill.owner = id;
 
 	update_upgrades_values = function()
 	{
-		//UPGRADES.drill_level				 
-		//UPGRADES.drill_damage			 
-		//UPGRADES.drill_eletric			 
-		//UPGRADES.drill_range				 
-		//UPGRADES.drill_speed				 
-//		//UPGRADES.
+		drill_level		= UPGRADES.drill_level				 
+		damage			= power(2 , UPGRADES.drill_damage)			 
+		eletric_drill	=  UPGRADES.drill_eletric			 
+		drill.image_index = clamp(UPGRADES.drill_range , 0 ,drill.image_number-1)				 
+		current_speed	= base_speed + UPGRADES.drill_speed			
+		
 		////Dash
-		//UPGRADES.dash_unlocked			 
-		//UPGRADES.dash_colector			 
-		//UPGRADES.dash_distance			 
-		//UPGRADES.dash_eficiency			 
-		//UPGRADES.dash_damage				 
-		//UPGRADES.dash_load				 
-		//UPGRADES.dash_critic				 
-//		//UPGRADES.
+		has_dash = UPGRADES.dash_unlocked			 
+		dash_colector = UPGRADES.dash_colector			 
+		var _base_distance = 150;
+		var _max_distance = 350;
+		dash_distance_max = _base_distance + (UPGRADES.dash_distance * ((_max_distance - _base_distance) / 10))			 
+		
+		dash_bust_energy_cost			= lerp( 15	 , 2.5  , UPGRADES.dash_eficiency/4);
+		state_dash_energy_cost			= lerp( 0.12 , 0.01 , UPGRADES.dash_eficiency/4);	
+		dash_damage_multiply			= lerp( 1.6  , 5	, UPGRADES.dash_damage / 5);			 	 
+		critical_dash_damage_multiply	= lerp( 1.2  , 3	, UPGRADES.dash_critic / 4);
+		dash_load_timer					= lerp( 120  , 30	, UPGRADES.dash_load / 4);			
+		
 		////Energy
-		//UPGRADES.energy_max				 
-		//UPGRADES.energy_movement			 
-		//UPGRADES.energy_drill_damage		 
-		//UPGRADES.energy_still			 
-		//UPGRADES.energy_invencibility	 
-		//UPGRADES.energy_resistency		 
-		//UPGRADES.energy_leech			 
-//		//UPGRADES.
+		energy_max = lerp( 140 , 350 , UPGRADES.energy_max / 20);
+		move_energy_cost			= lerp( 0.4 , 0.1	, UPGRADES.energy_movement / 3 );
+		damage_energy_cost_multiply = lerp( 2	, .5	, UPGRADES.energy_drill_damage  / 20);
+		still_energy_cost = lerp(.02 , 0 , UPGRADES.energy_still / 2);		
+		
+		current_timer_invincible = lerp( GAME_SPEED , GAME_SPEED * 2.5	, UPGRADES.energy_invencibility / 3	);
+		defensive_multipliyer	 = lerp( 1			, .3				, UPGRADES.energy_resistency	/ 25);
+		
+		life_steal_percent = (UPGRADES.energy_leech/4) * .15
+		
 		////Extras
-		//UPGRADES.ext_slot_total			 
-		//UPGRADES.ext_slot_lenght			 
-//		//UPGRADES.
-		//UPGRADES.ext_selling_slots		 
-		//UPGRADES.ext_selling_clients		 
-//		//UPGRADES.
-		//UPGRADES.ext_magnet				 
-//		//UPGRADES.
-		//UPGRADES.ext_auto_drill			 
-		//UPGRADES.ext_auto_drill_eficiency 
-//		//UPGRADES.
+		
+		while(UPGRADES.ext_slot_total > array_length(INVENTORY))
+		{
+			array_push(INVENTORY,undefined)
+		}
+		
+		while(UPGRADES.ext_selling_slots > array_length(SELL_ARRAY))
+		{
+			array_push(SELL_ARRAY,undefined)
+		}
+		
+		obj_sell_manager.selling_potency = power(2.4 , UPGRADES.ext_selling_clients);
+//		
+		 
+		//UPGRADES.ext_drill_bot			 
+		//UPGRADES.ext_drill_bot_eficiency 
+
 		//UPGRADES.ext_tnt					 
 		//UPGRADES.ext_tnt_area			 
 		//UPGRADES.ext_tnt_damage			 
-//		//UPGRADES.
+
 		//UPGRADES.ext_more_drops			 
 		//UPGRADES.ext_lost_drops			 
 		//UPGRADES.ext_life_saver			 
 		//UPGRADES.ext_pointer				 
-//		//UPGRADES.
+
 //		////Fogão
+
 		//UPGRADES.cooker_number			 
 		//UPGRADES.cooker_faster			 
 		//UPGRADES.cooker_seasoning		 
@@ -1007,6 +1044,7 @@ drill.owner = id;
 		
 	}
 	
+	call_later(1,time_source_units_frames,update_upgrades_values);
 #endregion
 
 #region DEBUGGER
@@ -1109,12 +1147,31 @@ drill.owner = id;
 		
 		dbg_section("Botões mágicos");
 		
-			dbg_button("Imortal"			 , update_upgrades_values);
-			dbg_button("DANO MAX"			 , update_upgrades_values);
-			dbg_button("Matar o player"		 , update_upgrades_values);
-			dbg_button("TP para o teleporte" , update_upgrades_values);
+			dbg_button("Imortal"			 , function()
+			{
+				current_timer_invincible = current_timer_invincible > 0 ? 0 : infinity;
+				current_energy = 3000000;
+			});
+			dbg_button("DANO MAX"			 , function()
+			{
+				damage = power(2 , 30);
+				drill_level = 10;
+			});
+			dbg_button("Matar o player"		 , function()
+			{
+				current_energy = -1;
+			});
+			dbg_button("TP para o teleporte" , function()
+			{
+				
+				enter_ground();
+				var _ins = instance_nearest(x,y,obj_teleport_botton)
+				x = _ins.x;
+				y = _ins.y;
+				
+			});
 			dbg_button("Atualizar variáveis" , update_upgrades_values);
-			dbg_button("SAVE"				 , update_upgrades_values);
+			dbg_button("SAVE"				 , save_game);
 		
 		dbg_section("Broca");
 		
@@ -1151,8 +1208,8 @@ drill.owner = id;
 		dbg_text_input(ref_create(UPGRADES , "ext_selling_slots")			, "ext_selling_slots"			, DBG_TYPE_INT);	
 		dbg_text_input(ref_create(UPGRADES , "ext_selling_clients")			, "ext_selling_clients"			, DBG_TYPE_INT);	
 		dbg_text_input(ref_create(UPGRADES , "ext_magnet")					, "ext_magnet"					, DBG_TYPE_INT);	
-		dbg_text_input(ref_create(UPGRADES , "ext_auto_drill")				, "ext_auto_drill"				, DBG_TYPE_INT);	
-		dbg_text_input(ref_create(UPGRADES , "ext_auto_drill_eficiency")	, "ext_auto_drill_eficiency"	, DBG_TYPE_INT);	
+		dbg_text_input(ref_create(UPGRADES , "ext_drill_bot")				, "ext_drill_bot"				, DBG_TYPE_INT);	
+		dbg_text_input(ref_create(UPGRADES , "ext_drill_bot_eficiency")		, "ext_drill_bot_eficiency"		, DBG_TYPE_INT);	
 		dbg_text_input(ref_create(UPGRADES , "ext_tnt")						, "ext_tnt"						, DBG_TYPE_INT);	
 		dbg_text_input(ref_create(UPGRADES , "ext_tnt_area")				, "ext_tnt_area	"				, DBG_TYPE_INT);	
 		dbg_text_input(ref_create(UPGRADES , "ext_tnt_damage")				, "ext_tnt_damage"				, DBG_TYPE_INT);	
@@ -1186,3 +1243,4 @@ drill.owner = id;
 	}
 
 #endregion
+

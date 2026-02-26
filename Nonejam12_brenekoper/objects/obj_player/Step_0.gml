@@ -66,6 +66,14 @@ else
 	current_timer_death = 0;
 }
 
+if(CURRENT_WORLD) current_drill_image_speed = 0;
+
+var _frc = drill_image_speed > current_drill_image_speed ? .01 : .1;
+drill_image_speed = lerp(drill_image_speed,current_drill_image_speed,_frc);
+
+drill_image_index += drill_image_speed*.25;
+drill_image_index = drill_image_index % sprite_get_number(drill_sprites[drill.image_index])
+
 current_timer_offset_attacks = max_timer(current_timer_offset_attacks);
 drill_white_timer			 = max_timer(drill_white_timer);
 speed_multiply_timer		 = max_timer(speed_multiply_timer);

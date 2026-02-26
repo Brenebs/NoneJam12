@@ -70,8 +70,8 @@ function create_saveable_info() constructor
 		
 		ext_magnet				 = 0;
 		
-		ext_auto_drill			 = 0;
-		ext_auto_drill_eficiency = 0;
+		ext_drill_bot			 = 0;
+		ext_drill_bot_eficiency  = 0;
 		
 		ext_tnt					 = 0;
 		ext_tnt_area			 = 0;

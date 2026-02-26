@@ -4,6 +4,7 @@
 array_selling = better_array_create(3,undefined);
 space_free = true;
 
+selling_potency = power(2 , UPGRADES.ext_selling_clients)
 
 add_selling_item = function(_new_item , position = 0)
 {
@@ -22,6 +23,8 @@ selling_itens = function()
 	var _num = array_length(array_selling)
 
 	var _potency = CURRENT_WORLD ? 1 : .25;
+
+	_potency *= selling_potency;
 
 	space_free = false;
 	for(var i = 0 ;i < _num ; i++)

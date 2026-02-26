@@ -6,6 +6,10 @@ direction = random(360);
 rarity = 0;
 timer_to_be_collected = 30;
 
+follow_player = false;
+
+distance_follow = 20 + UPGRADES.ext_magnet * (600 /  3);
+
 being_collected = function()
 {
 	

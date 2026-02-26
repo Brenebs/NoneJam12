@@ -139,7 +139,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.14.3.217",
+    "IDEVersion":"2024.14.2.213",
   },
   "name":"Nonejam12_brenekoper",
   "resources":[
@@ -779,6 +779,10 @@
     {"id":{"name":"spr_chunk","path":"sprites/spr_chunk/spr_chunk.yy",},},
     {"id":{"name":"spr_collision_1","path":"sprites/spr_collision_1/spr_collision_1.yy",},},
     {"id":{"name":"spr_collision","path":"sprites/spr_collision/spr_collision.yy",},},
+    {"id":{"name":"spr_drill_appearence_1","path":"sprites/spr_drill_appearence_1/spr_drill_appearence_1.yy",},},
+    {"id":{"name":"spr_drill_appearence_2","path":"sprites/spr_drill_appearence_2/spr_drill_appearence_2.yy",},},
+    {"id":{"name":"spr_drill_appearence_3","path":"sprites/spr_drill_appearence_3/spr_drill_appearence_3.yy",},},
+    {"id":{"name":"spr_drill_appearence_4","path":"sprites/spr_drill_appearence_4/spr_drill_appearence_4.yy",},},
     {"id":{"name":"spr_drill_base","path":"sprites/spr_drill_base/spr_drill_base.yy",},},
     {"id":{"name":"spr_drill","path":"sprites/spr_drill/spr_drill.yy",},},
     {"id":{"name":"spr_elevator_botton","path":"sprites/spr_elevator_botton/spr_elevator_botton.yy",},},
