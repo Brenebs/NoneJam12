@@ -30,7 +30,7 @@ var _play_button = new UiButton(_x, _y, _w, _h);
 with(_play_button) {
 	text = fx() { return "Jogar" };
 	action = fx() {
-		instance_create_depth(0, 0, 0, obj_transition).action = fx() { change_room(rm_gameplay) };
+		instance_create_depth(0, 0, 0, obj_transition).action = fx() { change_room(rm_skill_tree) };
 	}
 }
 _y += _y_offset;

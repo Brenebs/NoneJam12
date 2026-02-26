@@ -1,6 +1,13 @@
 /// @description Insert description here
 // You can write your code in this editor
+cursor_x = 0;
+cursor_y = 0;
 
+cursor_diff_x = 0;
+cursor_diff_y = 0;
+
+cursor_camera_x = 0;
+cursor_camera_y = 0;
 
 //sla tava apitando que tava indefinido e parou quando eu coloquei isso kkkkkk
 camera_zoom_acel *= 1;

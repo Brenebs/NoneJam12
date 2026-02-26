@@ -38,6 +38,23 @@ if(instance_exists(alvo))
 	
 	y=lerp(y,__y,acel * camera_second_acel);
 }
+else {
+	if mouse_check_button_pressed(mb_right) {
+		cursor_x = MOUSE_GUI_X;
+		cursor_y = MOUSE_GUI_Y;
+		
+		cursor_camera_x = x;
+		cursor_camera_y = y;
+	}
+	
+	if mouse_check_button(mb_right) {
+		cursor_diff_x = cursor_x - MOUSE_GUI_X;
+		cursor_diff_y = cursor_y - MOUSE_GUI_Y;
+		
+		x = clamp(cursor_camera_x + cursor_diff_x, (CAMERA_WIDTH * .5), room_width - (CAMERA_WIDTH * .5));
+		y = clamp(cursor_camera_y + cursor_diff_y, (CAMERA_HEIGHT * .5), room_height - (CAMERA_HEIGHT * .5));
+	}
+}
 
 if(DEBUG_BUILD)
 {
