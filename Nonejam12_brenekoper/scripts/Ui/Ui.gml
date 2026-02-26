@@ -131,7 +131,7 @@ function UiButton(_x, _y, _w, _h, _x_center = _w * .5, _y_center = _h * .5) : Ui
 	text = fx() { return "" };
 	text_color = #ffffff;
 	text_scale = 1;
-	text_scribble = false;
+	text_scribble = true;
 	text_halign = fa_center;
 	text_valign = fa_middle;
 	text_font = fnt_p;
@@ -188,7 +188,7 @@ function UiButton(_x, _y, _w, _h, _x_center = _w * .5, _y_center = _h * .5) : Ui
 			var _matrix_y = _y;
 			
 			var _button_depth = depth;
-			var _button_side_offset = 3;
+			var _button_side_offset = 0;
 			
 			var _color = color;
 			
@@ -273,7 +273,7 @@ function UiButton(_x, _y, _w, _h, _x_center = _w * .5, _y_center = _h * .5) : Ui
 			if text_scribble {
 				draw_text_scribble_ext(
 					SHADOW_TEXT_OFFSET,
-					SHADOW_TEXT_OFFSET + _button_side_offset * push_anim - _button_depth * .5,
+					SHADOW_TEXT_OFFSET + (_button_depth - _button_side_offset) * push_anim - (_button_depth * .5),
 					$"[scale, {text_scale}][#000000]{_txt}",
 					width - SHADOW_TEXT_OFFSET * 2
 				);
@@ -281,7 +281,7 @@ function UiButton(_x, _y, _w, _h, _x_center = _w * .5, _y_center = _h * .5) : Ui
 			else {
 				draw_text_ext_transformed_colour(
 					SHADOW_TEXT_OFFSET,
-					SHADOW_TEXT_OFFSET + _button_side_offset * push_anim - _button_depth - 2,
+					SHADOW_TEXT_OFFSET + (_button_depth - _button_side_offset) * push_anim - (_button_depth * .5) - 2,
 					_txt,
 					1,
 					width - SHADOW_TEXT_OFFSET * 2,
@@ -295,7 +295,7 @@ function UiButton(_x, _y, _w, _h, _x_center = _w * .5, _y_center = _h * .5) : Ui
 			if text_scribble {
 				draw_text_scribble_ext(
 					0,
-					_button_side_offset * push_anim - _button_depth,
+					(_button_depth - _button_side_offset) * push_anim - (_button_depth * .5),
 					$"[scale, {text_scale}][{color_to_string(text_color)}]{_txt}",
 					width - SHADOW_TEXT_OFFSET * 2
 				);
@@ -303,7 +303,7 @@ function UiButton(_x, _y, _w, _h, _x_center = _w * .5, _y_center = _h * .5) : Ui
 			else {
 				draw_text_ext_transformed_colour(
 					0,
-					_button_side_offset * push_anim - _button_depth - 2,
+					(_button_depth - _button_side_offset) * push_anim - (_button_depth * .5) - 2,
 					_txt,
 					1,
 					width - SHADOW_TEXT_OFFSET * 2,
