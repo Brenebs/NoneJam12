@@ -32,6 +32,7 @@
   "physicsShapePoints":[],
   "physicsStartAwake":true,
   "properties":[
+    {"$GMObjectProperty":"v2","%Name":"display_name","filters":[],"listItems":[],"multiselect":false,"name":"display_name","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"Bazinga","varType":2,},
     {"$GMObjectProperty":"v2","%Name":"linked_to","filters":[],"listItems":[],"multiselect":false,"name":"linked_to","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"[]","varType":4,},
     {"$GMObjectProperty":"v2","%Name":"condition","filters":[],"listItems":[],"multiselect":false,"name":"condition","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"function() { return false }","varType":4,},
     {"$GMObjectProperty":"v2","%Name":"upgrade_unlock","filters":[],"listItems":[],"multiselect":false,"name":"upgrade_unlock","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"0","varType":0,},
