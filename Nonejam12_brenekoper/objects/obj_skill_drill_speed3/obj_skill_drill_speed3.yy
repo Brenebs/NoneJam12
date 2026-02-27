@@ -10,8 +10,8 @@
     "path":"folders/Objects/Skill Tree/Skills/Drill.yy",
   },
   "parentObjectId":{
-    "name":"obj_skill",
-    "path":"objects/obj_skill/obj_skill.yy",
+    "name":"obj_skill_drill_speed2",
+    "path":"objects/obj_skill_drill_speed2/obj_skill_drill_speed2.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,

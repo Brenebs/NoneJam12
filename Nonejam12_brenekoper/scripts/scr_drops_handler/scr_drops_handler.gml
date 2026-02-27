@@ -87,6 +87,7 @@ function add_drop(_object , _sprite ,  _value = 5 , _number_to_add = 1 , _stack_
 	return false;
 }
 
+
 function create_drop_index(_object , _sprite , _value , _stack_base , _rarity) constructor
 {
 	slot_object				  = _object

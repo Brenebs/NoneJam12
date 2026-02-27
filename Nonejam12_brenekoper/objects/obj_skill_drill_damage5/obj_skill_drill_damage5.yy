@@ -4,14 +4,16 @@
   "eventList":[],
   "managed":true,
   "name":"obj_skill_drill_damage5",
-  "overriddenProperties":[],
+  "overriddenProperties":[
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_skill","path":"objects/obj_skill/obj_skill.yy",},"propertyId":{"name":"display_name","path":"objects/obj_skill/obj_skill.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"Dano da Broca - 5",},
+  ],
   "parent":{
     "name":"Drill",
     "path":"folders/Objects/Skill Tree/Skills/Drill.yy",
   },
   "parentObjectId":{
-    "name":"obj_skill",
-    "path":"objects/obj_skill/obj_skill.yy",
+    "name":"obj_skill_drill_damage4",
+    "path":"objects/obj_skill_drill_damage4/obj_skill_drill_damage4.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,

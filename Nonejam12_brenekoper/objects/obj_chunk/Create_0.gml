@@ -38,7 +38,7 @@ deactivated_instances = []
 deactivate_instances = function()
 {
 	var _list = ds_list_create();
-	var _num = collision_rectangle_list(bbox_left , bbox_top , bbox_right , bbox_bottom , obj_mineral_father , false , true , _list , false);
+	var _num = collision_rectangle_list(bbox_left , bbox_top , bbox_right , bbox_bottom , [obj_mineral_father,obj_mineral_drop_father] , false , true , _list , false);
 	
 	for(var i = 0 ; i < _num ; i++)
 	{

@@ -42,6 +42,7 @@ function create_saveable_info() constructor
 		drill_eletric			 = 0;
 		drill_range				 = 0;
 		drill_speed				 = 0;
+		drill_triple			 = 0;
 		
 		//Dash
 		dash_unlocked			 = 0;

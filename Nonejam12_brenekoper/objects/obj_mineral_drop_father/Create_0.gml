@@ -19,7 +19,8 @@ being_collected = function()
 	}
 	else
 	{
-		timer_to_be_collected = 30;
+		follow_player = false;
+		timer_to_be_collected = 40;
 	}
 	
 }

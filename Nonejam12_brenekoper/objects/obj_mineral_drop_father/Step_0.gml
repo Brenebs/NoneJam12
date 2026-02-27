@@ -9,7 +9,7 @@ if(follow_player)
 {
 	var _ins = instance_nearest(x,y,obj_player);
 	
-	speed = lerp(speed , 2, .1);
+	speed = lerp(speed , 10, .1);
 	
 	direction = point_direction(x,y,_ins.x,_ins.y);
 }
