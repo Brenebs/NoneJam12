@@ -226,6 +226,9 @@ current_drill_image_speed = 0;
 	
 	draw_player = function()
 	{
+		
+		
+		
 		if(inside_ground)
 		{
 			var _alp = current_timer_invincible > 0 ? wave(.5,.8,3) : 1;
@@ -252,6 +255,16 @@ current_drill_image_speed = 0;
 		if(danger_energy_scale > 0)
 		{
 			draw_sprite_ext(spr_battery_player,0,x + 32,y - 32,danger_energy_scale,danger_energy_scale,0,c_white,.2 + (danger_energy_scale*.5));
+		}
+		
+		if(sprite_index == spr_player_normal_falling)
+		{
+			var _distance = 20;
+			var _angle = angle + 90;
+			if(CURRENT_WORLD) _angle += 180
+			var _x = x + lengthdir_x(_distance , _angle);
+			var _y = y + lengthdir_y(_distance , _angle);
+			draw_sprite_ext(drill_sprites[drill.image_index],drill_image_index,_x,_y,1,1,_angle,c_white,1);
 		}
 	}
 	
