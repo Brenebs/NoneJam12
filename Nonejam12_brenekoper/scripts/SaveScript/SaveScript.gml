@@ -37,21 +37,21 @@ function create_saveable_info() constructor
 	with(upgrades)
 	{
 		//Broca
-		drill_level				 = 0;
-		drill_damage			 = 0;
-		drill_eletric			 = 0;
-		drill_range				 = 0;
-		drill_speed				 = 0;
-		drill_triple			 = 0;
+		drill_level				 = 0; //
+		drill_damage			 = 0; //
+		drill_eletric			 = 0; //
+		drill_range				 = 0; //
+		drill_speed				 = 0; //
+		drill_triple			 = 0; //
 		
 		//Dash
-		dash_unlocked			 = 0;
-		dash_colector			 = 0;
-		dash_distance			 = 0;
-		dash_eficiency			 = 0;
-		dash_damage				 = 0;
-		dash_load				 = 0; 
-		dash_critic				 = 0;
+		dash_unlocked			 = 0; //
+		dash_colector			 = 0; //
+		dash_distance			 = 0; //
+		dash_eficiency			 = 0; //
+		dash_damage				 = 0; //
+		dash_load				 = 0; //
+		dash_critic				 = 0; //
 		
 		//Energy
 		energy_max				 = 0; //carga maxima

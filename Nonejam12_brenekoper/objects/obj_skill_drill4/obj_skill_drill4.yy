@@ -4,14 +4,16 @@
   "eventList":[],
   "managed":true,
   "name":"obj_skill_drill4",
-  "overriddenProperties":[],
+  "overriddenProperties":[
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_skill","path":"objects/obj_skill/obj_skill.yy",},"propertyId":{"name":"display_name","path":"objects/obj_skill/obj_skill.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"Nivel da broca - IV",},
+  ],
   "parent":{
     "name":"Drill",
     "path":"folders/Objects/Skill Tree/Skills/Drill.yy",
   },
   "parentObjectId":{
-    "name":"obj_skill",
-    "path":"objects/obj_skill/obj_skill.yy",
+    "name":"obj_skill_drill3",
+    "path":"objects/obj_skill_drill3/obj_skill_drill3.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,

@@ -4,14 +4,16 @@
   "eventList":[],
   "managed":true,
   "name":"obj_skill_dash_efficient3",
-  "overriddenProperties":[],
+  "overriddenProperties":[
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_skill","path":"objects/obj_skill/obj_skill.yy",},"propertyId":{"name":"display_name","path":"objects/obj_skill/obj_skill.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"Dash Eficiênte - III",},
+  ],
   "parent":{
     "name":"Dash",
     "path":"folders/Objects/Skill Tree/Skills/Dash.yy",
   },
   "parentObjectId":{
-    "name":"obj_skill",
-    "path":"objects/obj_skill/obj_skill.yy",
+    "name":"obj_skill_dash_efficient2",
+    "path":"objects/obj_skill_dash_efficient2/obj_skill_dash_efficient2.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,
