@@ -10,8 +10,8 @@
     "path":"folders/Objects/Skill Tree/Skills/Slot.yy",
   },
   "parentObjectId":{
-    "name":"obj_skill",
-    "path":"objects/obj_skill/obj_skill.yy",
+    "name":"obj_skill_slot4",
+    "path":"objects/obj_skill_slot4/obj_skill_slot4.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,

@@ -4,14 +4,16 @@
   "eventList":[],
   "managed":true,
   "name":"obj_skill_fuel_bloodrill3",
-  "overriddenProperties":[],
+  "overriddenProperties":[
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_skill","path":"objects/obj_skill/obj_skill.yy",},"propertyId":{"name":"display_name","path":"objects/obj_skill/obj_skill.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"Broca sangue-suga - III",},
+  ],
   "parent":{
     "name":"Fuel",
     "path":"folders/Objects/Skill Tree/Skills/Fuel.yy",
   },
   "parentObjectId":{
-    "name":"obj_skill",
-    "path":"objects/obj_skill/obj_skill.yy",
+    "name":"obj_skill_fuel_bloodrill2",
+    "path":"objects/obj_skill_fuel_bloodrill2/obj_skill_fuel_bloodrill2.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,

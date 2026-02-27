@@ -54,13 +54,13 @@ function create_saveable_info() constructor
 		dash_critic				 = 0; //
 		
 		//Energy
-		energy_max				 = 0; //carga maxima
-		energy_movement			 = 0; //movimentação eficiente
-		energy_drill_damage		 = 0; //broca eficiente
-		energy_still			 = 0; //motor eficiente
-		energy_invencibility	 = 0; //Invencibidade ao tomar dano
-		energy_resistency		 = 0; //resistencia a danos
-		energy_leech			 = 0; //sangue suga
+		energy_max				 = 0; ////carga maxima
+		energy_movement			 = 0; ////movimentação eficiente
+		energy_drill_damage		 = 0; ////broca eficiente
+		energy_still			 = 0; ////motor eficiente
+		energy_invencibility	 = 0; ////Invencibidade ao tomar dano
+		energy_resistency		 = 0; ////resistencia a danos
+		energy_leech			 = 0; ////sangue suga
 		
 		//Extras
 		ext_slot_total			 = 0;
