@@ -15,9 +15,19 @@ camera_zoom		 *= 1;
 
 offset = new vector2();
 
-camera_second_acel = 0;
+camera_second_acel = 3;
+
+
+
 
 camera_angle = 0;
+
+if(CURRENT_WORLD && room == rm_gameplay)
+{
+	camera_angle = 180;
+	camera_set_view_angle(view_camera[0],camera_angle);
+}
+
 
 #region update camera functions
 
@@ -82,3 +92,5 @@ debug_destroy = function()
 }
 
 alarm[0] = true;
+
+

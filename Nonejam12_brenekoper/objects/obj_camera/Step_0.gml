@@ -6,7 +6,7 @@ if(global.pause) return;
 var _player_outside = false;
 
 
-camera_angle = lerp_angle(camera_angle,CURRENT_WORLD * 180);
+camera_angle = lerp_angle(camera_angle,(CURRENT_WORLD && room == rm_gameplay) * 180);
 camera_angle = wrap(camera_angle,0,359.99)
 //camera_angle = 0;
 camera_set_view_angle(view_camera[0],camera_angle);

@@ -84,7 +84,7 @@ global.death = false;
 //	Autismo
 #macro fx function
 
-global.current_world = 0;
+global.current_world = 1;
 #macro CURRENT_WORLD global.current_world
 #macro SHADOW_OFFSET 3
 #macro SHADOW_TEXT_OFFSET 1

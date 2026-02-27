@@ -139,7 +139,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.14.3.217",
+    "IDEVersion":"2024.14.2.213",
   },
   "name":"Nonejam12_brenekoper",
   "resources":[
@@ -310,6 +310,7 @@
     {"id":{"name":"obj_teleport_top","path":"objects/obj_teleport_top/obj_teleport_top.yy",},},
     {"id":{"name":"obj_transition","path":"objects/obj_transition/obj_transition.yy",},},
     {"id":{"name":"obj_ui_manager","path":"objects/obj_ui_manager/obj_ui_manager.yy",},},
+    {"id":{"name":"obj_use_skill_tree","path":"objects/obj_use_skill_tree/obj_use_skill_tree.yy",},},
     {"id":{"name":"rm_gameplay","path":"rooms/rm_gameplay/rm_gameplay.yy",},},
     {"id":{"name":"rm_inicialize","path":"rooms/rm_inicialize/rm_inicialize.yy",},},
     {"id":{"name":"rm_main_menu","path":"rooms/rm_main_menu/rm_main_menu.yy",},},
@@ -785,6 +786,7 @@
     {"id":{"name":"spr_chunk","path":"sprites/spr_chunk/spr_chunk.yy",},},
     {"id":{"name":"spr_collision_1","path":"sprites/spr_collision_1/spr_collision_1.yy",},},
     {"id":{"name":"spr_collision","path":"sprites/spr_collision/spr_collision.yy",},},
+    {"id":{"name":"spr_computer","path":"sprites/spr_computer/spr_computer.yy",},},
     {"id":{"name":"spr_drill_appearence_1","path":"sprites/spr_drill_appearence_1/spr_drill_appearence_1.yy",},},
     {"id":{"name":"spr_drill_appearence_2","path":"sprites/spr_drill_appearence_2/spr_drill_appearence_2.yy",},},
     {"id":{"name":"spr_drill_appearence_3","path":"sprites/spr_drill_appearence_3/spr_drill_appearence_3.yy",},},

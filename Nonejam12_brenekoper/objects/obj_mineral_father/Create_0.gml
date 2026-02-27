@@ -30,6 +30,12 @@ if(array_length(_split) > 1)
 
 destroy_function = function()
 {
+	
+	if(UPGRADES.ext_more_drops > 0 && UPGRADES.ext_more_drops >= resistency)
+	{
+		mineral_number *= (UPGRADES.ext_more_drops+2) - resistency;
+	}
+	
 	repeat(mineral_number)
 	{
 		var _ins = instance_create_layer(x,y,"Drops",mineral_drop);

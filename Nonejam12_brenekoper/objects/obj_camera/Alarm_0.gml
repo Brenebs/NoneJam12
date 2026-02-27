@@ -2,6 +2,7 @@
 // Você pode escrever seu código neste editor
 
 
+
 update_camera()
 
 if(instance_exists(alvo))

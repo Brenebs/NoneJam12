@@ -919,6 +919,12 @@ current_drill_image_speed = 0;
 		y = ystart;
 	}
 	
+	if true //(CURRENT_WORLD)
+	{
+		y = -2710;
+		can_cave = false;
+	}
+	
 	state_prepare_fall = function()
 	{
 		current_energy = lerp(current_energy , energy_max , .1);
@@ -1013,8 +1019,8 @@ current_drill_image_speed = 0;
 		damage_energy_cost_multiply = lerp( 2	, .5	, UPGRADES.energy_drill_damage  / 20);
 		still_energy_cost = lerp(.02 , 0 , UPGRADES.energy_still / 2);		
 		
-		current_timer_invincible = lerp( GAME_SPEED , GAME_SPEED * 2.5	, UPGRADES.energy_invencibility / 3	);
-		defensive_multipliyer	 = lerp( 1			, .3				, UPGRADES.energy_resistency	/ 25);
+		timer_invincible = lerp( GAME_SPEED , GAME_SPEED * 2.5	, UPGRADES.energy_invencibility / 3	);
+		defensive_multipliyer	 = lerp( 1			, .3		, UPGRADES.energy_resistency	/ 25);
 		
 		life_steal_percent = (UPGRADES.energy_leech/4) * .15
 		
@@ -1039,9 +1045,9 @@ current_drill_image_speed = 0;
 		//UPGRADES.ext_tnt					 
 		//UPGRADES.ext_tnt_area			 
 		//UPGRADES.ext_tnt_damage			 
-
+	
 		//UPGRADES.ext_more_drops			 
-		//UPGRADES.ext_lost_drops			 
+		
 		//UPGRADES.ext_life_saver			 
 		//UPGRADES.ext_pointer				 
 

@@ -1,17 +1,20 @@
 {
   "$GMObject":"",
-  "%Name":"obj_skill_manager",
+  "%Name":"obj_use_skill_tree",
   "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"obj_skill_manager",
+  "name":"obj_use_skill_tree",
   "overriddenProperties":[],
   "parent":{
-    "name":"Skill Tree",
-    "path":"folders/Objects/Skill Tree.yy",
+    "name":"Interactive",
+    "path":"folders/Objects/Interactive.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"obj_interact_item_father",
+    "path":"objects/obj_interact_item_father/obj_interact_item_father.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
@@ -29,7 +32,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"spr_computer",
+    "path":"sprites/spr_computer/spr_computer.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }

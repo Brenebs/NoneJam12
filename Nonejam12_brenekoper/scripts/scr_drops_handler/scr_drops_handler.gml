@@ -130,8 +130,9 @@ function drop_half(_x , _y)
 			
 			var _current = INVENTORY[i];
 			
+			var _frc = lerp(2,1.2,UPGRADES.ext_lost_drops)
 			
-			var _number_to_loss = ceil(_current.slot_stack_current_number / 2)
+			var _number_to_loss = ceil(_current.slot_stack_current_number / _frc);
 			repeat(_number_to_loss)
 			{
 				var _ins = instance_create_layer(_x , _y , "Minerals" , _current.slot_object);
@@ -139,6 +140,11 @@ function drop_half(_x , _y)
 			}
 			
 			_current.slot_stack_current_number -= _number_to_loss;
+			if(_current.slot_stack_current_number<=0)
+			{
+				delete INVENTORY[i]
+				INVENTORY[i] = undefined;
+			}
 		}
 	}
 }
