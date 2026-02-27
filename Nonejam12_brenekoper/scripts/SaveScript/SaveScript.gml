@@ -63,13 +63,13 @@ function create_saveable_info() constructor
 		energy_leech			 = 0; ////sangue suga
 		
 		//Extras
-		ext_slot_total			 = 0;
-		ext_slot_lenght			 = 0;
+		ext_slot_total			 = 0;//
+		ext_slot_lenght			 = 0;//
 		
-		ext_selling_slots		 = 0;
-		ext_selling_clients		 = 0;
+		ext_selling_slots		 = 0;//
+		ext_selling_clients		 = 0;//
 		
-		ext_magnet				 = 0;
+		ext_magnet				 = 0;//
 		
 		ext_drill_bot			 = 0;
 		ext_drill_bot_eficiency  = 0;
@@ -78,10 +78,10 @@ function create_saveable_info() constructor
 		ext_tnt_area			 = 0;
 		ext_tnt_damage			 = 0;
 		
-		ext_more_drops			 = 0;
-		ext_lost_drops			 = 0;
-		ext_life_saver			 = 0;
-		ext_pointer				 = 0;
+		ext_more_drops			 = 0;//
+		ext_lost_drops			 = 0;//
+		ext_life_saver			 = 0;//
+		ext_pointer				 = 0;//
 		
 		//Fogão
 		cooker_number			 = 0;

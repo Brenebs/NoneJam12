@@ -4,7 +4,9 @@
   "eventList":[],
   "managed":true,
   "name":"obj_skill_slot4",
-  "overriddenProperties":[],
+  "overriddenProperties":[
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_skill","path":"objects/obj_skill/obj_skill.yy",},"propertyId":{"name":"display_name","path":"objects/obj_skill/obj_skill.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"Bolso de doce - IV",},
+  ],
   "parent":{
     "name":"Slot",
     "path":"folders/Objects/Skill Tree/Skills/Slot.yy",
