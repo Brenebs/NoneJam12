@@ -565,7 +565,7 @@ current_drill_image_speed = 0;
 			y += __y;
 		}
 	
-		var _offset = 0
+		var _offset = CURRENT_WORLD ? -128 : 16
 		x = clamp(x , _offset , room_width - _offset);
 		y = min(y , max_y);
 	

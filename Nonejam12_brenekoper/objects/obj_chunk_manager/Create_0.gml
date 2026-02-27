@@ -157,7 +157,7 @@ deactivate_instances = function()
 		{
 			show_message($"eu sou {object_get_name(object_index)} - id {id}");
 			
-			if(object_is_ancestor(object_index , obj_interact_item_father) || object_index == obj_item_dispenser)
+			if(object_is_ancestor(object_index , obj_interact_item_father) || object_index == obj_item_dispenser || object_index == obj_tree)
 			{
 				show_message($"fui guardado  {object_get_name(object_index)} - id {id}");
 				array_push(_ins.deactivated_list , _ins);
