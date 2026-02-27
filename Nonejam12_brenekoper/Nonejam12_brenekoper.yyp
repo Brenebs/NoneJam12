@@ -64,6 +64,7 @@
     {"$GMFolder":"","%Name":"Collision","folderPath":"folders/Objects/Collision.yy","name":"Collision","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Entidades","folderPath":"folders/Objects/Entidades.yy","name":"Entidades","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Enemies","folderPath":"folders/Objects/Entidades/Enemies.yy","name":"Enemies","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"Efeitos","folderPath":"folders/Objects/Efeitos.yy","name":"Efeitos","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Interactive","folderPath":"folders/Objects/Interactive.yy","name":"Interactive","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Minérios","folderPath":"folders/Objects/Minérios.yy","name":"Minérios","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Blocks","folderPath":"folders/Objects/Minérios/Blocks.yy","name":"Blocks","resourceType":"GMFolder","resourceVersion":"2.0",},
@@ -131,6 +132,7 @@
   ],
   "ForcedPrefabProjectReferences":[
     {"link":"io.gamemaker.gm_filter_parallax-1.0.0","name":"io.gamemaker.gm_filter_parallax-1.0.0","path":"io.gamemaker.gm_filter_parallax-1.0.0.yyp",},
+    {"link":"io.gamemaker.gm_filter_outline-1.0.0","name":"io.gamemaker.gm_filter_outline-1.0.0","path":"io.gamemaker.gm_filter_outline-1.0.0.yyp",},
   ],
   "IncludedFiles":[
     {"$GMIncludedFile":"","%Name":"gamecontrollerdb.txt","CopyToMask":-1,"filePath":"datafiles","name":"gamecontrollerdb.txt","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
@@ -206,6 +208,7 @@
     {"id":{"name":"obj_options","path":"objects/obj_options/obj_options.yy",},},
     {"id":{"name":"obj_pause","path":"objects/obj_pause/obj_pause.yy",},},
     {"id":{"name":"obj_phisical_button","path":"objects/obj_phisical_button/obj_phisical_button.yy",},},
+    {"id":{"name":"obj_player_path","path":"objects/obj_player_path/obj_player_path.yy",},},
     {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},},
     {"id":{"name":"obj_portal_top","path":"objects/obj_portal_top/obj_portal_top.yy",},},
     {"id":{"name":"obj_portal","path":"objects/obj_portal/obj_portal.yy",},},
@@ -801,6 +804,8 @@
     {"id":{"name":"spr_drill_appearence_4","path":"sprites/spr_drill_appearence_4/spr_drill_appearence_4.yy",},},
     {"id":{"name":"spr_drill_base","path":"sprites/spr_drill_base/spr_drill_base.yy",},},
     {"id":{"name":"spr_drill","path":"sprites/spr_drill/spr_drill.yy",},},
+    {"id":{"name":"spr_eftground_back","path":"sprites/spr_eftground_back/spr_eftground_back.yy",},},
+    {"id":{"name":"spr_eftground_front","path":"sprites/spr_eftground_front/spr_eftground_front.yy",},},
     {"id":{"name":"spr_elevator_botton","path":"sprites/spr_elevator_botton/spr_elevator_botton.yy",},},
     {"id":{"name":"spr_elevator_top","path":"sprites/spr_elevator_top/spr_elevator_top.yy",},},
     {"id":{"name":"spr_enemie_bomb","path":"sprites/spr_enemie_bomb/spr_enemie_bomb.yy",},},

@@ -9,8 +9,8 @@
   "name":"obj_tree",
   "overriddenProperties":[],
   "parent":{
-    "name":"Interactive",
-    "path":"folders/Objects/Interactive.yy",
+    "name":"Efeitos",
+    "path":"folders/Objects/Efeitos.yy",
   },
   "parentObjectId":null,
   "persistent":false,

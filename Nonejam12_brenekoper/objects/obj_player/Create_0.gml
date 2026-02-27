@@ -527,6 +527,8 @@ current_drill_image_speed = 0;
 	}
 
 	max_y = (CHUNK_MAX * CHUNK_HEIGHT) + CHUNK_HEIGHT;
+	
+	last_drill_position = new vector2(drill.x,drill.y);
 	collision=function()
 	{
 		var _multiply = speed_multiply_timer > 0 ? current_speed_multiply : 1
@@ -564,16 +566,50 @@ current_drill_image_speed = 0;
 			x += __x;
 			y += __y;
 		}
-	
+		
 		var _offset = CURRENT_WORLD ? -128 : 16
 		x = clamp(x , _offset , room_width - _offset);
 		y = min(y , max_y);
-	
-		if(inside_ground) && !player_dead && (y < -max_y_outside ||  (y < -max_y_outside + 28 && vspd<0 )) 
-		{
 		
-			exit_ground();
-			image_alpha = 1;
+		
+		var _last = variable_clone(last_drill_position);
+			
+		var _len = sprite_get_width(drill_sprites[drill.image_index]);
+		var _x = lengthdir_x(_len , angle_direction);
+		var _y = lengthdir_y(_len , angle_direction);
+				
+		last_drill_position.x = drill.x + _x
+		last_drill_position.y = drill.y + _y
+		
+		if(inside_ground)
+		{
+			var _min = 20
+			if (abs(hspd) + abs(vspd)) > 1 && last_drill_position.y > _min
+			{	
+				
+				var _dist = ceil( point_distance(_last.x,_last.y,last_drill_position.x,last_drill_position.y) ) * .1;
+				if(_dist < 128)
+				{
+					for(var i = 0 ; i < _dist ; i++)
+					{
+						var ___x = lerp(_last.x,last_drill_position.x,i/_dist)
+						var ___y = lerp(_last.y,last_drill_position.y,i/_dist)
+				
+						if(___y > _min)
+						{
+							instance_create_layer(___x,___y,"GroundEffect",obj_player_path);
+						}
+				
+					}
+				}
+			}
+	
+			if(!player_dead && (y < -max_y_outside ||  (y < -max_y_outside + 28 && vspd<0 )))
+			{
+		
+				exit_ground();
+				image_alpha = 1;
+			}
 		}
 	}
 
@@ -604,7 +640,7 @@ current_drill_image_speed = 0;
 		v_spd	= _vspd * current_speed * _spd;
 		vspd	= lerp(vspd , v_spd , aceleration * acel_after_attack)
 		
-		current_drill_image_speed = abs(h_spd) + abs(v_spd)
+		current_drill_image_speed = (abs(h_spd) + abs(v_spd))*1.5
 	
 		if(_spd || (abs(hspd) + abs(vspd))>1)
 		{
@@ -683,7 +719,7 @@ current_drill_image_speed = 0;
 		hspd = lerp(hspd ,_hspd,.3 * acel_after_attack)
 		vspd = lerp(vspd ,_vspd,.3 * acel_after_attack)
 		
-		current_drill_image_speed = (abs(_hspd) + abs(_vspd)) * 2;
+		current_drill_image_speed = (abs(_hspd) + abs(_vspd)) * 3;
 		
 		current_dash_timer++;
 		if(current_dash_timer >= dash_flow_timer)

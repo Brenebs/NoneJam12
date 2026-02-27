@@ -1,17 +1,17 @@
 {
   "$GMObject":"",
-  "%Name":"obj_layer_cake",
+  "%Name":"obj_player_path",
   "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":72,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"obj_layer_cake",
+  "name":"obj_player_path",
   "overriddenProperties":[],
   "parent":{
-    "name":"A_GAME_HANDLERS",
-    "path":"folders/Objects/A_GAME_HANDLERS.yy",
+    "name":"Efeitos",
+    "path":"folders/Objects/Efeitos.yy",
   },
   "parentObjectId":null,
   "persistent":false,
@@ -31,7 +31,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"spr_eftground_back",
+    "path":"sprites/spr_eftground_back/spr_eftground_back.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }
