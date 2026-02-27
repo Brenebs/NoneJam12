@@ -366,7 +366,9 @@ function __scribble_gen_3_devanagari()
             if (_data_index == undefined)
             {
                 __scribble_trace("Couldn't find glyph data for character code " + string(_found_glyph) + " (" + chr(_found_glyph) + ") in font \"" + string(_font_name) + "\"");
-                _glyph_write = ord(SCRIBBLE_MISSING_CHARACTER);
+                
+				_glyph_write = ord(SCRIBBLE_MISSING_CHARACTER);
+				
                 _data_index = _font_glyphs_map[? _glyph_write];
             }
             
