@@ -53,6 +53,8 @@ destroy_function = function(_is_dash = false)
 		}
 	}
 	
+	sfx_play([snd_ore_destroy1, snd_ore_destroy2]);
+	
 	instance_destroy();
 }
 

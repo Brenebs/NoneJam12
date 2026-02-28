@@ -80,3 +80,18 @@ speed_multiply_timer		 = max_timer(speed_multiply_timer);
 current_timer_invincible	 = max_timer(current_timer_invincible);
 acel_after_attack			 = lerp(acel_after_attack , 1 , .1);
 
+if inside_ground {
+	audio_sound_gain(drill_sound, .25 * !using_elevator, 200);
+	drill_pitch = lerp(drill_pitch, (1 + point_distance(x, y, x + hspd, y + vspd) / 8) * !using_elevator, .2);
+	drill_fake_doppler = (abs(hspd) + vspd) * .1;
+	
+	audio_sound_gain(dirt_sound, (1 * !using_elevator) * (point_distance(x, y, x + hspd, y + vspd) > 2), 300);
+}
+else {
+	audio_sound_gain(drill_sound, 0, 500);
+	drill_pitch = lerp(drill_pitch, 0, .2);
+	
+	audio_sound_gain(dirt_sound, 0, 200);
+}
+
+audio_sound_pitch(drill_sound, drill_pitch + drill_fake_doppler - drill_shakey);

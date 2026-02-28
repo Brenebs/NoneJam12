@@ -12,6 +12,15 @@ drill_image_index = 0;
 drill_image_speed = 0;
 current_drill_image_speed = 0;
 
+drill_sound = sfx_play(snd_drill_loop, 0, 0, true);
+drill_pitch = 0;
+drill_fake_doppler = 0;
+drill_shakey = 0;
+
+using_elevator = false;
+
+dirt_sound = sfx_play(snd_dirt_loop, 0, 0, true);
+
 #region mineirando
 
 	inside_ground = true;
@@ -489,6 +498,8 @@ current_drill_image_speed = 0;
 		vspd = -8;
 		state = _state;
 		
+		sfx_play(snd_dirt_exit);
+		
 		sprite_index = spr_player_normal_jump;
 		
 		y = min(y , -max_y_outside);
@@ -500,6 +511,8 @@ current_drill_image_speed = 0;
 		y = max(y , -max_y_outside+1)
 		vspd = 8;
 		inside_ground = true;
+		
+		sfx_play(snd_dirt_enter);
 		
 		sprite_index = spr_player_cake;
 	}
@@ -666,6 +679,8 @@ current_drill_image_speed = 0;
 	{
 		image_blend = c_white
 		
+		using_elevator = false;
+		
 		check_interactables();
 	
 		var _direction = point_direction(x,y,mouse_x,mouse_y);
@@ -734,6 +749,8 @@ current_drill_image_speed = 0;
 			
 			rotate_drill(_direction, .8)
 			
+			sfx_play(snd_player_dash, 1, .15);
+			
 			var _x = lengthdir_x(dash_distance_max ,angle_direction)
 			var _y = lengthdir_y(dash_distance_max ,angle_direction)
 			var _dist = point_distance(x,y,x+_x,y+_y) / dash_flow_timer;
@@ -779,6 +796,8 @@ current_drill_image_speed = 0;
 		image_alpha = 0;
 		vspd = lerp(vspd , -100 , .05);
 		
+		using_elevator = true;
+		
 		current_energy = max(current_energy,1);
 	}
 	
@@ -800,6 +819,8 @@ current_drill_image_speed = 0;
 		
 		x = lerp(x , elevator_follow.x , .05 * acel_after_attack)
 		y = lerp(y , elevator_follow.y , .02 * acel_after_attack)
+		
+		using_elevator = true;
 		
 		if(instance_place(x,y,elevator_follow))
 		{
@@ -883,6 +904,8 @@ current_drill_image_speed = 0;
 	{
 		current_drill_image_speed = 0;
 		
+		using_elevator = false;
+		
 		image_blend = c_white
 		
 		var _frc = !CURRENT_WORLD ? 1 : -1;
@@ -932,6 +955,7 @@ current_drill_image_speed = 0;
 			else
 			if(_can && check_confirm())
 			{
+				sfx_play([snd_player_jump1, snd_player_jump2]);
 				vspd = -8 * _frc;
 				image_index = 0;
 			}
@@ -994,6 +1018,7 @@ current_drill_image_speed = 0;
 	{
 		exit_ground();
 		inside_ground = false;
+		using_elevator = false;
 		state = state_outside;
 		vspd = 0;
 		y = ystart;
@@ -1010,7 +1035,12 @@ current_drill_image_speed = 0;
 		current_energy = lerp(current_energy , energy_max , .1);
 		can_cave = true;	
 		have_drill = true;
-		sprite_index = spr_player_normal_prepare_jump;
+		
+		if sprite_index != spr_player_normal_prepare_jump {
+			sfx_play(snd_player_gravity_intro);
+			
+			sprite_index = spr_player_normal_prepare_jump;
+		}
 		
 		var _direction = CURRENT_WORLD ? 270 : 90;
 		rotate_drill(_direction, .2)
@@ -1034,8 +1064,12 @@ current_drill_image_speed = 0;
 		
 		var _diff = 16;
 		x = clamp(x,room_width/2-_diff,room_width/2+_diff)
-	
-		sprite_index = spr_player_normal_falling;
+		
+		if sprite_index != spr_player_normal_falling {
+			sfx_play(snd_inverted_gravity);
+			
+			sprite_index = spr_player_normal_falling;
+		}
 		
 		angle += 8.5
 
@@ -1046,6 +1080,8 @@ current_drill_image_speed = 0;
 			angle = 0;
 			
 			obj_game_control.can_pause = true;
+			
+			sfx_play(snd_player_land, .33);
 			
 			if(can_cave && mouse_check_button(mb_left))
 			{
