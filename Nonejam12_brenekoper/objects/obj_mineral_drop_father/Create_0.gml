@@ -7,8 +7,9 @@ rarity = 0;
 timer_to_be_collected = 30;
 
 follow_player = false;
+player_dash = false;
 
-distance_follow = 20 + UPGRADES.ext_magnet * (600 /  3);
+distance_follow = 20 + UPGRADES.ext_magnet * (64 /  3);
 
 being_collected = function()
 {
@@ -19,6 +20,7 @@ being_collected = function()
 	}
 	else
 	{
+		player_dash = false;
 		follow_player = false;
 		timer_to_be_collected = 40;
 	}

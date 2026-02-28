@@ -28,7 +28,7 @@ if(array_length(_split) > 1)
 	}
 }
 
-destroy_function = function()
+destroy_function = function(_is_dash = false)
 {
 	
 	if(UPGRADES.ext_more_drops > 0 && UPGRADES.ext_more_drops >= resistency)
@@ -40,6 +40,14 @@ destroy_function = function()
 	{
 		var _ins = instance_create_layer(x,y,"Drops",mineral_drop);
 		_ins.rarity = resistency;
+		
+		if(_is_dash)
+		{
+			_ins.player_dash = true;
+			_ins.timer_to_be_collected *= .75;
+			_ins.speed*=1.5;
+			
+		}
 	}
 	
 	instance_destroy();
