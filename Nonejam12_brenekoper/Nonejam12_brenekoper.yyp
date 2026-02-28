@@ -802,7 +802,6 @@
     {"id":{"name":"snd_player_hurt2","path":"sounds/snd_player_hurt2/snd_player_hurt2.yy",},},
     {"id":{"name":"snd_player_jump1","path":"sounds/snd_player_jump1/snd_player_jump1.yy",},},
     {"id":{"name":"snd_player_jump2","path":"sounds/snd_player_jump2/snd_player_jump2.yy",},},
-    {"id":{"name":"snd_player_jump3","path":"sounds/snd_player_jump3/snd_player_jump3.yy",},},
     {"id":{"name":"snd_player_land","path":"sounds/snd_player_land/snd_player_land.yy",},},
     {"id":{"name":"snd_sell","path":"sounds/snd_sell/snd_sell.yy",},},
     {"id":{"name":"snd_skill_enter1","path":"sounds/snd_skill_enter1/snd_skill_enter1.yy",},},
