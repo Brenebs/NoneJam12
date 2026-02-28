@@ -51,7 +51,7 @@ with(_sugar)
 	add_interval(0,21 , 6 , .2 , 2 , 10);
 }
 
-var _chocolate_rb = new create_minerals( obj_mineral_roadblock_father)
+var _chocolate_rb = new create_minerals( obj_mineral_roadblock_1)
 with(_chocolate_rb)
 {
 	add_interval(6 , 6 , 6 , 2 , 1,1);
@@ -67,6 +67,12 @@ var _peanut = new create_minerals(obj_mineral_3)
 with(_peanut)
 {
 	add_interval(19,33 ,  , .2 , 1 , 5);
+}
+
+var _chocolate_rb = new create_minerals( obj_mineral_roadblock_2)
+with(_chocolate_rb)
+{
+	add_interval(39 , 39 , 2 , 2 , 1,1);
 }
 
 var _white_chocolate = new create_minerals(obj_mineral_4)
@@ -86,6 +92,13 @@ with(_caramelow)
 {
 	add_interval(50,58 ,  , .1 , 2 , 10);
 }
+
+var _chocolate_rb = new create_minerals( obj_mineral_roadblock_3)
+with(_chocolate_rb)
+{
+	add_interval(59 , 59 , 1 , 2 , 1,1);
+}
+
 
 var _strawberry = new create_minerals(obj_mineral_7)
 with(_strawberry)
@@ -111,6 +124,13 @@ with(_honey)
 	add_interval(81,105 ,  , .1 , 2 , 10);
 }
 
+var _chocolate_rb = new create_minerals( obj_mineral_roadblock_4)
+with(_chocolate_rb)
+{
+	add_interval(85 , 85 , 39 , 2 , 1,1);
+}
+
+
 var _caramelow2 = new create_minerals(obj_mineral_11)
 with(_caramelow2)
 {
@@ -135,17 +155,23 @@ with(_mineral)
 	add_interval(109,130 ,  , .1 , 2 , 10);
 }
 
+var _chocolate_rb = new create_minerals( obj_mineral_roadblock_5)
+with(_chocolate_rb)
+{
+	add_interval(116 , 116 , 2 , 2 , 1,1);
+}
+
 var _mineral = new create_minerals(obj_mineral_15)
 with(_mineral)
 {
 	add_interval(116,132 ,  , .1 , 2 , 10);
 }
 
-var _mineral = new create_minerals(obj_mineral_16)
-with(_mineral)
-{
-	add_interval(131,155 ,  , .1 , 2 , 10);
-}
+//var _mineral = new create_minerals(obj_mineral_16)
+//with(_mineral)
+//{
+//	add_interval(131,155 ,  , .1 , 2 , 10);
+//}
 
 
 //var _mineral = new create_minerals(obj_mineral_roadblock_father)

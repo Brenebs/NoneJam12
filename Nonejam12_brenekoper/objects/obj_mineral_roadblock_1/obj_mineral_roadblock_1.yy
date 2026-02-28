@@ -4,7 +4,10 @@
   "eventList":[],
   "managed":true,
   "name":"obj_mineral_roadblock_1",
-  "overriddenProperties":[],
+  "overriddenProperties":[
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_mineral_roadblock_father","path":"objects/obj_mineral_roadblock_father/obj_mineral_roadblock_father.yy",},"propertyId":{"name":"drop","path":"objects/obj_mineral_roadblock_father/obj_mineral_roadblock_father.yy",},"resource":{"name":"obj_mineral_drop_2","path":"objects/obj_mineral_drop_2/obj_mineral_drop_2.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"obj_mineral_drop_2",},
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_mineral_father","path":"objects/obj_mineral_father/obj_mineral_father.yy",},"propertyId":{"name":"life","path":"objects/obj_mineral_father/obj_mineral_father.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"35",},
+  ],
   "parent":{
     "name":"Roadblock",
     "path":"folders/Objects/Minérios/Roadblock.yy",

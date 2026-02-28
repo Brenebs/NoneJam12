@@ -7,6 +7,8 @@
 Sistema de energia realmente funcionar
 
 Inimigos
+	- fazer com que eles spawnem em biomas 
+	- vida deles deve escalar automaticamente, deve pegar  os minérios ao redor e multiplica-los e dropa-los
 
 Sistema de bolos
 
@@ -32,8 +34,10 @@ Criar todas as variavéis importantes no game_data
 ////////////////desativar as instancias na parte de cima
 
 objetos interativos terem juice melhor
-Juice melhor nos coletáveis, minérios e tals
+/////////Juice melhor nos coletáveis, minérios e tals
+		- só falta sistema de partículas
 rework nas mesa
+NÂO ESQUECER DE IMPLEMENTAR OS ROADBLOCK
 
 
 sistema de fogão
