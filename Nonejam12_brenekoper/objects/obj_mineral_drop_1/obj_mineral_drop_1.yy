@@ -5,7 +5,7 @@
   "managed":true,
   "name":"obj_mineral_drop_1",
   "overriddenProperties":[
-    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_mineral_drop_father","path":"objects/obj_mineral_drop_father/obj_mineral_drop_father.yy",},"propertyId":{"name":"value","path":"objects/obj_mineral_drop_father/obj_mineral_drop_father.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"1",},
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_mineral_drop_father","path":"objects/obj_mineral_drop_father/obj_mineral_drop_father.yy",},"propertyId":{"name":"value","path":"objects/obj_mineral_drop_father/obj_mineral_drop_father.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"2",},
   ],
   "parent":{
     "name":"Drops",

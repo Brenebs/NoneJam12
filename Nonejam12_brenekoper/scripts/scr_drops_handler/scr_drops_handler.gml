@@ -113,21 +113,19 @@ function add_value_to_drop(_value)
 	if(slot_stack_current_number > _num_max)
 	{
 		
-		
-		var _max = _current
 		var _rest = slot_stack_current_number - _num_max;
 		slot_stack_current_number = _num_max;
 		
 		
 			
-		if(!add_drop(slot_object , slot_sprite , slot_value , _rest , slot_stack_base , slot_rarity))
-		{
-			//show_message(self)
-			{
-				var _ins = instance_create_layer(obj_player.x,obj_player.y,"Drops",slot_object);
-				_ins.number_to_add = _rest;
-			}
-		}
+		//if(!add_drop(slot_object , slot_sprite , slot_value , _rest , slot_stack_base , slot_rarity))
+		//{
+		//	//show_message(self)
+		//	{
+		//		var _ins = instance_create_layer(obj_player.x,obj_player.y,"Drops",slot_object);
+		//		_ins.number_to_add = _rest;
+		//	}
+		//}
 	}
 }
 
