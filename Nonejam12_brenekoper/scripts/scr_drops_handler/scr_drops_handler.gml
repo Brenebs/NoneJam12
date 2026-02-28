@@ -139,7 +139,7 @@ function drop_half(_x , _y)
 			
 			var _current = INVENTORY[i];
 			
-			var _frc = lerp(2,1.2,UPGRADES.ext_lost_drops)
+			var _frc = lerp(1.5,5,UPGRADES.ext_lost_drops/4)
 			
 			var _number_to_loss = ceil(_current.slot_stack_current_number / _frc);
 			repeat(_number_to_loss)
