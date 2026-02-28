@@ -105,7 +105,7 @@ function add_value_to_drop(_value)
 {
 	slot_stack_current_number += _value;
 		
-	if(slot_stack_current_number + ceil(slot_stack_current_number * UPGRADES.ext_slot_lenght*.33) > slot_stack_base)
+	if(slot_stack_current_number + ceil(slot_stack_current_number * UPGRADES.ext_slot_lenght*.5) > slot_stack_base)
 	{
 		var _rest = slot_stack_current_number - slot_stack_base;
 		slot_stack_current_number = slot_stack_base;

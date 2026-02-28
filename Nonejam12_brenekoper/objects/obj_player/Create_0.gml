@@ -1097,18 +1097,18 @@ current_drill_image_speed = 0;
 		still_energy_cost = lerp(.02 , 0 , UPGRADES.energy_still / 2);		
 		
 		timer_invincible = lerp( GAME_SPEED , GAME_SPEED * 2.5	, UPGRADES.energy_invencibility / 3	);
-		defensive_multipliyer	 = lerp( 1			, .3		, UPGRADES.energy_resistency	/ 25);
+		defensive_multipliyer	 = lerp( 1			, .5		, UPGRADES.energy_resistency	/ 30);
 		
 		life_steal_percent = (UPGRADES.energy_leech/4) * .15;
 		
 		////Extras
 		
-		while(UPGRADES.ext_slot_total > array_length(INVENTORY))
+		while((UPGRADES.ext_slot_total+2) > array_length(INVENTORY))
 		{
 			array_push(INVENTORY,undefined)
 		}
 		
-		while(UPGRADES.ext_selling_slots > array_length(SELL_ARRAY))
+		while((UPGRADES.ext_selling_slots+3) > array_length(SELL_ARRAY))
 		{
 			array_push(SELL_ARRAY,undefined)
 		}
@@ -1268,6 +1268,26 @@ current_drill_image_speed = 0;
 			});
 			dbg_button("Atualizar variáveis" , update_upgrades_values);
 			dbg_button("SAVE"				 , save_game);
+			
+			
+			dbg_button("Add Slot" , function()
+			{
+				array_push(INVENTORY,undefined);
+			})
+			
+			dbg_button("Remove Slot" , function()
+			{
+				if(array_length(INVENTORY) > SLOTS_MINERAL_MIN)
+				{
+					var _ins = array_pop(INVENTORY);
+					
+					INVENTORY_OPTION_SELECTED = qwrap(INVENTORY_OPTION_SELECTED,0,array_length(INVENTORY)-1)
+					
+					delete _ins;
+				}
+			})
+			
+			dbg_button("Free current slot" , drop_mineral);
 		
 		dbg_section("Broca");
 		
