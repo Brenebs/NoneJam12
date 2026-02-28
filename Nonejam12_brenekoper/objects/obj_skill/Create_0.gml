@@ -15,9 +15,10 @@ purchased_n = 0;
 action = fx() {
 	if ((purchased_n <= upgrade_amt) and (get_price() <= GAME_INFO.coins)) {
 		UPGRADES[$ upgrade_var] += 1;
+		
+		purchased_n++;
+		GAME_INFO.coins -= price;
 	}
-	purchased_n++;
-	GAME_INFO.coins -= price;
 }
 
 get_price = fx() {
