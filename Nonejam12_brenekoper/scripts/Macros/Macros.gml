@@ -78,7 +78,7 @@ global.death = false;
 
 
 #macro CHUNKS_OFFSET 2
-#macro CHUNK_HEIGHT (CAMERA_BASE_HEIGHT*.4)
+#macro CHUNK_HEIGHT (CAMERA_BASE_HEIGHT*.2)
 #macro CHUNK_MAX 130
 
 //	Autismo

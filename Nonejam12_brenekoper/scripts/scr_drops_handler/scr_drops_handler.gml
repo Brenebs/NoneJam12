@@ -10,6 +10,7 @@ global.drop_selected  = 0;
 #macro INVENTORY global.game_save.drops_colected
 #macro SELL_ARRAY obj_sell_manager.array_selling
 
+#macro INVENTORY_MULTIPLYER 1
 
 function add_drop(_object , _sprite ,  _value = 5 , _number_to_add = 1 , _stack_base = 2 , _rarity = 1)
 {
@@ -31,7 +32,7 @@ function add_drop(_object , _sprite ,  _value = 5 , _number_to_add = 1 , _stack_
 			var _same_value  = _current.slot_value == _value 
 			var _same_rarity = _current.slot_rarity == _rarity 
 			var _same_stack  = _current.slot_stack_base == _stack_base
-			var _can_fit	 = _current.slot_stack_current_number < _current.slot_stack_base
+			var _can_fit	 = _current.slot_stack_current_number < (_current.slot_stack_base + ceil(_current.slot_stack_base * UPGRADES.ext_slot_lenght*INVENTORY_MULTIPLYER))
 			
 			show_debug_message(
 				"TENTANDO ADICIONAR : \n" +
@@ -104,11 +105,20 @@ function create_drop_index(_object , _sprite , _value , _stack_base , _rarity) c
 function add_value_to_drop(_value)
 {
 	slot_stack_current_number += _value;
+	
+	var _num_max = slot_stack_base + ceil(slot_stack_base * UPGRADES.ext_slot_lenght*INVENTORY_MULTIPLYER);
+	
+	show_debug_message($"{slot_stack_current_number}-{_num_max}-{slot_stack_base}");
 		
-	if(slot_stack_current_number + ceil(slot_stack_current_number * UPGRADES.ext_slot_lenght*.5) > slot_stack_base)
+	if(slot_stack_current_number > _num_max)
 	{
-		var _rest = slot_stack_current_number - slot_stack_base;
-		slot_stack_current_number = slot_stack_base;
+		
+		
+		var _max = _current
+		var _rest = slot_stack_current_number - _num_max;
+		slot_stack_current_number = _num_max;
+		
+		
 			
 		if(!add_drop(slot_object , slot_sprite , slot_value , _rest , slot_stack_base , slot_rarity))
 		{

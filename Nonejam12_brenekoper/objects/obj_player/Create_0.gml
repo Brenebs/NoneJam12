@@ -1254,6 +1254,11 @@ current_drill_image_speed = 0;
 				damage = power(2 , 30);
 				drill_level = 10;
 			});
+			dbg_button("Resetar player"		 , function()
+			{
+				delete GAME_INFO;
+				GAME_INFO = new create_saveable_info();
+			})
 			dbg_button("Matar o player"		 , function()
 			{
 				current_energy = -1;
