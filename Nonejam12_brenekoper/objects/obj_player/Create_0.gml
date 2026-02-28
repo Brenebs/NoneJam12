@@ -45,13 +45,30 @@ current_drill_image_speed = 0;
 	{
 		if(current_timer_offset_attacks>0 || current_timer_invincible > 0) return;
 		
+		var _dash = state == state_dash_released;
+		
 		var _list = ds_list_create();	
 		var push_once = true;
 		
 		var _num = 0;
 		with(drill)
 		{
+			var _scl = 1
+			if(instance_place(x,y,obj_mineral_father))
+			{
+				var _xscale	= image_xscale
+				var _yscale	= image_yscale
+				
+				_scl = 1.03 + ( image_index * .1 ) + (.25*_dash);
+				
+				image_xscale *= _scl;
+				image_yscale *= _scl; 
+			}
+			
 			_num = instance_place_list(x,y,[obj_mineral_father],_list,true);
+			
+			image_xscale = _scl;
+			image_yscale = _scl; 
 		}
 		
 		for(var i = 0 ; i < _num ; i++)
@@ -67,6 +84,24 @@ current_drill_image_speed = 0;
 			consume_energy((!_can_attack*.5) + (damage_energy_cost_multiply) * _mult);
 			if(_can_attack)
 			{
+				
+				if(_num > 0 && eletric_drill>0)
+				{
+					var _area = eletric_drill+20;
+					with(_current)
+					{
+						if(collision_circle(x,y,_area,obj_mineral_father,false,true))
+						{
+							var _ins = instance_create_depth(x,y,depth,obj_ray_player);
+								ds_list_add(_ins.list_damaged,id);
+								
+								_ins.ray = _area;
+								_ins.damage = (other.damage * _damage_multiply) / 6 * UPGRADES.drill_eletric  ;
+								_ins.check_next_instance();
+						}
+					}
+				}
+				
 				_current.white_timer = clamp(timer_offset_attacks-1 , 0 ,5);
 				_current.life -= damage * _damage_multiply;
 			}
@@ -79,7 +114,12 @@ current_drill_image_speed = 0;
 			
 			if(_current.life<=0)
 			{
-				_current.destroy_function();
+				var _is_dash = false
+				if(dash_colector && _dash)
+				{
+					_is_dash = true
+				}
+				_current.destroy_function(_is_dash);
 			}
 			else
 			if(push_once)
@@ -99,6 +139,7 @@ current_drill_image_speed = 0;
 				current_dash_timer -= current_timer_offset_attacks*.5
 			}
 		}
+		
 		ds_list_destroy(_list);
 	}
 
@@ -1032,7 +1073,7 @@ current_drill_image_speed = 0;
 	{
 		drill_level		= UPGRADES.drill_level				 
 		damage			= power(2 , UPGRADES.drill_damage)			 
-		eletric_drill	=  UPGRADES.drill_eletric			 
+		eletric_drill	=  (42 * power(1.75,UPGRADES.drill_eletric)) * bool(UPGRADES.drill_eletric)	
 		drill.image_index = clamp(UPGRADES.drill_range , 0 ,drill.image_number-1)				 
 		current_speed	= base_speed + UPGRADES.drill_speed			
 		

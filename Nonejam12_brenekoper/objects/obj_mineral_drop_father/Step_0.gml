@@ -3,20 +3,26 @@ PauseInstanceHandler();
 
 timer_to_be_collected = max_timer(timer_to_be_collected);
 
-speed = lerp(speed , 0 , .1);
+
 
 if(follow_player)
 {
 	var _ins = instance_nearest(x,y,obj_player);
 	
-	speed = lerp(speed , 10, .1);
+	speed = lerp(speed , 7.5 + (player_dash * 2), .1);
 	
 	direction = point_direction(x,y,_ins.x,_ins.y);
 }
 else
-if(timer_to_be_collected <= 0 && distance_to_object(obj_player) < distance_follow)
 {
-	follow_player = true;
+	speed = lerp(speed , 0 , .1);
+	
+	var _col = collision_circle(x,y,distance_follow,obj_player,false,true);
+	
+	if(timer_to_be_collected <= 0 && (_col || player_dash))
+	{
+		follow_player = true;
+	}
 }
 
 

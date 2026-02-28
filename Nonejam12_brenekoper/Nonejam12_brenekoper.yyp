@@ -212,6 +212,7 @@
     {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},},
     {"id":{"name":"obj_portal_top","path":"objects/obj_portal_top/obj_portal_top.yy",},},
     {"id":{"name":"obj_portal","path":"objects/obj_portal/obj_portal.yy",},},
+    {"id":{"name":"obj_ray_player","path":"objects/obj_ray_player/obj_ray_player.yy",},},
     {"id":{"name":"obj_screen","path":"objects/obj_screen/obj_screen.yy",},},
     {"id":{"name":"obj_sell_manager","path":"objects/obj_sell_manager/obj_sell_manager.yy",},},
     {"id":{"name":"obj_selling_machine","path":"objects/obj_selling_machine/obj_selling_machine.yy",},},

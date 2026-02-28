@@ -31,6 +31,11 @@ Criar todas as variavéis importantes no game_data
 
 ////////////////desativar as instancias na parte de cima
 
+objetos interativos terem juice melhor
+Juice melhor nos coletáveis, minérios e tals
+rework nas mesa
+
+
 sistema de fogão
 
 sistema de tnt
