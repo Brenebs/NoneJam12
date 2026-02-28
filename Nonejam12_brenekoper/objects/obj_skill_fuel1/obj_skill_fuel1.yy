@@ -9,6 +9,8 @@
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_skill","path":"objects/obj_skill/obj_skill.yy",},"propertyId":{"name":"upgrade_amt","path":"objects/obj_skill/obj_skill.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"5",},
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_skill","path":"objects/obj_skill/obj_skill.yy",},"propertyId":{"name":"display_name","path":"objects/obj_skill/obj_skill.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"Tanques maiores - I",},
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_skill","path":"objects/obj_skill/obj_skill.yy",},"propertyId":{"name":"description","path":"objects/obj_skill/obj_skill.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"Aumenta a quantidade de energia.",},
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_skill","path":"objects/obj_skill/obj_skill.yy",},"propertyId":{"name":"price","path":"objects/obj_skill/obj_skill.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"15",},
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_skill","path":"objects/obj_skill/obj_skill.yy",},"propertyId":{"name":"price_mult","path":"objects/obj_skill/obj_skill.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"4",},
   ],
   "parent":{
     "name":"Skills",

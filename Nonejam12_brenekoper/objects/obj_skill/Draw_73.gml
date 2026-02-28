@@ -7,7 +7,7 @@ if(hover)
 	draw_set_font(fnt_pb);
 	draw_set_valign(fa_bottom);
 	draw_set_halign(fa_center);
-	draw_cool_scribble_text(x,y-16,$"[scale,2]{display_name}[scale,1]\n{description}\np_num ={purchased_n}\nnum_need{upgrade_unlock}\n{UPGRADES[$ upgrade_var]}")
+	draw_cool_scribble_text(x,y-16,$"[scale,2]{display_name}[scale,1]\n{description}\n[spr_money_icon]: {get_price()}")
 	draw_set_valign(-1);
 	draw_set_halign(-1);
 	draw_set_font(-1);

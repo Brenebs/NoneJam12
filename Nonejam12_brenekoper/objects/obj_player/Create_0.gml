@@ -891,7 +891,7 @@ current_drill_image_speed = 0;
 	
 		hspd = lerp(hspd , _hspd , .1);
 	
-		current_energy = clamp(current_energy+.1 , 0 , energy_max);
+		current_energy = clamp(current_energy+.5 , 0 , energy_max);
 		
 	
 		if(!on_ground)
@@ -1242,6 +1242,8 @@ current_drill_image_speed = 0;
 		
 		dbg_section("Botões mágicos");
 		
+			dbg_text_input(ref_create(GAME_INFO , "coins")	  ,"Moedas"			, DBG_TYPE_INT);
+			
 			dbg_button("Imortal"			 , function()
 			{
 				current_timer_invincible = current_timer_invincible > 0 ? 0 : infinity;
@@ -1269,24 +1271,6 @@ current_drill_image_speed = 0;
 			dbg_button("SAVE"				 , save_game);
 			
 			
-			dbg_button("Add Slot" , function()
-			{
-				array_push(INVENTORY,undefined);
-			})
-			
-			dbg_button("Remove Slot" , function()
-			{
-				if(array_length(INVENTORY) > SLOTS_MINERAL_MIN)
-				{
-					var _ins = array_pop(INVENTORY);
-					
-					INVENTORY_OPTION_SELECTED = qwrap(INVENTORY_OPTION_SELECTED,0,array_length(INVENTORY)-1)
-					
-					delete _ins;
-				}
-			})
-			
-			dbg_button("Free current slot" , drop_mineral);
 		
 		dbg_section("Broca");
 		
@@ -1342,6 +1326,27 @@ current_drill_image_speed = 0;
 		dbg_text_input(ref_create(UPGRADES , "cooker_propaganda")	, "cooker_propaganda"	, DBG_TYPE_INT);	
 		dbg_text_input(ref_create(UPGRADES , "cooker_auto")			, "cooker_auto"			, DBG_TYPE_INT);	
 		dbg_text_input(ref_create(UPGRADES , "cooker_selling")		, "cooker_selling"		, DBG_TYPE_INT);	
+		
+		dbg_section("Slots")
+		
+		dbg_button("Add Slot" , function()
+		{
+			array_push(INVENTORY,undefined);
+		})
+			
+		dbg_button("Remove Slot" , function()
+		{
+			if(array_length(INVENTORY) > SLOTS_MINERAL_MIN)
+			{
+				var _ins = array_pop(INVENTORY);
+					
+				INVENTORY_OPTION_SELECTED = qwrap(INVENTORY_OPTION_SELECTED,0,array_length(INVENTORY)-1)
+					
+				delete _ins;
+			}
+		})
+			
+		dbg_button("Free current slot" , drop_mineral);
 		
 		//dbg_button("Free current slot" , drop_mineral);
 	
