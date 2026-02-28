@@ -1099,7 +1099,7 @@ current_drill_image_speed = 0;
 		timer_invincible = lerp( GAME_SPEED , GAME_SPEED * 2.5	, UPGRADES.energy_invencibility / 3	);
 		defensive_multipliyer	 = lerp( 1			, .3		, UPGRADES.energy_resistency	/ 25);
 		
-		life_steal_percent = (UPGRADES.energy_leech/4) * .15
+		life_steal_percent = (UPGRADES.energy_leech/4) * .15;
 		
 		////Extras
 		

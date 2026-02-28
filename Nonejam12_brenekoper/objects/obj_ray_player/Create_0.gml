@@ -9,11 +9,12 @@ ray = 1;
 damage = 1;
 
 timer_between_hits = 30;
-current_between_hits = 0;
+timer_between_hitscisual = timer_between_hits;
+current_between_hits = 10;
 
 old_position = new vector2(x,y);
 
-random_positions = better_array_create(random(6),new vector2())
+random_positions = better_array_create(random(6),new vector2(x,y))
 
 next_attack = noone;
 
@@ -60,6 +61,7 @@ hurt_enemies = function()
 		}
 		
 		current_between_hits = timer_between_hits;
+		timer_between_hitscisual = timer_between_hits;
 		
 		next_attack.scale=1.5;
 		next_attack.white_timer =  3;
@@ -67,6 +69,9 @@ hurt_enemies = function()
 				
 		if(next_attack.life<=0)
 		{
+			timer_between_hitscisual = timer_between_hits/2
+			current_between_hits = 15;
+			
 			next_attack.destroy_function(0);
 		}
 		

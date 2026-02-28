@@ -6,6 +6,8 @@ event_inherited();
 
 look_at = choose(1,-1);
 
+is_enemy = true;
+
 mineral_drop = obj_mineral_drop_2;
 
 

@@ -4,6 +4,8 @@
 // Inherit the parent event
 event_inherited();
 
+is_enemy = true;
+
 look_at = choose(1,-1);
 walk_direction = point_direction(0,0,look_at,0);
 

@@ -1,6 +1,6 @@
 /// @description Inserir descrição aqui
 // Você pode escrever seu código neste editor
-var _wid = current_between_hits / timer_between_hits * 8;
+var _wid = current_between_hits / timer_between_hitscisual * 8;
 
 var _x = x
 var _y = y;

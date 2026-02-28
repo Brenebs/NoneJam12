@@ -4,6 +4,8 @@
 // Inherit the parent event
 event_inherited();
 
+is_enemy = true;
+
 damage = 20;
 knockback = 15;
 
