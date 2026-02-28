@@ -10,15 +10,23 @@ y -= bt_depth * .5;
 
 alarm[0] = 2;
 
-purchased_n = 0;
+purchased_n = max(UPGRADES[$ upgrade_var] - upgrade_unlock,0);
 
 action = fx() {
-	if ((purchased_n <= upgrade_amt) and (get_price() <= GAME_INFO.coins)) {
+	if (UPGRADES[$ upgrade_var] >= upgrade_unlock and (purchased_n <= upgrade_amt) and (get_price() <= GAME_INFO.coins)) 
+	{
 		UPGRADES[$ upgrade_var] += 1;
 		
 		purchased_n++;
 		GAME_INFO.coins -= price;
+		
+		save_game();
 	}
+	else
+	{
+		show_debug_message("Não foi :(")
+	}
+	
 }
 
 get_price = fx() {
