@@ -772,6 +772,7 @@
     {"id":{"name":"sfx_ui_release","path":"sounds/sfx_ui_release/sfx_ui_release.yy",},},
     {"id":{"name":"scribble_fallback_bulletpoint","path":"sprites/scribble_fallback_bulletpoint/scribble_fallback_bulletpoint.yy",},},
     {"id":{"name":"spr_armario","path":"sprites/spr_armario/spr_armario.yy",},},
+    {"id":{"name":"spr_arrow","path":"sprites/spr_arrow/spr_arrow.yy",},},
     {"id":{"name":"spr_arvore","path":"sprites/spr_arvore/spr_arvore.yy",},},
     {"id":{"name":"spr_background_biom1","path":"sprites/spr_background_biom1/spr_background_biom1.yy",},},
     {"id":{"name":"spr_background_biom2","path":"sprites/spr_background_biom2/spr_background_biom2.yy",},},

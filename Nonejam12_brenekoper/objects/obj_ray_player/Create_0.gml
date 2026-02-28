@@ -53,7 +53,7 @@ hurt_enemies = function()
 		var _rng = point_distance(old_position.x, old_position.y,x,y) * .075;
 								 
 		var _num = array_length(random_positions)
-		for(var i = 0 ; i < _num ;i++)
+		for(var i = _num-1 ; i >= 0 ;i--)
 		{
 			
 			random_positions[i].x = lerp(old_position.x , x , i/(_num-1)) + random_range(-_rng,_rng);
@@ -63,7 +63,9 @@ hurt_enemies = function()
 		current_between_hits = timer_between_hits;
 		timer_between_hitscisual = timer_between_hits;
 		
-		next_attack.scale=1.5;
+	
+		next_attack.scale=1.25;
+		next_attack.angle=random_range(5,-5);
 		next_attack.white_timer =  3;
 		next_attack.life -= damage;
 				

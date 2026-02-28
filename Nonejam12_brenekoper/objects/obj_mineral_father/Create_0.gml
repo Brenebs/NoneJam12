@@ -2,6 +2,9 @@
 image_index = random(image_number);
 
 scale = 1;
+lerp_scale = 0;
+angle = 0
+angle_force = 0
 
 white_timer = 0;
 
@@ -56,18 +59,16 @@ destroy_function = function(_is_dash = false)
 draw_mineral = function()
 {
 	
-	draw_sprite_ext(sprite_index , 1 , x,y,image_xscale * scale, image_yscale * scale,image_angle,image_blend , 1);
+	draw_sprite_ext(sprite_index , 1 , x,y,image_xscale * scale, image_yscale * scale,image_angle+angle,image_blend , 1);
 
+	draw_sprite_ext(sprite_index , 0 , x,y,image_xscale * scale, image_yscale * scale,image_angle+angle,image_blend , 1);
 	
 	if(white_timer)
 	{
 		gpu_set_fog(true , c_white , 1,0);
-	}
-
-	draw_sprite_ext(sprite_index , 0 , x,y,image_xscale * scale, image_yscale * scale,image_angle,image_blend , 1);
-
-	if(white_timer)
-	{
+		
+		draw_sprite_ext(sprite_index , 0 , x,y,image_xscale * scale, image_yscale * scale,image_angle+angle,image_blend , .5);
+	
 		gpu_set_fog(false , c_white , 1,0);
 	}
 }

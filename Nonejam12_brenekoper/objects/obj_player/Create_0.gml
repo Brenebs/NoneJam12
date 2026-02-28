@@ -75,7 +75,8 @@ current_drill_image_speed = 0;
 		{
 			var _current = ds_list_find_value(_list , i);
 			
-			_current.scale=1.5;
+			_current.scale=1.25;
+			_current.angle=random_range(5,-5);
 			
 			var _mult = min(_damage_multiply,_current.life)
 			
@@ -1121,12 +1122,10 @@ current_drill_image_speed = 0;
 
 		//UPGRADES.ext_tnt					 
 		//UPGRADES.ext_tnt_area			 
-		//UPGRADES.ext_tnt_damage			 
-	
-		//UPGRADES.ext_more_drops			 
+		//UPGRADES.ext_tnt_damage			 	 
 		
 		//UPGRADES.ext_life_saver			 
-		//UPGRADES.ext_pointer				 
+		pointer = UPGRADES.ext_pointer;			 
 
 //		////Fogão
 
