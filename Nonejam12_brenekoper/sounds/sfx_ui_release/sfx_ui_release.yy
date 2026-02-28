@@ -14,8 +14,8 @@
   "exportDir":"",
   "name":"sfx_ui_release",
   "parent":{
-    "name":"Sounds",
-    "path":"folders/Sounds.yy",
+    "name":"Ui",
+    "path":"folders/Sounds/Ui.yy",
   },
   "preload":false,
   "resourceType":"GMSound",

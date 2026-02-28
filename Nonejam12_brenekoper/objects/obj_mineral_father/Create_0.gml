@@ -22,7 +22,7 @@ if(array_length(_split) > 1)
 {
 	var _drop_name = "obj_mineral_drop"+_split[1];
 
-	show_debug_message(_drop_name);
+	//show_debug_message(_drop_name);
 
 	var _asset = asset_get_index(_drop_name)
 	if(object_exists(_asset))

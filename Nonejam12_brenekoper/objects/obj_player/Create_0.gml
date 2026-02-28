@@ -63,6 +63,8 @@ current_drill_image_speed = 0;
 				
 				image_xscale *= _scl;
 				image_yscale *= _scl; 
+				
+				sfx_play([snd_ore_damage1, snd_ore_damage2, snd_ore_damage3]);
 			}
 			
 			_num = instance_place_list(x,y,[obj_mineral_father],_list,true);

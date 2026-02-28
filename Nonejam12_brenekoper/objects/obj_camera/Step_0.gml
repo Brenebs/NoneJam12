@@ -1,5 +1,7 @@
 /// @description Insert description here
 // You can write your code in this editor
+//	Main listener needs to follow the camera
+audio_listener_position(x, y, 0);
 
 if(global.pause) return;
 
