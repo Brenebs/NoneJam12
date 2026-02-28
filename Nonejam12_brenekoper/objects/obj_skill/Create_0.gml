@@ -43,13 +43,19 @@ locked = false;
 
 purchase_update = fx() {
 	var _locked = !condition();
-
+	
 	for (var i = 0; i < array_length(linked_to); i++) {
 		var _element = linked_to[i];
 		
-		if (_element.purchased_n < _element.upgrade_unlock) {
+		if (_element.purchased_n <= 0) {
 			_locked = true;
 			break;
+		}
+	}
+	
+	if !_locked {
+		if (UPGRADES[$ upgrade_var] < upgrade_unlock) {
+			_locked = true;
 		}
 	}
 	
