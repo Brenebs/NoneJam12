@@ -36,7 +36,19 @@ action = fx() {
 }
 
 get_price = fx() {
-	return price + price * (price_mult * purchased_n); 
+	
+	var _num = (power(expo_mult,(upgrade_unlock*1.5)+purchased_n));
+		_num = (price_mult * _num);
+		
+	if(upgrade_unlock+purchased_n > 0)
+	{
+		return floor(price * _num);
+	}
+	else
+	{
+		return price;
+	}
+	 
 }
 
 locked = false;
