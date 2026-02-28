@@ -4,7 +4,9 @@
   "eventList":[],
   "managed":true,
   "name":"obj_skill_drill_speed3",
-  "overriddenProperties":[],
+  "overriddenProperties":[
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_skill","path":"objects/obj_skill/obj_skill.yy",},"propertyId":{"name":"upgrade_unlock","path":"objects/obj_skill/obj_skill.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"2",},
+  ],
   "parent":{
     "name":"Drill",
     "path":"folders/Objects/Skill Tree/Skills/Drill.yy",

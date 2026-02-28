@@ -13,7 +13,7 @@ alarm[0] = 2;
 purchased_n = max(UPGRADES[$ upgrade_var] - upgrade_unlock,0);
 
 action = fx() {
-	if (UPGRADES[$ upgrade_var] >= upgrade_unlock and (purchased_n <= upgrade_amt) and (get_price() <= GAME_INFO.coins)) 
+	if (UPGRADES[$ upgrade_var] >= upgrade_unlock and (purchased_n < upgrade_amt) and (get_price() <= GAME_INFO.coins)) 
 	{
 		UPGRADES[$ upgrade_var] += 1;
 		
