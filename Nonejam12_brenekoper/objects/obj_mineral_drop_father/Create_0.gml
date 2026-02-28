@@ -11,6 +11,11 @@ player_dash = false;
 
 distance_follow = 20 + UPGRADES.ext_magnet * (64 /  3);
 
+lerp_scale	= 0
+scale		= random_range(.8,1.5)
+
+offset = random(2);
+
 being_collected = function()
 {
 	

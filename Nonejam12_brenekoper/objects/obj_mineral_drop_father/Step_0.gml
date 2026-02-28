@@ -3,7 +3,8 @@ PauseInstanceHandler();
 
 timer_to_be_collected = max_timer(timer_to_be_collected);
 
-
+lerp_scale = spring_lerp(scale , lerp_scale , 1 , .75 ,.125);
+scale		+= lerp_scale;
 
 if(follow_player)
 {
