@@ -33,8 +33,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_ico_skill_slot_sell2",
-    "path":"sprites/spr_ico_skill_slot_sell2/spr_ico_skill_slot_sell2.yy",
+    "name":"spr_ico_skill_slot_sell3",
+    "path":"sprites/spr_ico_skill_slot_sell3/spr_ico_skill_slot_sell3.yy",
   },
   "spriteMaskId":null,
   "visible":true,
