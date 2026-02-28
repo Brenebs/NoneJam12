@@ -10,8 +10,8 @@
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_skill","path":"objects/obj_skill/obj_skill.yy",},"propertyId":{"name":"description","path":"objects/obj_skill/obj_skill.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"Segure [spr_mouse_right] para carregar uma investida poderosa, mas que consome energia.\\nCausa dano extra ao carregar completamente.",},
   ],
   "parent":{
-    "name":"Dash",
-    "path":"folders/Objects/Skill Tree/Skills/Dash.yy",
+    "name":"Skills",
+    "path":"folders/Objects/Skill Tree/Skills.yy",
   },
   "parentObjectId":{
     "name":"obj_skill",

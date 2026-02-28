@@ -11,8 +11,8 @@
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_skill","path":"objects/obj_skill/obj_skill.yy",},"propertyId":{"name":"description","path":"objects/obj_skill/obj_skill.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"A broca causa mais dano.",},
   ],
   "parent":{
-    "name":"Drill",
-    "path":"folders/Objects/Skill Tree/Skills/Drill.yy",
+    "name":"Skills",
+    "path":"folders/Objects/Skill Tree/Skills.yy",
   },
   "parentObjectId":{
     "name":"obj_skill",

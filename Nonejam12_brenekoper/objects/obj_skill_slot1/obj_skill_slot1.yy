@@ -11,8 +11,8 @@
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_skill","path":"objects/obj_skill/obj_skill.yy",},"propertyId":{"name":"upgrade_amt","path":"objects/obj_skill/obj_skill.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"2",},
   ],
   "parent":{
-    "name":"Slot",
-    "path":"folders/Objects/Skill Tree/Skills/Slot.yy",
+    "name":"Skills",
+    "path":"folders/Objects/Skill Tree/Skills.yy",
   },
   "parentObjectId":{
     "name":"obj_skill",

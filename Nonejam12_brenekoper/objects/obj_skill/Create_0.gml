@@ -12,13 +12,19 @@ alarm[0] = 2;
 
 purchased_n = max(UPGRADES[$ upgrade_var] - upgrade_unlock,0);
 
+visibility_update = fx() {
+	visible = bool(rectangle_in_rectangle(bbox_left, bbox_top, bbox_right, bbox_bottom, CAMERA_X, CAMERA_Y, CAMERA_X + CAMERA_WIDTH, CAMERA_Y + CAMERA_HEIGHT));
+}
+
 action = fx() {
-	if (UPGRADES[$ upgrade_var] >= upgrade_unlock and (purchased_n < upgrade_amt) and (get_price() <= GAME_INFO.coins)) 
+	if ((purchased_n < upgrade_amt) and (get_price() <= GAME_INFO.coins)) 
 	{
 		UPGRADES[$ upgrade_var] += 1;
 		
 		purchased_n++;
 		GAME_INFO.coins -= price;
+		
+		obj_skill_manager.update_all_purchases();
 		
 		save_game();
 	}
@@ -31,6 +37,23 @@ action = fx() {
 
 get_price = fx() {
 	return price + price * (price_mult * purchased_n); 
+}
+
+locked = false;
+
+purchase_update = fx() {
+	var _locked = !condition();
+
+	for (var i = 0; i < array_length(linked_to); i++) {
+		var _element = linked_to[i];
+		
+		if (_element.purchased_n < _element.upgrade_unlock) {
+			_locked = true;
+			break;
+		}
+	}
+	
+	locked = _locked;
 }
 
 _system_draw = fx(_xoff = 0, _yoff = 0, _a = 1, _c = #ffffff) {
