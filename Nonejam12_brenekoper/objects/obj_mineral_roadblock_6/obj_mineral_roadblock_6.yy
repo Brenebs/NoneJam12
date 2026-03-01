@@ -1,13 +1,16 @@
 {
   "$GMObject":"",
-  "%Name":"obj_mineral_roadblock_5",
-  "eventList":[],
+  "%Name":"obj_mineral_roadblock_6",
+  "eventList":[
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":2,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+  ],
   "managed":true,
-  "name":"obj_mineral_roadblock_5",
+  "name":"obj_mineral_roadblock_6",
   "overriddenProperties":[
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_mineral_father","path":"objects/obj_mineral_father/obj_mineral_father.yy",},"propertyId":{"name":"resistency","path":"objects/obj_mineral_father/obj_mineral_father.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"5",},
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_mineral_father","path":"objects/obj_mineral_father/obj_mineral_father.yy",},"propertyId":{"name":"mineral_number","path":"objects/obj_mineral_father/obj_mineral_father.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"50",},
-    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_mineral_father","path":"objects/obj_mineral_father/obj_mineral_father.yy",},"propertyId":{"name":"life","path":"objects/obj_mineral_father/obj_mineral_father.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"109715200000",},
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_mineral_father","path":"objects/obj_mineral_father/obj_mineral_father.yy",},"propertyId":{"name":"life","path":"objects/obj_mineral_father/obj_mineral_father.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"5000000000000",},
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_mineral_roadblock_father","path":"objects/obj_mineral_roadblock_father/obj_mineral_roadblock_father.yy",},"propertyId":{"name":"drop","path":"objects/obj_mineral_roadblock_father/obj_mineral_roadblock_father.yy",},"resource":{"name":"obj_mineral_drop_15","path":"objects/obj_mineral_drop_15/obj_mineral_drop_15.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"obj_mineral_drop_15",},
   ],
   "parent":{

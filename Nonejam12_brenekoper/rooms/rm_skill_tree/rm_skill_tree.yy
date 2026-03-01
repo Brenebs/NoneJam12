@@ -86,7 +86,6 @@
     {"name":"inst_E5518BA","path":"rooms/rm_skill_tree/rm_skill_tree.yy",},
     {"name":"inst_43D31C12","path":"rooms/rm_skill_tree/rm_skill_tree.yy",},
     {"name":"inst_135CC6DD","path":"rooms/rm_skill_tree/rm_skill_tree.yy",},
-    {"name":"inst_70B427C8","path":"rooms/rm_skill_tree/rm_skill_tree.yy",},
     {"name":"inst_20A50BE0","path":"rooms/rm_skill_tree/rm_skill_tree.yy",},
     {"name":"inst_2580C3B8","path":"rooms/rm_skill_tree/rm_skill_tree.yy",},
     {"name":"inst_39F14B0A","path":"rooms/rm_skill_tree/rm_skill_tree.yy",},
@@ -338,9 +337,6 @@
         {"$GMRInstance":"v4","%Name":"inst_135CC6DD","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_135CC6DD","objectId":{"name":"obj_skill_drill_enlarge3","path":"objects/obj_skill_drill_enlarge3/obj_skill_drill_enlarge3.yy",},"properties":[
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_skill","path":"objects/obj_skill/obj_skill.yy",},"propertyId":{"name":"linked_to","path":"objects/obj_skill/obj_skill.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"[obj_skill_drill_enlarge2]",},
           ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":704.0,"y":1088.0,},
-        {"$GMRInstance":"v4","%Name":"inst_70B427C8","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_70B427C8","objectId":{"name":"obj_skill_drill_triple","path":"objects/obj_skill_drill_triple/obj_skill_drill_triple.yy",},"properties":[
-            {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_skill","path":"objects/obj_skill/obj_skill.yy",},"propertyId":{"name":"linked_to","path":"objects/obj_skill/obj_skill.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"[obj_skill_drill3, obj_skill_drill_enlarge3]",},
-          ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":704.0,"y":960.0,},
         {"$GMRInstance":"v4","%Name":"inst_20A50BE0","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_20A50BE0","objectId":{"name":"obj_skill_drill2","path":"objects/obj_skill_drill2/obj_skill_drill2.yy",},"properties":[
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"obj_skill","path":"objects/obj_skill/obj_skill.yy",},"propertyId":{"name":"linked_to","path":"objects/obj_skill/obj_skill.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"[obj_skill_drill1]",},
           ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":768.0,"y":960.0,},

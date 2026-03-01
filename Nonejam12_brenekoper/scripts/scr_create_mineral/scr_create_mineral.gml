@@ -161,6 +161,12 @@ with(_chocolate_rb)
 	add_interval(116 , 116 , 2 , 2 , 1,1);
 }
 
+var _chocolate_rb = new create_minerals( obj_mineral_roadblock_6)
+with(_chocolate_rb)
+{
+	add_interval(130 , 130 , 2 , 2 , 1,1);
+}
+
 var _mineral = new create_minerals(obj_mineral_15)
 with(_mineral)
 {
