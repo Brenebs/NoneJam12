@@ -5,6 +5,8 @@ event_inherited();
 
 when_interacted = function()
 {
+	do_boing();
+	
 	if(room == rm_real_world)
 	{
 		save_game()

@@ -8,7 +8,6 @@ bioms =
 	[spr_background_biom3 , (80  - .5)  * CHUNK_HEIGHT , 1],
 	[spr_background_biom4 , (105 - .5)  * CHUNK_HEIGHT , 1],
 	[spr_background_biom5 , (180 - .5)  * CHUNK_HEIGHT , 1]
-	
 ]
 
 colors = 
