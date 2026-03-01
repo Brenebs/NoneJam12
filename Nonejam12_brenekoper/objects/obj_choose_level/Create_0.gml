@@ -1,10 +1,15 @@
 // Inherit the parent event
 event_inherited();
 
-region_w = 200;
-region_h = 280;
+region_w = 260;
+region_h = 220;
 
-x_menu = GUI_WIDTH*.7;
+x_menu = GUI_WIDTH*.75;
+
+region_x_offset = x_menu - (GUI_WIDTH/2)
+region_y_offset = -64
+
+
 
 global.elevator_choose = max(0,GAME_INFO.max_chunk_achiev div 10);
 
@@ -47,7 +52,7 @@ var _h = GUI_HEIGHT * .33;
 	
 	var _main = new UiText(x_menu, _h - 6, 150, 24);
 	with(_main) {
-		text = fx() { return $"{round(global.elevator_choose+1)} elevador" };
+		text = fx() { return $"{round(global.elevator_choose)}° elevador" };
 		text_scribble = false;
 		text_font = fnt_p
 		text_valign = fa_top;
@@ -73,7 +78,7 @@ var _h = GUI_HEIGHT * .33;
 
 #region Buttons
 
-	var _fullscreen = new UiButton(x_menu, GUI_HEIGHT * .82 - 64, 110, 32);
+	var _fullscreen = new UiButton(x_menu, GUI_HEIGHT * .5, 110, 32);
 	with(_fullscreen) {
 		text = fx() 
 		{ 
@@ -122,7 +127,7 @@ var _h = GUI_HEIGHT * .33;
 
 #endregion
 
-var _back_button = new UiButton(x_menu, GUI_HEIGHT * .81, 120, 24);
+var _back_button = new UiButton(x_menu, GUI_HEIGHT * .6, 120, 24);
 with(_back_button) 
 {
 	text = fx() { return "Voltar" };

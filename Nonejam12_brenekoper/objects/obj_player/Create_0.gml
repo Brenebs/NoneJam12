@@ -452,6 +452,7 @@ dirt_sound = sfx_play(snd_dirt_loop, 0, 0, true);
 	
 	draw_option_on_elevator = function()
 	{
+		return;
 		if(chosing_level)
 		{
 			draw_text(x+16,y-16,current_choose);
@@ -508,8 +509,8 @@ dirt_sound = sfx_play(snd_dirt_loop, 0, 0, true);
 	enter_ground = function(_state = state_walk)
 	{
 		state = _state;
-		y = max(y , -max_y_outside+1)
-		vspd = 8;
+		y = max(y , -max_y_outside + 8)
+		vspd = 12;
 		inside_ground = true;
 		
 		sfx_play(snd_dirt_enter);
@@ -940,7 +941,7 @@ v_spd = 0;
 		
 		on_ground = instance_place(x,y+_frc,obj_collision);
 	
-		var _hspd = speed_walking * check_horizontal_movement();
+		var _hspd = speed_walking * check_horizontal_movement() * !(instance_exists(obj_choose_level));
 	
 		hspd = lerp(hspd , _hspd , .1);
 	
@@ -980,6 +981,7 @@ v_spd = 0;
 			var _keybpard = keyboard_check(ord("S")) && keyboard_check(vk_space);
 			if(can_cave && (_mouse || _keybpard))
 			{
+				vspd = -5;
 				enter_ground();
 			}
 			else
