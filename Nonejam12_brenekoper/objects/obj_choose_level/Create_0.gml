@@ -78,8 +78,8 @@ var _h = GUI_HEIGHT * .33;
 
 #region Buttons
 
-	var _fullscreen = new UiButton(x_menu, GUI_HEIGHT * .5, 110, 32);
-	with(_fullscreen) {
+	confirm_button = new UiButton(x_menu, GUI_HEIGHT * .5, 110, 32);
+	with(confirm_button) {
 		text = fx() 
 		{ 
 			return "Afundar!"
@@ -114,7 +114,7 @@ var _h = GUI_HEIGHT * .33;
 			update_save();
 		}
 	}
-	push_content(_fullscreen);
+	push_content(confirm_button);
 
 	//var _fullscreen = new UiButton(GUI_WIDTH * .5, GUI_HEIGHT * .82 - 52 - 34, 110, 32);
 	//with(_fullscreen) {

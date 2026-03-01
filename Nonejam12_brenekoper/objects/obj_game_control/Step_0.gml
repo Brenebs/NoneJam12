@@ -1,6 +1,6 @@
 
 
-if(keyboard_check_pressed(vk_escape) && GAMEPLAY_ROOM && can_pause)
+if(keyboard_check_pressed(vk_escape) && GAMEPLAY_ROOM && can_pause && !instance_exists(obj_choose_level))
 {
 	pausing_game();	
 }

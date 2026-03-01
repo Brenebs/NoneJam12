@@ -173,39 +173,72 @@ with(_mineral)
 	add_interval(116,132 ,  , .1 , 2 , 10);
 }
 
-#region fumiga
+#region inimigos
 
-	var _fumiga = new create_minerals( obj_enemie)
-	with(_fumiga)
-	{
-		add_interval(13 , 13 , , 1 , 1,1);
-	}
+	var _fumiga		= new create_minerals( obj_enemie);
+	var _mina		= new create_minerals( obj_enemie_bomb);
+	var _fumirainha = new create_minerals( obj_enemie_queen);
 	
-	with(_fumiga)
-	{
-		add_interval(15 , 15 , , 1 , 1,1);
-	}
+	#region chocolate
 	
-	with(_fumiga)
-	{
-		add_interval(17 , 17 , , 1 , 1,1);
-	}
+		with(_fumiga)
+		{
+			add_interval(13 , 13 , , 1 , 1,1);
+		}
 	
-	with(_fumiga)
-	{
-		add_interval(18 , 18 , , 1 , 1,1);
-	}
+		with(_fumiga)
+		{
+			add_interval(15 , 15 , , 1 , 1,1);
+		}
+	
+		with(_fumiga)
+		{
+			add_interval(17 , 17 , , 1 , 1,1);
+		}
+	
+		with(_fumiga)
+		{
+			add_interval(18 , 18 , , 1 , 1,1);
+		}
 	
 	
-	with(_fumiga)
-	{
-		add_interval(23 , 25 , , 1 , 1,1);
-	}
+		with(_fumiga)
+		{
+			add_interval(23 , 25 , , 1 , 1,1);
+		}
 	
-	with(_fumiga)
-	{
-		add_interval(26 , 26 , , 1 , 3,3);
-	}
+		with(_fumiga)
+		{
+			add_interval(26 , 26 , , 1 , 3,3);
+		}
+	
+		with(_fumiga)
+		{
+			add_interval(26 , 26 , , 1 , 3,3);
+		}
+	
+	#endregion
+	
+	#region branco
+	
+		with(_fumiga)
+		{
+			add_interval(42 , 42 , , 1 , 1,1);
+		}
+		with(_fumiga)
+		{
+			add_interval(44 , 44 , , 1 , 1,1);
+		}
+		with(_mina)
+		{
+			add_interval(46 , 46 , , 1 , 1,1);
+		}
+		
+		with(_mina)
+		{
+			add_interval(49 , 49 , , 1 , 1,1);
+		}
+	#endregion
 
 #endregion
 

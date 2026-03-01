@@ -13,8 +13,15 @@ when_interacted = function(_player = obj_player)
 	//{
 	//	state = state_select;
 	//}
+	if(instance_exists(obj_choose_level))
+	{
+		obj_choose_level.confirm_button.action()
+	}
+	else
+	{
+		instance_create_depth(0, 0, 0, obj_choose_level);
+	}
 	
-	instance_create_depth(0, 0, 0, obj_choose_level);
 }
 
 can_be_interacted = function(_player = obj_player)
