@@ -23,6 +23,7 @@ action = fx() {
 		
 		purchased_n++;
 		GAME_INFO.coins -= get_price();
+		GAME_INFO.coins = max(GAME_INFO.coins, 0)
 		
 		obj_skill_manager.update_all_purchases();
 		
