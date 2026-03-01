@@ -1,6 +1,6 @@
 /// @description Inserir descrição aqui
 // Você pode escrever seu código neste editor
-return
+exit;
 /*
 draw_set_colour(global.color_effect_bg)
 

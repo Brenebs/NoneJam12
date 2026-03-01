@@ -99,3 +99,19 @@ function audio_emitter_doppler(_emitter_id, _speed_x, _speed_y, _strength = .5) 
 }
 
 global.electric_sound = false;
+
+global.music = -1;
+global.music_stop = -1;
+
+function music_swap(_id) {
+	if !audio_is_playing(_id) {
+		global.music = sfx_play(_id, 1, 0, true);
+	}
+}
+
+function music_stop(_id) {
+	audio_sound_gain(_id, 0, 300);
+	global.music_stop = _id;
+	
+	call_later(30, time_source_units_frames, fx() { audio_stop_sound(global.music_stop) });
+}

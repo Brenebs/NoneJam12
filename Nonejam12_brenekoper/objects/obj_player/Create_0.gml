@@ -571,10 +571,10 @@ dirt_sound = sfx_play(snd_dirt_loop, 0, 0, true);
 	{
 
 		angle_direction = lerp_angle(angle_direction,_direction , _force)
-		angle_direction = wrap(angle_direction,0,359.9);
+		angle_direction = wrap(angle_direction,0,360);
 		
 		drill.image_angle = lerp_angle(angle_direction,_direction , _force*.8)
-		drill.image_angle = wrap(drill.image_angle,0,359.9);
+		drill.image_angle = wrap(drill.image_angle,0,360);
 		
 	}
 
@@ -678,6 +678,8 @@ dirt_sound = sfx_play(snd_dirt_loop, 0, 0, true);
 	state_walk = function()
 	{
 		image_blend = c_white
+		
+		hurt_flag = false;
 		
 		using_elevator = false;
 		
@@ -803,6 +805,12 @@ dirt_sound = sfx_play(snd_dirt_loop, 0, 0, true);
 	
 	state_hurt = function()
 	{
+		if !hurt_flag {
+			sfx_play([snd_player_hurt1, snd_player_hurt2]);
+			
+			hurt_flag = true;
+		}
+		
 		hspd	= lerp(hspd , 0 , aceleration * acel_after_attack * .8);
 		vspd	= lerp(vspd , 0 , aceleration * acel_after_attack * .8);
 		
@@ -867,7 +875,7 @@ dirt_sound = sfx_play(snd_dirt_loop, 0, 0, true);
 					{
 						exit_ground();
 						player_dead = false;
-						current_energy = 10;
+						current_energy = energy_max;
 						vspd = 0;
 						
 					}
@@ -1084,6 +1092,13 @@ dirt_sound = sfx_play(snd_dirt_loop, 0, 0, true);
 			obj_game_control.can_pause = true;
 			
 			sfx_play(snd_player_land, .33);
+			
+			if can_cave {
+				music_swap(mus_underground);
+			}
+			else {
+				music_swap(mus_overworld);
+			}
 			
 			if(can_cave && mouse_check_button(mb_left))
 			{

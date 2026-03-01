@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"mus_overworld",
+  "audioGroupId":{
+    "name":"ag_musics",
+    "path":"audiogroups/ag_musics",
+  },
+  "bitDepth":1,
+  "channelFormat":1,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":78.54546,
+  "exportDir":"",
+  "name":"mus_overworld",
+  "parent":{
+    "name":"Music",
+    "path":"folders/Sounds/Music.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"mus_overworld.wav",
+  "volume":1.0,
+}

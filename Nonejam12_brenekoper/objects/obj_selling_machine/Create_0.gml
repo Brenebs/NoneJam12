@@ -5,7 +5,7 @@ event_inherited();
 
 when_interacted = function()
 {
-	
+	sfx_play(snd_player_collect, 1, .2);
 	
 	var _num = array_length(SELL_ARRAY)
 	for(var i = 0 ;i < _num ; i++)

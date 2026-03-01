@@ -22,7 +22,7 @@ action = fx() {
 		UPGRADES[$ upgrade_var] += 1;
 		
 		purchased_n++;
-		GAME_INFO.coins -= price;
+		GAME_INFO.coins -= get_price();
 		
 		obj_skill_manager.update_all_purchases();
 		

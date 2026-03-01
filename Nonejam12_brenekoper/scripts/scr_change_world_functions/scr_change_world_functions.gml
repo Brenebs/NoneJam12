@@ -12,6 +12,8 @@ function camera_change_world()
 	with(obj_player)
 	{
 		state = state_prepare_fall;
+		
+		music_stop(global.music);
 		//state_falling
 	}
 	
