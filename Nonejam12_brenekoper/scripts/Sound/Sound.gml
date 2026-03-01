@@ -9,6 +9,9 @@ with(global.sfx_values) {
 
 audio_falloff_set_model(global.sfx_values.falloff_model);
 
+audio_group_set_gain(ag_musics, 0, 0);
+audio_group_set_gain(ag_sfx, 0, 0);
+
 function sfx_play(_id, _gain = 1, _pitch_rand = 0, _loop = false, _gate = false, _priority = 0) {
 	var _audio = noone;
 	

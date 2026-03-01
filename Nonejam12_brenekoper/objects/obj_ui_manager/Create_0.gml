@@ -34,3 +34,12 @@ check_priority = fx(_priority) {
 		return true;
 	}
 }
+
+inputs = {};
+with(inputs) {
+	overworld= "";
+}
+
+draw_inputs = fx() {
+	
+}

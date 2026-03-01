@@ -62,7 +62,7 @@ function UiText(_x, _y, _w, _h, _x_center = _w * .5, _y_center = _h * .5)  : UiE
 	text_scribble = false;
 	text_halign = fa_center;
 	text_valign = fa_middle;
-	text_font = fnt_p;
+	text_font = fnt_pb;
 	
 	_system_draw = fx(_xoff = 0, _yoff = 0, _a = 1, _c = #ffffff) {
 		
@@ -134,7 +134,7 @@ function UiButton(_x, _y, _w, _h, _x_center = _w * .5, _y_center = _h * .5) : Ui
 	text_scribble = true;
 	text_halign = fa_center;
 	text_valign = fa_middle;
-	text_font = fnt_p;
+	text_font = fnt_pb;
 	
 	sprite = spr_button;
 	color = #8888ff;
