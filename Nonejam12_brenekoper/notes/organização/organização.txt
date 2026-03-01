@@ -32,7 +32,10 @@ sistema de tnt
 
 sistema de broca autonoma
 
-
+feedback da broca dando dano
+feedback da broca n conseguindo dando dano
+clientes famintos precisa ser antes
+feedback da escotilha 
 
 /////////Cadastrar valor de cada minério - Exige loop concluido
 

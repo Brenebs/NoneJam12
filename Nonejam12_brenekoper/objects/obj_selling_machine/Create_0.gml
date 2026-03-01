@@ -3,6 +3,44 @@
 
 event_inherited();
 
+have_something = function()
+{
+	var _num = array_length(INVENTORY)
+	for(var i = 0 ;i < _num ; i++)
+	{
+		if(INVENTORY[i]!=undefined)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+get_slot = function()
+{
+	if(INVENTORY[INVENTORY_OPTION_SELECTED]!=undefined)
+	{
+		return INVENTORY_OPTION_SELECTED
+	}
+	else
+	{
+		var _num = array_length(INVENTORY)
+		for(var i = 0 ;i < _num ; i++)
+		{
+			if(INVENTORY[i]!=undefined)
+			{
+				return i;
+			}
+		}
+	}
+	return 0;
+}
+
+check_arrow = function()
+{
+	return have_something();
+}
+
 when_interacted = function()
 {
 	do_boing();
@@ -12,19 +50,28 @@ when_interacted = function()
 	var _num = array_length(SELL_ARRAY)
 	for(var i = 0 ;i < _num ; i++)
 	{
+		//tem um espaço libre
 		if(is_undefined(SELL_ARRAY[i]))
 		{
-			obj_sell_manager.add_selling_item(INVENTORY[INVENTORY_OPTION_SELECTED] , i);
-			INVENTORY[INVENTORY_OPTION_SELECTED] = undefined;
-			
-			for(var j = 0 ; j < array_length(INVENTORY) ; j++)
+			var _get = get_slot();
+			if(INVENTORY[_get] != undefined)
 			{
-				if(j != INVENTORY_OPTION_SELECTED && INVENTORY[j] != undefined)
+				INVENTORY_OPTION_SELECTED = _get;
+				
+				obj_sell_manager.add_selling_item(INVENTORY[_get] , i);
+				INVENTORY[_get] = undefined;
+			
+				for(var j = 0 ; j < array_length(INVENTORY) ; j++)
 				{
-					INVENTORY_OPTION_SELECTED = j;
-					break;
+					if(j != INVENTORY_OPTION_SELECTED && INVENTORY[j] != undefined)
+					{
+						INVENTORY_OPTION_SELECTED = j;
+						break;
+					}
 				}
 			}
+			
+			
 			
 			break;
 		}
@@ -33,7 +80,7 @@ when_interacted = function()
 
 can_be_interacted = function(_player = obj_player)
 {
-	return !_player.inside_ground && obj_sell_manager.space_free && INVENTORY[INVENTORY_OPTION_SELECTED] != undefined;
+	return !_player.inside_ground && obj_sell_manager.space_free && have_something();
 }
 
 /*if(mouse_check_button_pressed(mb_middle))

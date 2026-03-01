@@ -9,8 +9,6 @@ x_menu = GUI_WIDTH*.75;
 region_x_offset = x_menu - (GUI_WIDTH/2)
 region_y_offset = -32
 
-
-
 global.elevator_choose = max(0,GAME_INFO.max_chunk_achiev div 10);
 
 //wrap(current_choose , 0 , GAME_INFO.max_chunk_achiev div 10);
@@ -44,7 +42,7 @@ var _h = GUI_HEIGHT * .33;
 		color = #ff5555;
 		depth = 5;
 		action = fx() {
-			global.elevator_choose = wrap(global.elevator_choose-1 , 1 , GAME_INFO.max_chunk_achiev div 10);
+			global.elevator_choose = clamp(global.elevator_choose-1 , 1 , GAME_INFO.max_chunk_achiev div 10);
 			update_save();
 		}
 	}
@@ -65,7 +63,7 @@ var _h = GUI_HEIGHT * .33;
 		color = #ff5555;
 		depth = 5;
 		action = fx() {
-			global.elevator_choose = wrap(global.elevator_choose+1 , 1 , GAME_INFO.max_chunk_achiev div 10);
+			global.elevator_choose = clamp(global.elevator_choose+1 , 1 , GAME_INFO.max_chunk_achiev div 10);
 			update_save();
 		}
 	}

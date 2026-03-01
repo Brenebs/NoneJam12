@@ -534,6 +534,13 @@ dirt_sound = sfx_play(snd_dirt_loop, 0, 0, true);
 				
 				if(check_confirm())
 				{
+					var _name = object_get_name(_ins.object_index);
+					
+					if(!array_contains(GAME_INFO.itens_interact,_name))
+					{
+						array_push(GAME_INFO.itens_interact,_name)
+					}
+					
 					_ins.when_interacted(id)
 				}
 			}
@@ -621,7 +628,7 @@ dirt_sound = sfx_play(snd_dirt_loop, 0, 0, true);
 	
 	check_confirm = function()
 	{
-		return keyboard_check_pressed(vk_space);
+		return keyboard_check_pressed(vk_space) || keyboard_check_pressed(ord("E"));
 	}
 	
 	//lerp circular que aponta a broca pro canto certo
