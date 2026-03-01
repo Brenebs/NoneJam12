@@ -97,3 +97,5 @@ function audio_emitter_doppler(_emitter_id, _speed_x, _speed_y, _strength = .5) 
 	
 	audio_emitter_pitch(_emitter_id, 1 + _amount * _strength);
 }
+
+global.electric_sound = false;

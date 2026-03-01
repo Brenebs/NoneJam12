@@ -5,3 +5,5 @@ if (room != rm_main_menu && room != rm_skill_tree) GAMEPLAY_ROOM = true;
 else GAMEPLAY_ROOM = false;
 
 global.wave_pot = 0;
+
+electric = sfx_play(snd_electric_loop, 0, 0, true);

@@ -856,6 +856,8 @@ dirt_sound = sfx_play(snd_dirt_loop, 0, 0, true);
 			state = state_death;
 			
 			drop_half(x,y);
+			
+			sfx_play(snd_player_death);
 		
 			call_later(1.5 , time_source_units_seconds , function()
 			{

@@ -45,6 +45,8 @@ hurt_enemies = function()
 {
 	if(instance_exists(next_attack))
 	{
+		global.electric_sound = 1;
+		
 		old_position.x = x;
 		old_position.y = y;
 		x = next_attack.x;

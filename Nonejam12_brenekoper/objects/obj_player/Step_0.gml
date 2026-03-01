@@ -1,4 +1,11 @@
 // Inherit the parent event
+
+if (global.pause) {
+	audio_sound_gain(dirt_sound, 0, 0);
+	audio_sound_gain(drill_pitch, 0, 0);
+}
+
+
 event_inherited();
 
 
