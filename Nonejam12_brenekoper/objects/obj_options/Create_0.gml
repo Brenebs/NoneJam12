@@ -23,7 +23,7 @@ with(_title) {
 push_content(_title);
 
 var _sep = 72;
-var _h = GUI_HEIGHT * .28;
+var _h = GUI_HEIGHT * .33;
 
 #region Main Volume
 	
@@ -141,7 +141,7 @@ var _h = GUI_HEIGHT * .28;
 
 #region Buttons
 
-	var _fullscreen = new UiButton(GUI_WIDTH * .5, GUI_HEIGHT * .82 - 52, 110, 32);
+	var _fullscreen = new UiButton(GUI_WIDTH * .5, GUI_HEIGHT * .82 - 64, 110, 32);
 	with(_fullscreen) {
 		text = fx() { return $"Tela-cheia: {window_get_fullscreen() ? "Sim" : "Não"}" };
 		action = fx() {
