@@ -91,7 +91,7 @@ var _h = GUI_HEIGHT * .33;
 			{
 				if(variable_instance_exists(id , "id_chunk"))
 				{
-					if(id_chunk == _player.current_choose)
+					if(id_chunk == global.elevator_choose)
 					{
 						_index = id;
 					}
