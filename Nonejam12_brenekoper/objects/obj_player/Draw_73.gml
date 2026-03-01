@@ -1,7 +1,7 @@
 /// @description Inserir descrição aqui
 // Você pode escrever seu código neste editor
 
-if(pointer && inside_ground)
+if(pointer && inside_ground && image_alpha > 0)
 {
 	var _nearest = instance_nearest(x,y,obj_teleport_botton);
 	

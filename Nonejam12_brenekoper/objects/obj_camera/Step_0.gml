@@ -17,9 +17,10 @@ if(instance_exists(alvo))
 {
 	camera_second_acel = lerp(camera_second_acel,(point_distance(x,y,alvo.x,alvo.y) > distance_to_follow),.01)
 	
-	x=lerp(x,alvo.x + offset.x,acel * camera_second_acel);
+	
 	
 	var __y = alvo.y + offset.y
+	var __x = alvo.x + offset.x;
 	
 	if(alvo.y<0)
 	{
@@ -35,9 +36,17 @@ if(instance_exists(alvo))
 	}
 	else
 	{
+		if(alvo.image_alpha>0)
+		{
+			var _len = min( point_distance( __x , __y , mouse_x , mouse_y) *.125 , 120) ;
+			var _dir =		point_direction(__x , __y , mouse_x , mouse_y);
+			__y += lengthdir_y(_len*1.1	, _dir) + (alvo.vspd * 7) //mean(__y , __y , mouse_y);
+			__x += lengthdir_x(_len		, _dir) + (alvo.hspd * 7) //mean(__x , __x , mouse_x);
+		}
 		__y = max(__y , (CAMERA_HEIGHT/2) - 100)
+		
 	}
-	
+	x=lerp(x,__x,acel * camera_second_acel);
 	y=lerp(y,__y,acel * camera_second_acel);
 }
 else {

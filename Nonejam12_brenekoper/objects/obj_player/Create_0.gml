@@ -694,11 +694,13 @@ dirt_sound = sfx_play(snd_dirt_loop, 0, 0, true);
 		var _vspd = lengthdir_y(1,angle_direction)
 		
 		var _frc_speed = (current_energy <= 0) ? current_speed / 3 : current_speed;
+		
+		var _dist = clamp(point_distance(x,y,mouse_x,mouse_y) / 100 , 0 , 1);
 	
-		h_spd	= _hspd * current_speed * _spd;
+		h_spd	= _hspd * current_speed * _spd * _dist;
 		hspd	= lerp(hspd , h_spd , aceleration * acel_after_attack);
 	
-		v_spd	= _vspd * current_speed * _spd;
+		v_spd	= _vspd * current_speed * _spd * _dist;
 		vspd	= lerp(vspd , v_spd , aceleration * acel_after_attack)
 		
 		current_drill_image_speed = (abs(h_spd) + abs(v_spd))*1.5
