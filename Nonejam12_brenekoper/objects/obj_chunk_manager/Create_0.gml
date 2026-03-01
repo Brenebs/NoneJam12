@@ -186,4 +186,5 @@ for(var i = 10 ; i < CHUNK_MAX ; i+= _sep_elevators)
 		_index.id_chunk = i div 10;
 }
 
+instance_create_depth(room_width/2,19712,depth,obj_bolinha)
 

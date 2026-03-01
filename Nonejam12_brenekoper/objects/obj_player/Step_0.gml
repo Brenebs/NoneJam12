@@ -66,7 +66,7 @@ else
 if(current_energy <= 0)
 {
 	var _saved = false;
-	if(UPGRADES.ext_life_saver > 0)
+	//if(UPGRADES.ext_life_saver > 0)
 	{
 		var _ins = collision_circle(x,y,LIFE_SAVER_AREA,[obj_teleport_botton,obj_teleport_top],false,false)
 		if(_ins)

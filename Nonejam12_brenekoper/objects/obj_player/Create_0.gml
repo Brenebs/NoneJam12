@@ -626,7 +626,7 @@ dirt_sound = sfx_play(snd_dirt_loop, 0, 0, true);
 		
 		var _offset = CURRENT_WORLD ? -128 : 16
 		x = clamp(x , _offset , room_width - _offset);
-		y = min(y , max_y);
+		//y = min(y , max_y);
 		
 		
 		var _last = variable_clone(last_drill_position);
