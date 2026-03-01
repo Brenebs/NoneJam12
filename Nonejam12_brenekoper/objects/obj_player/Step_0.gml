@@ -1,10 +1,13 @@
 // Inherit the parent event
 
 if (global.pause) {
-	audio_sound_gain(dirt_sound, 0, 0);
-	audio_sound_gain(drill_pitch, 0, 0);
+	if !audio_is_paused(dirt_sound) audio_pause_sound(dirt_sound);
+	if !audio_is_paused(drill_sound) audio_pause_sound(drill_sound);
 }
-
+else {
+	if audio_is_paused(dirt_sound) audio_resume_sound(dirt_sound);
+	if audio_is_paused(drill_sound) audio_resume_sound(drill_sound);
+}
 
 event_inherited();
 
@@ -86,6 +89,8 @@ drill_white_timer			 = max_timer(drill_white_timer);
 speed_multiply_timer		 = max_timer(speed_multiply_timer);
 current_timer_invincible	 = max_timer(current_timer_invincible);
 acel_after_attack			 = lerp(acel_after_attack , 1 , .1);
+
+drill_shakey = random(.5) * (state == state_dash_load);
 
 if inside_ground {
 	audio_sound_gain(drill_sound, .25 * !using_elevator, 200);

@@ -21,6 +21,7 @@ being_collected = function()
 	
 	if(add_drop(object_index , sprite_index , value  ,number_to_add , stack_max, rarity))
 	{
+		sfx_play(snd_player_collect, 1, .33);
 		instance_destroy();
 	}
 	else
