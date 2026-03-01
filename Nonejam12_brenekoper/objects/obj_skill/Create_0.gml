@@ -26,6 +26,12 @@ action = fx() {
 		
 		obj_skill_manager.update_all_purchases();
 		
+		audio_sound_pitch(sfx_play(snd_skill_purchase), 1 + (1 / upgrade_amt) * (purchased_n - 1));
+		
+		if (purchased_n >= upgrade_amt) {
+			sfx_play(snd_skill_full_unlock);
+		}
+		
 		save_game();
 	}
 	else
@@ -100,11 +106,13 @@ _system_draw = fx(_xoff = 0, _yoff = 0, _a = 1, _c = #ffffff) {
 		var _can_purchase = (GAME_INFO.coins >= get_price());
 		var _purchased = purchased_n >= upgrade_amt;
 		
-		var _color = color;
+		var _color = #ffffff;
 		
-		if (purchased_n <= 0) _color = #a1a1a1;
+		if (purchased_n > 0) _color = #88ff88;
 		
-		if _purchased _color = #88ff88;
+		if _purchased {
+			_color = #a1a1a1;
+		}
 		else if !_can_purchase _color = #ff8888;
 		
 		if prompt_flag {

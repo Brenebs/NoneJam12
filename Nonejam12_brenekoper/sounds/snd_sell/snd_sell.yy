@@ -2,8 +2,8 @@
   "$GMSound":"v2",
   "%Name":"snd_sell",
   "audioGroupId":{
-    "name":"audiogroup_default",
-    "path":"audiogroups/audiogroup_default",
+    "name":"ag_sfx",
+    "path":"audiogroups/ag_sfx",
   },
   "bitDepth":1,
   "channelFormat":0,

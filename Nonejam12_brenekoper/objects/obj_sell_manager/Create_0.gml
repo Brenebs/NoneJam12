@@ -43,6 +43,8 @@ selling_itens = function()
 			{
 				GAME_INFO.coins += _current.slot_stack_current_number * _current.slot_value;
 				
+				sfx_play(snd_sell, 1, .2);
+				
 				array_selling[i] = undefined;
 				
 				if(room == rm_real_world)
