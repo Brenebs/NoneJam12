@@ -50,7 +50,18 @@ if(instance_exists(alvo))
 	y=lerp(y,__y,acel * camera_second_acel);
 }
 else {
-	if mouse_check_button_pressed(mb_right) {
+	if bool(collision_point(mouse_x, mouse_y, obj_skill, false, true)) and mouse_check_button_pressed(mb_left) {
+		cursor_left_lock = true;
+	}
+	
+	if (cursor_left_lock and mouse_check_button_released(mb_left)) {
+		cursor_left_lock = false;
+	}
+	
+	var _mouse_press = mouse_check_button_pressed(mb_right) or (mouse_check_button_pressed(mb_left) and !cursor_left_lock) or keyboard_check_pressed(vk_space) or mouse_check_button_pressed(mb_middle)
+	var _mouse_hold = mouse_check_button(mb_right) or (mouse_check_button(mb_left) and !cursor_left_lock) or keyboard_check(vk_space) or mouse_check_button(mb_middle)
+	
+	if _mouse_press {
 		cursor_x = MOUSE_GUI_X;
 		cursor_y = MOUSE_GUI_Y;
 		
@@ -58,7 +69,7 @@ else {
 		cursor_camera_y = y;
 	}
 	
-	if mouse_check_button(mb_right) {
+	if _mouse_hold {
 		cursor_diff_x = cursor_x - MOUSE_GUI_X;
 		cursor_diff_y = cursor_y - MOUSE_GUI_Y;
 		

@@ -38,10 +38,10 @@ check_priority = fx(_priority) {
 inputs = {};
 with(inputs) {
 	menu = fx() { return "Interagir [spr_mouse_left]" };
-	overworld = fx() { return "Interagir [spr_space]" };
-	skill_tree = fx() { return "Comprar [spr_mouse_left]\nMover [spr_mouse_right]\nSair [spr_esc]" };
+	overworld = fx() { return "Interagir [spr_space]\n Selecionar [spr_mouse_scroll]" };
+	skill_tree = fx() { return "Comprar [spr_mouse_left]\nMover [spr_space]\nSair [spr_esc]" };
 	expedition = fx() { return $"Cavar [spr_mouse_left]{UPGRADES.dash_unlocked ? "\nDash [spr_mouse_right]" : ""}" };
-	expedition_under = fx() { return $"Cavar [spr_mouse_left]{UPGRADES.dash_unlocked ? "\nDash [spr_mouse_right]" : ""}" };
+	expedition_under = fx() { return $"Cavar [spr_mouse_left]{UPGRADES.dash_unlocked ? "\nDash [spr_mouse_right]" : ""}\nDropar [spr_q]" };
 }
 
 current_input = "menu";

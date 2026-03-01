@@ -3,6 +3,8 @@
 
 audio_listener_orientation(0, 0, 1000,0,-1,0);
 
+cursor_left_lock = false;
+
 cursor_x = 0;
 cursor_y = 0;
 
@@ -53,8 +55,6 @@ if(CURRENT_WORLD && room == rm_gameplay)
 		var _wid = ((CAMERA_BASE_WIDTH * camera_zoom) != CAMERA_WIDTH);
 		var _hei = ((CAMERA_BASE_HEIGHT * camera_zoom) != CAMERA_HEIGHT);
 		
-		
-
 		return (CAMERA_ZOOM != camera_zoom)
 	}
 	
