@@ -4,6 +4,8 @@
 // Inherit the parent event
 event_inherited();
 
+evade_teleport_height();
+
 look_at = choose(1,-1);
 
 is_enemy = true;

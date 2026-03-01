@@ -1,8 +1,11 @@
 /// @description Inserir descrição aqui
 // Você pode escrever seu código neste editor
 
+
 // Inherit the parent event
 event_inherited();
+
+evade_teleport_height();
 
 is_enemy = true;
 
@@ -18,9 +21,14 @@ walk_speed = 2;
 damage = 5;
 knockback = 10;
 
-hitbox = instance_create_depth(x,y,depth-1,obj_hitbox_hurt_player);
-hitbox.owner = id;
-hitbox.image_yscale = 1.2;
+create_hitbox = function()
+{
+	hitbox = instance_create_depth(x,y,depth-1,obj_hitbox_hurt_player);
+	hitbox.owner = id;
+	hitbox.image_yscale = 1.2;
+}
+
+create_hitbox();
 
 get_knockback = function()
 {
@@ -55,6 +63,8 @@ collision = function()
 {
 	x+=hspd;
 	y+=vspd;
+	
+	if(!instance_exists(hitbox)) create_hitbox();
 	
 	hitbox.x = x + lengthdir_x(16 , walk_direction);
 	hitbox.y = y + lengthdir_y(16 , walk_direction);

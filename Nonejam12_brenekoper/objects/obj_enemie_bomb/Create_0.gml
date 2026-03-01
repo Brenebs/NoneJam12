@@ -4,6 +4,8 @@
 // Inherit the parent event
 event_inherited();
 
+evade_teleport_height();
+
 is_enemy = true;
 
 damage = 20;

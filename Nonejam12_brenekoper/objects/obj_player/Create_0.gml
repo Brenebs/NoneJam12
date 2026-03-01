@@ -312,11 +312,11 @@ dirt_sound = sfx_play(snd_dirt_loop, 0, 0, true);
 		
 		if(sprite_index == spr_player_normal_falling)
 		{
-			var _distance = 20;
+			var _distance = 22;
 			var _angle = angle + 90;
 			if(CURRENT_WORLD) _angle += 180
 			var _x = x + lengthdir_x(_distance , _angle);
-			var _y = y + lengthdir_y(_distance , _angle);
+			var _y = y + lengthdir_y(_distance , _angle) + vspd;
 			draw_sprite_ext(drill_sprites[drill.image_index],drill_image_index,_x,_y,1,1,_angle,c_white,1);
 		}
 	}

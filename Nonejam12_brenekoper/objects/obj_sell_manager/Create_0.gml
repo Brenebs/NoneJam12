@@ -1,7 +1,7 @@
 /// @description Inserir descrição aqui
 // Você pode escrever seu código neste editor
 
-selling_multiplyer = 3
+selling_multiplyer = 4
 
 array_selling = better_array_create(3,undefined);
 space_free = true;

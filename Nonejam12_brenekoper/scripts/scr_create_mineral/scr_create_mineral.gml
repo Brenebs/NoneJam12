@@ -237,6 +237,15 @@ function create_minerals(_object = obj_mineral_father) constructor
 			add_interval(46 , 56 , , 1 , 1,1);
 		}
 		
+		with(_fumiga)
+		{
+			add_interval(60 , 65 , , 1 , 1,1);
+		}
+		
+		with(_fumirainha)
+		{
+			add_interval(70 , 70 , , 1 , 1,1);
+		}
 		
 	#endregion
 
@@ -248,11 +257,11 @@ function evade_teleport()
 	var _ins = instance_nearest(x,y,obj_teleport_botton);
 	if(_ins)
 	{
-		while(point_distance(x,y,_ins.x,_ins.y) < 70)
+		while(point_distance(x,y,_ins.x,_ins.y) < 80)
 		{
 			var _dir = point_direction(x,y,_ins.x,_ins.y);
 			
-			y += lengthdir_x(16 , _dir); 
+			y += lengthdir_x(16*1.8 , _dir); 
 			x += lengthdir_y(16 , _dir); 
 		}
 	}
@@ -263,7 +272,7 @@ function evade_teleport_height()
 	var _ins = instance_nearest(x,y,obj_teleport_botton);
 	if(_ins)
 	{
-		while(abs(y-_ins.y) < 120)
+		while(abs(y-_ins.y) < 200)
 		{
 			var _dir = sign(y - _ins.y);
 			
