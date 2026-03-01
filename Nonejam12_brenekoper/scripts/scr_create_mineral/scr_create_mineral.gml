@@ -283,6 +283,13 @@ function evade_teleport_height()
 	}
 }
 
+function enemy_clone_mineral()
+{
+	life		   = 0;
+	resistency	   = 0;
+	mineral_number = 0;
+}
+
 //var _mineral = new create_minerals(obj_mineral_16)
 //with(_mineral)
 //{

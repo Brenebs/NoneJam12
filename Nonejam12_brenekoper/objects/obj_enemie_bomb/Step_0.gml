@@ -11,6 +11,10 @@ if(!activated)
 	if(life_total != life || distance_to_object(obj_player) < area_explosion/2 && obj_player.image_alpha > 0)
 	{
 		activated = true;
+		
+		sprite_index = spr_enemie_bomb_activated;
+		
+		scale = 1.5
 	}
 }
 else

@@ -145,7 +145,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.14.3.217",
+    "IDEVersion":"2024.14.2.213",
   },
   "name":"Nonejam12_brenekoper",
   "resources":[
@@ -861,6 +861,7 @@
     {"id":{"name":"spr_eftground_front","path":"sprites/spr_eftground_front/spr_eftground_front.yy",},},
     {"id":{"name":"spr_elevator_botton","path":"sprites/spr_elevator_botton/spr_elevator_botton.yy",},},
     {"id":{"name":"spr_elevator_top","path":"sprites/spr_elevator_top/spr_elevator_top.yy",},},
+    {"id":{"name":"spr_enemie_bomb_activated","path":"sprites/spr_enemie_bomb_activated/spr_enemie_bomb_activated.yy",},},
     {"id":{"name":"spr_enemie_bomb","path":"sprites/spr_enemie_bomb/spr_enemie_bomb.yy",},},
     {"id":{"name":"spr_enemie_follower","path":"sprites/spr_enemie_follower/spr_enemie_follower.yy",},},
     {"id":{"name":"spr_enemie_queen","path":"sprites/spr_enemie_queen/spr_enemie_queen.yy",},},
