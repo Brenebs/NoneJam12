@@ -672,6 +672,9 @@ dirt_sound = sfx_play(snd_dirt_loop, 0, 0, true);
 
 #endregion
 
+h_spd = 0;
+v_spd = 0;
+
 #region state machine debaixo da terra
 
 	//andando debaixo da terra
@@ -697,11 +700,12 @@ dirt_sound = sfx_play(snd_dirt_loop, 0, 0, true);
 		
 		var _dist = clamp(point_distance(x,y,mouse_x,mouse_y) / 100 , 0 , 1);
 	
-		h_spd	= _hspd * current_speed * _spd * _dist;
-		hspd	= lerp(hspd , h_spd , aceleration * acel_after_attack);
-	
-		v_spd	= _vspd * current_speed * _spd * _dist;
-		vspd	= lerp(vspd , v_spd , aceleration * acel_after_attack)
+		h_spd = lerp(h_spd , _hspd * current_speed * _spd * _dist , aceleration);
+		v_spd = lerp(v_spd , _vspd * current_speed * _spd * _dist , aceleration);
+		
+		
+		hspd	= lerp(hspd , h_spd , acel_after_attack);
+		vspd	= lerp(vspd , v_spd , acel_after_attack);
 		
 		current_drill_image_speed = (abs(h_spd) + abs(v_spd))*1.5
 	
@@ -735,6 +739,8 @@ dirt_sound = sfx_play(snd_dirt_loop, 0, 0, true);
 		
 		hspd	= lerp(hspd , 0 , aceleration);
 		vspd	= lerp(vspd , 0 , aceleration)
+		h_spd = hspd;
+		v_spd = vspd;
 		
 		var _direction = point_direction(x,y,mouse_x,mouse_y);
 	
@@ -778,13 +784,16 @@ dirt_sound = sfx_play(snd_dirt_loop, 0, 0, true);
 		
 		image_blend = c_red;
 		
-		var _hspd = lengthdir_x(dash_speed + ((current_energy < 0) * 5) , angle_direction);
-		var _vspd = lengthdir_y(dash_speed + ((current_energy < 0) * 5) , angle_direction);
+		var _h_spd = lengthdir_x(dash_speed + ((current_energy < 0) * 5) , angle_direction);
+		var _v_spd = lengthdir_y(dash_speed + ((current_energy < 0) * 5) , angle_direction);
 		
-		hspd = lerp(hspd ,_hspd,.3 * acel_after_attack)
-		vspd = lerp(vspd ,_vspd,.3 * acel_after_attack)
+		h_spd = lerp(h_spd , _h_spd , .1);
+		v_spd = lerp(v_spd , _v_spd , .1);
 		
-		current_drill_image_speed = (abs(_hspd) + abs(_vspd)) * 3;
+		hspd = lerp(hspd ,h_spd,.3 * acel_after_attack)
+		vspd = lerp(vspd ,v_spd,.3 * acel_after_attack)
+		
+		current_drill_image_speed = (abs(h_spd) + abs(v_spd)) * 3;
 		
 		current_dash_timer++;
 		if(current_dash_timer >= dash_flow_timer)
@@ -817,6 +826,9 @@ dirt_sound = sfx_play(snd_dirt_loop, 0, 0, true);
 		hspd	= lerp(hspd , 0 , aceleration * acel_after_attack * .8);
 		vspd	= lerp(vspd , 0 , aceleration * acel_after_attack * .8);
 		
+		h_spd = hspd;
+		v_spd = hspd;
+		
 		timer_stunned--;
 		
 		if(timer_stunned<=0)
@@ -830,6 +842,9 @@ dirt_sound = sfx_play(snd_dirt_loop, 0, 0, true);
 		
 		x = lerp(x , elevator_follow.x , .05 * acel_after_attack)
 		y = lerp(y , elevator_follow.y , .02 * acel_after_attack)
+		
+		h_spd = 0;
+		v_spd = 0;
 		
 		using_elevator = true;
 		

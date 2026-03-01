@@ -24,7 +24,7 @@ if(instance_exists(alvo))
 	
 	if(alvo.y<0)
 	{
-		__y = min(-300 * CAMERA_ZOOM,__y);
+		__y = min(-200 * CAMERA_ZOOM,__y);
 		
 		with(obj_player)
 		{
@@ -40,8 +40,8 @@ if(instance_exists(alvo))
 		{
 			var _len = min( point_distance( __x , __y , mouse_x , mouse_y) *.125 , 120) ;
 			var _dir =		point_direction(__x , __y , mouse_x , mouse_y);
-			__y += lengthdir_y(_len*1.1	, _dir) + (alvo.vspd * 7) //mean(__y , __y , mouse_y);
-			__x += lengthdir_x(_len		, _dir) + (alvo.hspd * 7) //mean(__x , __x , mouse_x);
+			__y += lengthdir_y(_len*1.1	, _dir) + (alvo.v_spd * 7) //mean(__y , __y , mouse_y);
+			__x += lengthdir_x(_len		, _dir) + (alvo.h_spd * 7) //mean(__x , __x , mouse_x);
 		}
 		__y = max(__y , (CAMERA_HEIGHT/2) - 100)
 		
