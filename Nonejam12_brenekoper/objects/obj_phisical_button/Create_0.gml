@@ -56,8 +56,6 @@ _system_draw = fx(_xoff = 0, _yoff = 0, _a = 1, _c = #ffffff) {
 	
 		var _alpha = alpha * _a;
 	
-		var _default_matrix = matrix_get(matrix_world);
-	
 		var _matrix_x = _x;
 		var _matrix_y = _y;
 		
@@ -139,7 +137,7 @@ _system_draw = fx(_xoff = 0, _yoff = 0, _a = 1, _c = #ffffff) {
 	
 	#endregion
 	
-	matrix_set(matrix_world, _default_matrix);
+	matrix_set(matrix_world, global.default_matrix);
 }
 
 push_anim = 0;

@@ -97,8 +97,6 @@ _system_draw = fx(_xoff = 0, _yoff = 0, _a = 1, _c = #ffffff) {
 	
 		var _alpha = alpha * _a;
 	
-		var _default_matrix = matrix_get(matrix_world);
-	
 		var _matrix_x = _x;
 		var _matrix_y = _y;
 		
@@ -156,7 +154,7 @@ _system_draw = fx(_xoff = 0, _yoff = 0, _a = 1, _c = #ffffff) {
 	#region	Shadow
 	
 		var _new_matrix = matrix_build(
-			_matrix_x + SHADOW_OFFSET, _matrix_y + SHADOW_OFFSET, 0,
+			_matrix_x - SHADOW_OFFSET, _matrix_y + SHADOW_OFFSET, 0,
 			0, 0, angle,
 			x_scale, y_scale, 1
 		);
@@ -183,18 +181,18 @@ _system_draw = fx(_xoff = 0, _yoff = 0, _a = 1, _c = #ffffff) {
 		draw_sprite_stretched_ext(sprite, 1, _x1, _y1 + _button_depth, width, height - _button_depth, _color, _alpha);
 		if hover draw_sprite_stretched_ext(sprite, 2, _x1, _y1 + _button_depth, width, height - _button_depth, _color, _alpha * .66);
 		
-		var _scissor_w = 5;
-		var _scissor = gpu_get_scissor();
+		//var _scissor_w = 5;
+		//var _scissor = gpu_get_scissor();
 		
 		draw_sprite_stretched_ext(spr_button_skill, 0, _x1, _y1 + ((_button_depth - _button_side_offset) * push_anim), width, height - _button_depth, _color, _alpha);
-		gpu_set_scissor(
-			(_matrix_x - x_center) - CAMERA_X + _scissor_w - 1,
-			(_matrix_y - y_center) - CAMERA_Y + _scissor_w + ((_button_depth - _button_side_offset) * push_anim),
-			width - (_button_depth * .5) - _scissor_w * 2 + 4,
-			height - (_button_depth * .5) - _scissor_w * 2 - 2
-		);
+		//gpu_set_scissor(
+		//	(_matrix_x - x_center) - CAMERA_X + _scissor_w - 1,
+		//	(_matrix_y - y_center) - CAMERA_Y + _scissor_w + ((_button_depth - _button_side_offset) * push_anim),
+		//	width - (_button_depth * .5) - _scissor_w * 2 + 4,
+		//	height - (_button_depth * .5) - _scissor_w * 2 - 2
+		//);
 		draw_sprite_stretched_ext(sprite, 0, _x1, _y1 + ((_button_depth - _button_side_offset) * push_anim), width, height - _button_depth, #ffffff, _alpha);
-		gpu_set_scissor(_scissor);
+		//gpu_set_scissor(_scissor);
 		
 		if hover draw_sprite_stretched_ext(sprite, 2, _x1, _y1 + ((_button_depth - _button_side_offset) * push_anim), width, height - _button_depth, _color, _alpha * .66);
 		
@@ -202,5 +200,5 @@ _system_draw = fx(_xoff = 0, _yoff = 0, _a = 1, _c = #ffffff) {
 	
 	#endregion
 	
-	matrix_set(matrix_world, _default_matrix);
+	matrix_set(matrix_world, global.default_matrix);
 }

@@ -453,3 +453,5 @@ function color_to_string(_value) {
 	}
 	
 #endregion
+
+global.default_matrix = matrix_get(matrix_world);

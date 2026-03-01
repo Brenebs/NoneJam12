@@ -182,8 +182,6 @@ function UiButton(_x, _y, _w, _h, _x_center = _w * .5, _y_center = _h * .5) : Ui
 		
 			var _alpha = alpha * _a;
 		
-			var _default_matrix = matrix_get(matrix_world);
-		
 			var _matrix_x = _x;
 			var _matrix_y = _y;
 			
@@ -326,7 +324,7 @@ function UiButton(_x, _y, _w, _h, _x_center = _w * .5, _y_center = _h * .5) : Ui
 		//draw_rectangle_colour(_x1, _y1, _x2, _y2, debug_color, debug_color, debug_color, debug_color, !hover);
 		//draw_set_alpha(1);
 		
-		matrix_set(matrix_world, _default_matrix);
+		matrix_set(matrix_world, global.default_matrix);
 	}
 	
 	navigate = fx(_input) {
