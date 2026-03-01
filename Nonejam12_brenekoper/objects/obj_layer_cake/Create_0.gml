@@ -3,21 +3,21 @@ current_biom = 0;
 
 bioms = 
 [
-	[spr_background_biom1 , (30  - .5) * CHUNK_HEIGHT , 1],
-	[spr_background_biom2 , (55  ) * CHUNK_HEIGHT , 1],
-	[spr_background_biom3 , (80  - .5) * CHUNK_HEIGHT , 1],
-	[spr_background_biom4 , (105 - .5) * CHUNK_HEIGHT , 1],
-	[spr_background_biom5 , (180 - .5) * CHUNK_HEIGHT , 1]
+	[spr_background_biom1 , (30  - .5)  * CHUNK_HEIGHT , 1],
+	[spr_background_biom2 , (55  )		* CHUNK_HEIGHT , 1],
+	[spr_background_biom3 , (80  - .5)  * CHUNK_HEIGHT , 1],
+	[spr_background_biom4 , (105 - .5)  * CHUNK_HEIGHT , 1],
+	[spr_background_biom5 , (180 - .5)  * CHUNK_HEIGHT , 1]
 	
 ]
 
 colors = 
 [
-	#6B4420	,
-	#FDC689	,
-	#FFD8DB	,
-	c_yellow,
-	#BAE57C
+	#3D251B	,
+	#5F568B	,
+	#643D7A	,
+	#771144 ,
+	#0D3368
 ]
 color_dark = make_colour_rgb(30, 2, 15);
 
