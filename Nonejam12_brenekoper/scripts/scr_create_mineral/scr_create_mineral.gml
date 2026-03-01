@@ -98,7 +98,7 @@ function create_minerals(_object = obj_mineral_father) constructor
 	var _chocolate_rb = new create_minerals( obj_mineral_roadblock_3)
 	with(_chocolate_rb)
 	{
-		add_interval(59 , 59 , 1 , 2 , 1,1);
+		add_interval(58 , 58 , 1 , 2 , 1,1);
 	}
 
 

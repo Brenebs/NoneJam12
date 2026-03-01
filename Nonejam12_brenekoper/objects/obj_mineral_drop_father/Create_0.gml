@@ -35,5 +35,5 @@ being_collected = function()
 
 can_be_collected = function()
 {
-	return timer_to_be_collected<=0
+	return timer_to_be_collected<=0 && obj_player.image_alpha>0
 }

@@ -25,6 +25,8 @@ dirt_sound = sfx_play(snd_dirt_loop, 0, 0, true);
 
 	inside_ground = true;
 	
+	hit_stop = 0;
+	
 	drill_level = 2;
 
 	damage = 1;
@@ -52,16 +54,19 @@ dirt_sound = sfx_play(snd_dirt_loop, 0, 0, true);
 	
 	check_entity_to_drill = function(_damage_multiply = 1 , _timer_betwen_hits = timer_offset_attacks , oposite_speed = push_force_when_attack)
 	{
-		if(current_timer_offset_attacks>0 || current_timer_invincible > 0) return;
+		if(current_timer_offset_attacks>0) return;
 		
 		var _dash = state == state_dash_released;
 		
 		var _list = ds_list_create();	
 		var push_once = true;
 		
+		var spd_multiplyer = .5
+		
 		var _num = 0;
 		with(drill)
 		{
+			
 			var _scl = 1
 			if(instance_place(x,y,obj_mineral_father))
 			{
@@ -113,19 +118,30 @@ dirt_sound = sfx_play(snd_dirt_loop, 0, 0, true);
 						}
 					}
 				}
-				
+				hit_stop = max(hit_stop , 1);
 				_current.white_timer = clamp(timer_offset_attacks-1 , 0 ,5);
 				_current.life -= damage * _damage_multiply;
 			}
 			else
 			{
 				drill_white_timer = clamp(timer_offset_attacks-3 , 0 ,5);
-				oposite_speed*=1.2
+				oposite_speed*=3
+				spd_multiplyer = 5
+				
+				if(_dash)
+				{
+					oposite_speed*=2;
+				}
+				
+				_timer_betwen_hits+=3
+				
+				hit_stop = max(hit_stop , 3);
 			}
 		
 			
 			if(_current.life<=0)
 			{
+				hit_stop = max(hit_stop , 5); 
 				var _is_dash = false
 				if(dash_colector && _dash)
 				{
@@ -138,8 +154,8 @@ dirt_sound = sfx_play(snd_dirt_loop, 0, 0, true);
 			{
 				push_once = false;
 	
-				hspd = lengthdir_x(-oposite_speed * .5,angle_direction);
-				vspd = lengthdir_y(-oposite_speed * .5,angle_direction);
+				hspd = lengthdir_x(-oposite_speed * spd_multiplyer,angle_direction);
+				vspd = lengthdir_y(-oposite_speed * spd_multiplyer,angle_direction);
 				
 				acel_after_attack = 0;
 				
@@ -772,7 +788,7 @@ v_spd = 0;
 		hspd	= lerp(hspd , h_spd , acel_after_attack);
 		vspd	= lerp(vspd , v_spd , acel_after_attack);
 		
-		current_drill_image_speed = (abs(h_spd) + abs(v_spd))*1.5
+		current_drill_image_speed = (abs(h_spd) + abs(v_spd))*2
 	
 		if(_spd || (abs(hspd) + abs(vspd))>1)
 		{
@@ -806,6 +822,11 @@ v_spd = 0;
 		vspd	= lerp(vspd , 0 , aceleration)
 		h_spd = hspd;
 		v_spd = vspd;
+		
+		if((abs(hspd) + abs(vspd))>6)
+		{
+			check_entity_to_drill();
+		}
 		
 		var _direction = point_direction(x,y,mouse_x,mouse_y);
 	

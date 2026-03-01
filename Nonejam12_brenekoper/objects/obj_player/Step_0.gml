@@ -9,7 +9,14 @@ else {
 	if audio_is_paused(drill_sound) audio_resume_sound(drill_sound);
 }
 
-event_inherited();
+PauseInstanceHandler();
+
+hit_stop = max_timer(hit_stop);
+
+if(global.pause || hit_stop>0) exit;
+
+
+state();
 
 
 if(DEBUG_BUILD)
@@ -46,7 +53,9 @@ if(DEBUG_BUILD)
 	}
 }
 
-if(global.pause) return;
+hit_stop = max_timer(hit_stop);
+
+if(global.pause || hit_stop>0) exit;
 
 inventory_handler();
 

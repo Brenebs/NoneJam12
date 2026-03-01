@@ -4,6 +4,8 @@
 // Inherit the parent event
 event_inherited();
 
+depth-=100
+
 evade_teleport_height();
 
 look_at = choose(1,-1);
