@@ -32,7 +32,6 @@ when_interacted = function(_player = obj_player)
 			state = state_goup;
 		}
 	}
-	
 }
 
 can_be_interacted = function(_player = obj_player)

@@ -157,6 +157,7 @@
     {"id":{"name":"obj_bolinha","path":"objects/obj_bolinha/obj_bolinha.yy",},},
     {"id":{"name":"obj_camera","path":"objects/obj_camera/obj_camera.yy",},},
     {"id":{"name":"obj_cenary_manager","path":"objects/obj_cenary_manager/obj_cenary_manager.yy",},},
+    {"id":{"name":"obj_choose_level","path":"objects/obj_choose_level/obj_choose_level.yy",},},
     {"id":{"name":"obj_chunk_manager","path":"objects/obj_chunk_manager/obj_chunk_manager.yy",},},
     {"id":{"name":"obj_chunk","path":"objects/obj_chunk/obj_chunk.yy",},},
     {"id":{"name":"obj_collision","path":"objects/obj_collision/obj_collision.yy",},},

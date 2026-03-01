@@ -1,6 +1,8 @@
 /// @description Inserir descrição aqui
 // Você pode escrever seu código neste editor
 
+selling_multiplyer = 3
+
 array_selling = better_array_create(3,undefined);
 space_free = true;
 
@@ -41,7 +43,7 @@ selling_itens = function()
 		
 			if(_current.timer_to_sell<=0)
 			{
-				GAME_INFO.coins += _current.slot_stack_current_number * _current.slot_value;
+				GAME_INFO.coins += _current.slot_stack_current_number * _current.slot_value * selling_multiplyer;
 				
 				sfx_play(snd_sell, 1, .2);
 				
