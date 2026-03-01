@@ -4,6 +4,7 @@
 // Inherit the parent event
 event_inherited();
 
+nearest = false;
 
 when_interacted = function(_player = obj_player)
 {

@@ -13,6 +13,7 @@ window_set_caption(GAME_NAME);
 #macro GAME_SAVE global.game_save //os dois são a mesma coisa eu só tenho os dois pq eu as vezes escrevo outro
 #macro UPGRADES global.game_save.upgrades
 #macro SKILL_THREE global.game_save.upgrades
+#macro LIFE_SAVER_AREA (UPGRADES.ext_life_saver * 80 + 20)
 
 //facilitadores de functions
 #macro ROOM_WIDTH room_width

@@ -65,8 +65,24 @@ else
 
 if(current_energy <= 0)
 {
+	var _saved = false;
+	if(UPGRADES.ext_life_saver > 0)
+	{
+		var _ins = collision_circle(x,y,LIFE_SAVER_AREA,[obj_teleport_botton,obj_teleport_top],false,false)
+		if(_ins)
+		{
+			x = lerp(x,_ins.x,.1);
+			y = lerp(y,_ins.y,.1);
+			if(current_timer_death >= max_timer_death && place_meeting(x,y,_ins))
+			{
+				_ins.when_interacted(id)
+			}
+			_saved = true;
+		}
+	}
+	
 	current_timer_death++;
-	if(current_timer_death >= max_timer_death)
+	if(!_saved && current_timer_death >= max_timer_death)
 	{
 		trigger_death()
 	}
