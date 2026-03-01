@@ -56,14 +56,14 @@ Polygon = fx(_color = #ffffff, _delay = 0, _out = false, _kill_when_end = true) 
 	}
 }
 
-array_push(polygons, new Polygon(#ffa000, (00 + 00), false));
-array_push(polygons, new Polygon(#ff2e00, (18 + 00), false));
-array_push(polygons, new Polygon(#ab0000, (22 + 00), false));
+array_push(polygons, new Polygon(#fff09a, (00 + 00), false));
+array_push(polygons, new Polygon(#ff886d, (18 + 00), false));
+array_push(polygons, new Polygon(#ff93b9, (22 + 00), false));
 array_push(polygons, new Polygon(#000000, (25 + 00), false));
 
-array_push(polygons, new Polygon(#ffa000, (25 + 39), true));
-array_push(polygons, new Polygon(#ff2e00, (22 + 39), true));
-array_push(polygons, new Polygon(#ab0000, (18 + 39), true));
+array_push(polygons, new Polygon(#b95fff, (25 + 39), true));
+array_push(polygons, new Polygon(#93e8ff, (22 + 39), true));
+array_push(polygons, new Polygon(#9affbb, (18 + 39), true));
 array_push(polygons, new Polygon(#000000, (00 + 39), true));
 
 action = fx() {};
