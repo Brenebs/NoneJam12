@@ -173,6 +173,42 @@ with(_mineral)
 	add_interval(116,132 ,  , .1 , 2 , 10);
 }
 
+#region fumiga
+
+	var _fumiga = new create_minerals( obj_enemie)
+	with(_fumiga)
+	{
+		add_interval(13 , 13 , , 1 , 1,1);
+	}
+	
+	with(_fumiga)
+	{
+		add_interval(15 , 15 , , 1 , 1,1);
+	}
+	
+	with(_fumiga)
+	{
+		add_interval(17 , 17 , , 1 , 1,1);
+	}
+	
+	with(_fumiga)
+	{
+		add_interval(18 , 18 , , 1 , 1,1);
+	}
+	
+	
+	with(_fumiga)
+	{
+		add_interval(23 , 25 , , 1 , 1,1);
+	}
+	
+	with(_fumiga)
+	{
+		add_interval(26 , 26 , , 1 , 3,3);
+	}
+
+#endregion
+
 //var _mineral = new create_minerals(obj_mineral_16)
 //with(_mineral)
 //{

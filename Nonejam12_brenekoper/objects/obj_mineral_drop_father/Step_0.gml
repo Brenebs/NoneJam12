@@ -29,3 +29,4 @@ else
 
 var _mrg = 16;
 x = clamp(x,16,room_width-_mrg)
+y = max(y , 16)

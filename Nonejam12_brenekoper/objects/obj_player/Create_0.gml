@@ -799,6 +799,7 @@ dirt_sound = sfx_play(snd_dirt_loop, 0, 0, true);
 	{
 		image_alpha = 0;
 		vspd = lerp(vspd , -100 , .05);
+		hspd = 0;
 		
 		using_elevator = true;
 		
@@ -960,7 +961,9 @@ dirt_sound = sfx_play(snd_dirt_loop, 0, 0, true);
 		{
 			var _can = check_interactables();
 			
-			if(can_cave && number_is_between(angle_direction,180+1,360-1) && mouse_check_button_pressed(mb_left))
+			var _mouse = number_is_between(angle_direction,180+1,360-1) && mouse_check_button_pressed(mb_left)
+			var _keybpard = keyboard_check(ord("S")) && keyboard_check(vk_space);
+			if(can_cave && (_mouse || _keybpard))
 			{
 				enter_ground();
 			}

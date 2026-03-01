@@ -6,4 +6,6 @@ event_inherited();
 
 if(global.pause) return;
 
+y = max(y , 16);
+
 state();

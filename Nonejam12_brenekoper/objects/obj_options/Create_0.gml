@@ -151,14 +151,14 @@ var _h = GUI_HEIGHT * .28;
 	}
 	push_content(_fullscreen);
 
-	var _fullscreen = new UiButton(GUI_WIDTH * .5, GUI_HEIGHT * .82 - 52 - 34, 110, 32);
-	with(_fullscreen) {
-		text = fx() { return $"Usar mouse: {GAME_INFO.use_mouse ? "Sim" : "Não"}" };
-		action = fx() {
-			GAME_INFO.use_mouse = !GAME_INFO.use_mouse;
-		}
-	}
-	push_content(_fullscreen);
+	//var _fullscreen = new UiButton(GUI_WIDTH * .5, GUI_HEIGHT * .82 - 52 - 34, 110, 32);
+	//with(_fullscreen) {
+	//	text = fx() { return $"Usar mouse: {GAME_INFO.use_mouse ? "Sim" : "Não"}" };
+	//	action = fx() {
+	//		GAME_INFO.use_mouse = !GAME_INFO.use_mouse;
+	//	}
+	//}
+	//push_content(_fullscreen);
 
 #endregion
 
