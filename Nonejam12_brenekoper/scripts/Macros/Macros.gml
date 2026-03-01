@@ -87,6 +87,6 @@ global.death = false;
 
 global.current_world = 1;
 #macro CURRENT_WORLD global.current_world
-#macro SHADOW_OFFSET 3
+#macro SHADOW_OFFSET 2
 #macro SHADOW_TEXT_OFFSET 1
-#macro SHADOW_ALPHA .33
+#macro SHADOW_ALPHA 1

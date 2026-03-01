@@ -12,7 +12,7 @@ if(pointer && inside_ground && image_alpha > 0)
 	var _y = _nearest.y - lengthdir_y(_dist , _angle);
 	
 	var _off = 32;
-	var _top_removal = 22;
+	var _top_removal = 26;
 	
 	_x = clamp(_x , CAMERA_X + _off, CAMERA_X + CAMERA_WIDTH - _off);
 	_y = clamp(_y , CAMERA_Y + _off + _top_removal, CAMERA_Y + CAMERA_HEIGHT - _off - _top_removal);

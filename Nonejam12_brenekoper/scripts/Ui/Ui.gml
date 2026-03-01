@@ -139,7 +139,7 @@ function UiButton(_x, _y, _w, _h, _x_center = _w * .5, _y_center = _h * .5) : Ui
 	sprite = spr_button;
 	color = #db6395;
 	
-	depth = 6;
+	depth = 4;
 	
 	prompt = false;
 	prompt_text = "Tem certeza?";
@@ -231,7 +231,7 @@ function UiButton(_x, _y, _w, _h, _x_center = _w * .5, _y_center = _h * .5) : Ui
 		#region	Shadow
 		
 			var _new_matrix = matrix_build(
-				_matrix_x + SHADOW_OFFSET, _matrix_y + SHADOW_OFFSET, 0,
+				_matrix_x - SHADOW_OFFSET, _matrix_y + SHADOW_OFFSET, 0,
 				0, 0, angle,
 				x_scale, y_scale, 1
 			);
