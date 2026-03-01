@@ -638,7 +638,7 @@ dirt_sound = sfx_play(snd_dirt_loop, 0, 0, true);
 
 	can_i_be_hurt = function(_other)
 	{
-		return current_timer_invincible <=0;
+		return current_timer_invincible <=0 && image_alpha > 0;
 	}
 
 	max_y = (CHUNK_MAX * CHUNK_HEIGHT) + CHUNK_HEIGHT;
@@ -923,10 +923,9 @@ v_spd = 0;
 		
 	}
 	
-	
 	trigger_death = function()
 	{	
-		if(!player_dead)
+		if(!player_dead && image_alpha > 0)
 		{
 			
 			if(y - 64 <= 0)
