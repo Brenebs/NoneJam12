@@ -498,6 +498,7 @@ dirt_sound = sfx_play(snd_dirt_loop, 0, 0, true);
 		inside_ground = false;
 		vspd = -8;
 		state = _state;
+		v_spd = 0;
 		
 		sfx_play(snd_dirt_exit);
 		
@@ -510,7 +511,8 @@ dirt_sound = sfx_play(snd_dirt_loop, 0, 0, true);
 	{
 		state = _state;
 		y = max(y , -max_y_outside + 8)
-		vspd = 12;
+		vspd = 8;
+		v_spd = 8;
 		inside_ground = true;
 		
 		sfx_play(snd_dirt_enter);

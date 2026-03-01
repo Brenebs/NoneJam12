@@ -7,7 +7,7 @@ region_h = 220;
 x_menu = GUI_WIDTH*.75;
 
 region_x_offset = x_menu - (GUI_WIDTH/2)
-region_y_offset = -64
+region_y_offset = -32
 
 
 
