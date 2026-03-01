@@ -23,20 +23,6 @@ with(_resume_button) {
 push_content(_resume_button);
 _y += _y_offset;
 
-//tem q alterar pq n troca mais de sala
-if (CURRENT_WORLD) {
-	var _give_up_button = new UiButton(_x, _y, _w, _h);
-	with(_give_up_button) {
-		text = fx() { return "Desistir" };
-		prompt = true;
-		action = fx() {
-			instance_create_depth(0, 0, 0, obj_transition).action = fx() { change_room(rm_real_world) };
-		}
-	}
-	push_content(_give_up_button);
-	_y += _y_offset;
-}
-
 var _options_button = new UiButton(_x, _y, _w, _h);
 with(_options_button) {
 	text = fx() { return "Opções" };
