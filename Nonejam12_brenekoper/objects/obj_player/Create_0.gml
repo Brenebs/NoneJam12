@@ -367,10 +367,17 @@ dirt_sound = sfx_play(snd_dirt_loop, 0, 0, true);
 		gpu_set_fog(false , c_white , 1,0);
 	}
 	
+	draw_topbar = function() {
+		var _border = 6;
+		
+		draw_sprite_stretched_ext(spr_bar, 0, _border - 2, _border + 2, GUI_WIDTH - _border * 2, 36, #000000, 1);
+		draw_sprite_stretched_ext(spr_bar, 0, _border, _border, GUI_WIDTH - _border * 2, 36, #db6395, 1);
+	}
+	
 	draw_drop_bar = function()
 	{
-		var _x = 64;
-		var _y = GUI_HEIGHT - 16
+		var _x = GUI_WIDTH + 7;
+		var _y = 40;
 		var _num = array_length(INVENTORY);
 		
 		draw_set_valign(fa_bottom)
@@ -379,18 +386,28 @@ dirt_sound = sfx_play(snd_dirt_loop, 0, 0, true);
 		
 		for(var i = 0 ; i < _num ; i++)
 		{
-			var __x = _x + (i*SLOT_WIDTH);
-			draw_sprite(spr_hud,i==INVENTORY_OPTION_SELECTED,__x,_y);
+			var __x = _x + (i * SLOT_WIDTH) - SLOT_WIDTH * _num;
+			draw_sprite_ext(spr_hud, 0,__x,_y, 1, 1, 0, #db6395, 1);
 			
 			if(INVENTORY[i]!=undefined)
 			{
+				draw_sprite_ext(INVENTORY[i].slot_sprite,0,__x - 2,_y - (SLOT_WIDTH/2) + 2,1,1,0,#000000,1)
 				draw_sprite_ext(INVENTORY[i].slot_sprite,0,__x,_y - (SLOT_WIDTH/2),1,1,0,c_white,1)
 				
-				__x += 4
 				var __y = _y + 1;
+				
+			}
+			if (i == INVENTORY_OPTION_SELECTED) draw_sprite(spr_hud, 1,__x,_y);
+			
+			if(INVENTORY[i]!=undefined) {
+				__x += 8;
+				_y += 1;
 				var _txt = $"{INVENTORY[i].slot_stack_current_number}";
 				
+				draw_cool_text(__x - 1, _y + 1, _txt,, #000000);
 				draw_cool_text(__x , _y , _txt);
+				__x -= 8;
+				_y -= 1;
 			}
 		}
 		
@@ -405,14 +422,14 @@ dirt_sound = sfx_play(snd_dirt_loop, 0, 0, true);
 		if(CURRENT_WORLD) return;
 		//draw_healthbar(20,20,100 + energy_max,30,current_energy/energy_max * 100 , c_black , c_red , c_white , 0,true , true);
 		
-		static _x = 20;
-		static _y = 20;
+		static _x = 9;
+		static _y = 55;
 		static _x_offset = 3;
-		static _y_offset = 4;
+		static _y_offset = 0;
 		
 		var  _scale = energy_max / 150;
 		
-		var _hei = sprite_get_height(spr_battery_bar) * _scale - (_y_offset*2);
+		var _hei = sprite_get_height(spr_battery_bar) * _scale - (8);
 		var _pot = current_energy/energy_max;
 		var _color = merge_colour(c_yellow , c_green,_pot);
 		if(current_energy < percent_show_danger)
@@ -420,27 +437,65 @@ dirt_sound = sfx_play(snd_dirt_loop, 0, 0, true);
 			_color = c_red;
 		}
 		
+		draw_sprite_ext(spr_battery_bar, 1, _x - 2, _y + 2, 1, _scale, 0, #000000, 1);
+		
 		draw_healthbar(_x + _x_offset , _y + _y_offset + 2 , _x + 13 , _y + _y_offset + _hei,_pot*100,c_black , _color , _color , 3 , true , false);
 		var _frc = wave(64,0,2)
 		
-		draw_sprite_ext(spr_battery_bar,0,20,20 ,1,_scale		 , 0 , c_white , 1);
+		draw_sprite_ext(spr_battery_bar, 0, _x, _y , 1, _scale, 0, c_white, 1);
 	}
 	
-	x_gui_normal	= 22;
-	x_gui_candy		= 50;
+	x_gui_normal	= -20;
+	x_gui_candy		= 36;
 	x_gui		 	= x_gui_candy;
 	
 	draw_gui = function()
 	{
+		draw_topbar();
+		
 		x_gui = lerp(x_gui , CURRENT_WORLD ? x_gui_normal : x_gui_candy,.1);
 		
-		draw_set_font(fnt_pb);
+		var _scrib = scribble($"[fnt_pb_o] ${string_format_nlarge(GAME_INFO.coins)}");
+	
+		var _x = 28;
+		var _y = 26;
+	
+		_scrib
+			.align(fa_left, fa_middle)
+			.flash(#000000, 1)
+			.draw(
+				_x - 1,
+				_y + 1
+			)
+
+		_scrib
+			.flash(#ffffff, 0)
+			.draw(
+				_x,
+				_y
+			)
 		
-		draw_cool_scribble_text(x_gui , 40 , $"[spr_money_icon]: {string_format_nlarge(GAME_INFO.coins)}");
+		draw_sprite_ext(spr_money_icon, 0, _x - 1, _y + 1, 1, 1, 0, #000000, 1);
+		draw_sprite_ext(spr_money_icon, 0, _x, _y, 1, 1, 0, #ffffff, 1);
 		
 		if(!CURRENT_WORLD)
 		{
-			draw_cool_text(x_gui , 55 , $"Altura: {max(round((y+max_y_outside)/32),0)} m");
+			var _scrib = scribble($"[fnt_pb_o]{$"Altura: {max(round((y+max_y_outside)/32),0)} m"}");
+			
+			_scrib
+				.align(fa_left, fa_middle)
+				.flash(#000000, 1)
+				.draw(
+					x_gui - 1,
+					55 + 1
+				)
+
+			_scrib
+				.flash(#ffffff, 0)
+				.draw(
+					x_gui,
+					55
+				)
 		}
 		
 		draw_set_font(-1);

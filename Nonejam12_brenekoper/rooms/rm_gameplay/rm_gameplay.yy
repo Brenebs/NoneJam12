@@ -106,8 +106,8 @@
       ],"depth":800,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"SprBackgroundLand","properties":[],"resourceType":"GMRAssetLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRInstanceLayer":"","%Name":"GroundEffect","depth":900,"effectEnabled":true,"effectType":"_filter_outline","gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[],"layers":[],"name":"GroundEffect","properties":[
         {"name":"g_OutlineColour","type":1,"value":"#FFFFFF45",},
-        {"name":"g_OutlineRadius","type":0,"value":"2",},
-        {"name":"g_OutlinePixelScale","type":0,"value":"1",},
+        {"name":"g_OutlineRadius","type":0,"value":"3",},
+        {"name":"g_OutlinePixelScale","type":0,"value":"2",},
       ],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRAssetLayer":"","%Name":"Terra2","assets":[
         {"$GMRSpriteGraphic":"v1","%Name":"graphic_3DC587D3","animationSpeed":1.0,"colour":4294967295,"frozen":false,"headPosition":0.0,"ignore":false,"inheritedItemId":null,"inheritItemSettings":false,"name":"graphic_3DC587D3","resourceType":"GMRSpriteGraphic","resourceVersion":"2.0","rotation":0.0,"scaleX":4.8399997,"scaleY":1.3649999,"spriteId":{"name":"spr_background_ninesliced","path":"sprites/spr_background_ninesliced/spr_background_ninesliced.yy",},"x":0.0,"y":-9.0,},

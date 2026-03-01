@@ -137,7 +137,7 @@ function UiButton(_x, _y, _w, _h, _x_center = _w * .5, _y_center = _h * .5) : Ui
 	text_font = fnt_pb;
 	
 	sprite = spr_button;
-	color = #8888ff;
+	color = #db6395;
 	
 	depth = 6;
 	

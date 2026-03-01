@@ -830,6 +830,7 @@
     {"id":{"name":"spr_background_house_far","path":"sprites/spr_background_house_far/spr_background_house_far.yy",},},
     {"id":{"name":"spr_background_house","path":"sprites/spr_background_house/spr_background_house.yy",},},
     {"id":{"name":"spr_background_ninesliced","path":"sprites/spr_background_ninesliced/spr_background_ninesliced.yy",},},
+    {"id":{"name":"spr_bar","path":"sprites/spr_bar/spr_bar.yy",},},
     {"id":{"name":"spr_battery_bar","path":"sprites/spr_battery_bar/spr_battery_bar.yy",},},
     {"id":{"name":"spr_battery_player","path":"sprites/spr_battery_player/spr_battery_player.yy",},},
     {"id":{"name":"spr_button_skill","path":"sprites/spr_button_skill/spr_button_skill.yy",},},

@@ -67,5 +67,4 @@ draw_inputs = fx() {
 			_x,
 			_y
 		)
-
 }

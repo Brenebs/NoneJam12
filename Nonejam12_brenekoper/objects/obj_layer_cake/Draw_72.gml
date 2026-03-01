@@ -48,5 +48,7 @@ if(global.color_effect != _color)
 	show_debug_message($"{_r}-{_g}_{_b}")
 
 	fx_set_parameter(fx_merge, "g_OutlineColour", [_r, _g, _b, 1]);
+	fx_set_parameter(fx_merge, "g_OutlineRadius", 3);
+	fx_set_parameter(fx_merge, "g_OutlinePixelScale", 2);
 	//layer_set_fx("GroundEffect",fx_merge);
 }

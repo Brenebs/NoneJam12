@@ -35,6 +35,8 @@ var _r = colour_get_blue(	global.color_effect );
 var _g = colour_get_green(	global.color_effect );
 var _b = colour_get_blue(	global.color_effect );
 fx_set_parameter(fx_merge, "g_OutlineColour", [_r, _g, _b, 1]);
+fx_set_parameter(fx_merge, "g_OutlineRadius", 3);
+fx_set_parameter(fx_merge, "g_OutlinePixelScale", 2);
 fx_set_single_layer(fx_merge,true);
 //
 

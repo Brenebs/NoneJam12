@@ -34,16 +34,16 @@ function add_drop(_object , _sprite ,  _value = 5 , _number_to_add = 1 , _stack_
 			var _same_stack  = _current.slot_stack_base == _stack_base
 			var _can_fit	 = _current.slot_stack_current_number < (_current.slot_stack_base + ceil(_current.slot_stack_base * UPGRADES.ext_slot_lenght*INVENTORY_MULTIPLYER))
 			
-			show_debug_message(
-				"TENTANDO ADICIONAR : \n" +
-				"_same_object" + $"{_same_object}\n" +
-				"_same_sprite" + $"{_same_sprite}\n" +
-				"_same_value " + $"{_same_value}\n" +
-				"_same_rarity" + $"{_same_rarity}\n" +
-				"_same_stack " + $"{_same_stack}\n" +
-				"_can_fit	 " + $"{_can_fit}\n" 
+			//show_debug_message(
+			//	"TENTANDO ADICIONAR : \n" +
+			//	"_same_object" + $"{_same_object}\n" +
+			//	"_same_sprite" + $"{_same_sprite}\n" +
+			//	"_same_value " + $"{_same_value}\n" +
+			//	"_same_rarity" + $"{_same_rarity}\n" +
+			//	"_same_stack " + $"{_same_stack}\n" +
+			//	"_can_fit	 " + $"{_can_fit}\n" 
 			
-			)
+			//)
 			
 			if(_same_object && _same_sprite && _same_value && _same_rarity && _same_stack && _can_fit	)
 			{
