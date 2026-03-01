@@ -19,11 +19,12 @@ visibility_update = fx() {
 action = fx() {
 	if ((purchased_n < upgrade_amt) and (get_price() <= GAME_INFO.coins)) 
 	{
+		GAME_INFO.coins -= get_price();
+		GAME_INFO.coins = max(GAME_INFO.coins, 0)
+		
 		UPGRADES[$ upgrade_var] += 1;
 		
 		purchased_n++;
-		GAME_INFO.coins -= get_price();
-		GAME_INFO.coins = max(GAME_INFO.coins, 0)
 		
 		obj_skill_manager.update_all_purchases();
 		
