@@ -108,6 +108,7 @@ global.music_stop = -1;
 
 function music_swap(_id) {
 	if !audio_is_playing(_id) {
+		if audio_is_playing(global.music) audio_stop_sound(global.music);
 		global.music = sfx_play(_id, 1, 0, true);
 	}
 }
