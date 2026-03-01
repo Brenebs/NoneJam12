@@ -1015,6 +1015,7 @@
     {"id":{"name":"spr_player_normal_prepare_jump","path":"sprites/spr_player_normal_prepare_jump/spr_player_normal_prepare_jump.yy",},},
     {"id":{"name":"spr_player_normal_walk","path":"sprites/spr_player_normal_walk/spr_player_normal_walk.yy",},},
     {"id":{"name":"spr_portal","path":"sprites/spr_portal/spr_portal.yy",},},
+    {"id":{"name":"spr_q","path":"sprites/spr_q/spr_q.yy",},},
     {"id":{"name":"spr_s","path":"sprites/spr_s/spr_s.yy",},},
     {"id":{"name":"spr_sell_dbg","path":"sprites/spr_sell_dbg/spr_sell_dbg.yy",},},
     {"id":{"name":"spr_sell_itens","path":"sprites/spr_sell_itens/spr_sell_itens.yy",},},
