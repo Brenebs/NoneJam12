@@ -39,7 +39,7 @@ var _h = GUI_HEIGHT * .33;
 		color = #ff5555;
 		depth = 5;
 		action = fx() {
-			global.elevator_choose = wrap(global.elevator_choose-1 , 0 , GAME_INFO.max_chunk_achiev div 10);
+			global.elevator_choose = wrap(global.elevator_choose-1 , 1 , GAME_INFO.max_chunk_achiev div 10);
 			update_save();
 		}
 	}
@@ -47,7 +47,7 @@ var _h = GUI_HEIGHT * .33;
 	
 	var _main = new UiText(x_menu, _h - 6, 150, 24);
 	with(_main) {
-		text = fx() { return $"{round(global.elevator_choose+1)}° elevador" };
+		text = fx() { return $"{round(global.elevator_choose+1)} elevador" };
 		text_scribble = false;
 		text_font = fnt_p
 		text_valign = fa_top;
@@ -60,13 +60,13 @@ var _h = GUI_HEIGHT * .33;
 		color = #ff5555;
 		depth = 5;
 		action = fx() {
-			global.elevator_choose = wrap(global.elevator_choose+1 , 0 , GAME_INFO.max_chunk_achiev div 10);
+			global.elevator_choose = wrap(global.elevator_choose+1 , 1 , GAME_INFO.max_chunk_achiev div 10);
 			update_save();
 		}
 	}
 	push_content(_main_max_button);
 	
-	_h += 28;
+	_h += 16;
 	
 #endregion
 
@@ -75,9 +75,37 @@ var _h = GUI_HEIGHT * .33;
 
 	var _fullscreen = new UiButton(x_menu, GUI_HEIGHT * .82 - 64, 110, 32);
 	with(_fullscreen) {
-		text = fx() { return $"Tela-cheia: {window_get_fullscreen() ? "Sim" : "Não"}" };
+		text = fx() 
+		{ 
+			return "Afundar!"
+		};
 		action = fx() {
-			GAME_INFO.fullscreen = !GAME_INFO.fullscreen;
+			var _player = obj_player;
+			var _index = noone;
+			with(obj_interact_item_father)
+			{
+				if(variable_instance_exists(id , "id_chunk"))
+				{
+					if(id_chunk == _player.current_choose)
+					{
+						_index = id;
+					}
+				}
+			}
+			
+			if(_index != noone)
+			{
+				with(obj_player)
+				{
+					elevator_follow = _index;
+					
+					image_alpha = 0;
+					enter_ground(state_godown)
+				}
+				
+				owner.close();
+			}
+			
 			update_save();
 		}
 	}
