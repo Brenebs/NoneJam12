@@ -46,11 +46,18 @@ if(CAMERA_Y < -128)
 	
 	draw_sprite_ext(spr_background_house_far,0,_x,_y, 1 , _scl , 0 , c_white , 1);
 	
-	_x = lerp(_camx1 , _camx2 ,  .06);
+	_x = lerp(_camx1 , _camx2 ,  .3);
 	_y = lerp(_camy1 , _camy2 ,  .05 + (1 * .525));
 	_scl  = 8;
 	
 	draw_sprite_ext(spr_background_house,0,_x,_y, _scl , 1 , 0 , c_white , 1);
+	
+	_x = lerp(_camx1 , _camx2 ,  .5);
+	_y = lerp(_camy1 , _camy2 ,  .035 + (1 * .525));
+	_scl  = 1;
+	
+	draw_sprite_ext(spr_background_grass,0,_x,_y - 174, _scl , 1 , 0 , c_white , 1);
+	
 	
 }
 

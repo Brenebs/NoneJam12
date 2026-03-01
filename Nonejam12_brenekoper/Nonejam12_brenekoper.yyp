@@ -827,6 +827,7 @@
     {"id":{"name":"spr_background_biom3","path":"sprites/spr_background_biom3/spr_background_biom3.yy",},},
     {"id":{"name":"spr_background_biom4","path":"sprites/spr_background_biom4/spr_background_biom4.yy",},},
     {"id":{"name":"spr_background_biom5","path":"sprites/spr_background_biom5/spr_background_biom5.yy",},},
+    {"id":{"name":"spr_background_grass","path":"sprites/spr_background_grass/spr_background_grass.yy",},},
     {"id":{"name":"spr_background_house_far","path":"sprites/spr_background_house_far/spr_background_house_far.yy",},},
     {"id":{"name":"spr_background_house","path":"sprites/spr_background_house/spr_background_house.yy",},},
     {"id":{"name":"spr_background_ninesliced","path":"sprites/spr_background_ninesliced/spr_background_ninesliced.yy",},},

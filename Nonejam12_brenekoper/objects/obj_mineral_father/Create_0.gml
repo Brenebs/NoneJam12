@@ -1,4 +1,6 @@
 
+evade_teleport();
+
 image_index = random(image_number);
 
 scale = 1;
