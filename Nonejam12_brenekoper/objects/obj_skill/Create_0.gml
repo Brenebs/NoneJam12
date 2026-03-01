@@ -82,6 +82,21 @@ purchase_update = fx() {
 	locked = _locked;
 }
 
+get_color = fx() {
+	var _color = #88ff88;
+	var _purchased = purchased_n >= upgrade_amt;
+	var _can_purchase = (GAME_INFO.coins >= get_price());
+	
+	if (purchased_n > 0) _color = #88ff88;
+	
+	if _purchased {
+		_color = #a1a1a1;
+	}
+	else if !_can_purchase _color = #ff8888;
+		
+	return _color;
+}
+
 _system_draw = fx(_xoff = 0, _yoff = 0, _a = 1, _c = #ffffff) {
 		
 	#region Util Variables
@@ -106,14 +121,7 @@ _system_draw = fx(_xoff = 0, _yoff = 0, _a = 1, _c = #ffffff) {
 		var _can_purchase = (GAME_INFO.coins >= get_price());
 		var _purchased = purchased_n >= upgrade_amt;
 		
-		var _color = #ffffff;
-		
-		if (purchased_n > 0) _color = #88ff88;
-		
-		if _purchased {
-			_color = #a1a1a1;
-		}
-		else if !_can_purchase _color = #ff8888;
+		var _color = get_color();
 		
 		if prompt_flag {
 			_matrix_x += lengthdir_x(2, current_time * 1.66);

@@ -496,7 +496,7 @@ dirt_sound = sfx_play(snd_dirt_loop, 0, 0, true);
 		
 		if(!CURRENT_WORLD)
 		{
-			var _scrib = scribble($"[fnt_pb_o]{$"Profundidade: {max(round((y+max_y_outside)/32),0)} m"}");
+			var _scrib = scribble($"[fnt_pb_o]{$"Profundidade: {max(round((y+max_y_outside)/32),0)}m"}");
 			
 			_scrib
 				.align(fa_left, fa_middle)
