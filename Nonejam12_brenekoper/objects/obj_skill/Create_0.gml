@@ -8,7 +8,7 @@ height = sprite_height;
 
 y -= bt_depth * .5;
 
-alarm[0] = 2;
+alarm[0] = 1;
 
 purchased_n = max(UPGRADES[$ upgrade_var] - upgrade_unlock,0);
 

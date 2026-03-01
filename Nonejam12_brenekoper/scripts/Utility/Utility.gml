@@ -255,6 +255,25 @@ function array_choose(_array) {
     return _array[irandom(array_length(_array)-1)];
 }
 
+function string_format_nlarge(_number, _space = ",") {
+	var _string = string(_number);
+	var _result = "";
+	
+	var _space_counter = 0;
+	
+	for (var i = (string_length(_string)); i > 0; i--) {
+		var _element = string_char_at(_string, i);
+		
+		if ((_space_counter++ >= 2) and ((i - 1) > 0)) {
+			_element = _space + _element;
+			_space_counter = 0;
+		}
+		
+		_result = _element + _result;
+	}
+	
+	return _result;
+}
 
 function color_to_string(_value) {
 	    var _b = (_value >> 16) & 0xFF;

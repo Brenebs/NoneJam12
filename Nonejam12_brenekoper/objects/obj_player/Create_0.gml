@@ -436,7 +436,7 @@ dirt_sound = sfx_play(snd_dirt_loop, 0, 0, true);
 		
 		draw_set_font(fnt_pb);
 		
-		draw_cool_scribble_text(x_gui , 40 , $"[spr_money_icon]: {GAME_INFO.coins}");
+		draw_cool_scribble_text(x_gui , 40 , $"[spr_money_icon]: {string_format_nlarge(GAME_INFO.coins)}");
 		
 		if(!CURRENT_WORLD)
 		{
