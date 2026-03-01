@@ -75,10 +75,10 @@ function UiText(_x, _y, _w, _h, _x_center = _w * .5, _y_center = _h * .5)  : UiE
 		draw_set_font(text_font);
 		draw_set_halign(text_halign);
 		draw_set_valign(text_valign);
-		draw_set_alpha(.5);
+		draw_set_alpha(1);
 		if text_scribble {
 			draw_text_scribble_ext(
-				_x + SHADOW_TEXT_OFFSET,
+				_x - SHADOW_TEXT_OFFSET,
 				_y + SHADOW_TEXT_OFFSET,
 				$"[scale, {text_scale}][#000000]{_txt}",
 				width - SHADOW_TEXT_OFFSET * 2
@@ -86,7 +86,7 @@ function UiText(_x, _y, _w, _h, _x_center = _w * .5, _y_center = _h * .5)  : UiE
 		}
 		else {
 			draw_text_ext_transformed_colour(
-				_x + SHADOW_TEXT_OFFSET,
+				_x - SHADOW_TEXT_OFFSET,
 				_y + SHADOW_TEXT_OFFSET,
 				_txt,
 				1,
@@ -269,10 +269,10 @@ function UiButton(_x, _y, _w, _h, _x_center = _w * .5, _y_center = _h * .5) : Ui
 			draw_set_font(text_font);
 			draw_set_halign(text_halign);
 			draw_set_valign(text_valign);
-			draw_set_alpha(.5);
+			draw_set_alpha(1);
 			if text_scribble {
 				draw_text_scribble_ext(
-					SHADOW_TEXT_OFFSET,
+					-SHADOW_TEXT_OFFSET,
 					SHADOW_TEXT_OFFSET + (_button_depth - _button_side_offset) * push_anim - (_button_depth * .5),
 					$"[scale, {text_scale}][#000000]{_txt}",
 					width - SHADOW_TEXT_OFFSET * 2
@@ -280,7 +280,7 @@ function UiButton(_x, _y, _w, _h, _x_center = _w * .5, _y_center = _h * .5) : Ui
 			}
 			else {
 				draw_text_ext_transformed_colour(
-					SHADOW_TEXT_OFFSET,
+					-SHADOW_TEXT_OFFSET,
 					SHADOW_TEXT_OFFSET + (_button_depth - _button_side_offset) * push_anim - (_button_depth * .5) - 2,
 					_txt,
 					1,
@@ -411,3 +411,5 @@ enum UI_EVENT {
 
 //	Macros
 #macro WINDOWS_CURSOR true
+
+scribble_font_bake_outline_8dir(font_get_name(fnt_pb), "fnt_pb_o", #000000, false);

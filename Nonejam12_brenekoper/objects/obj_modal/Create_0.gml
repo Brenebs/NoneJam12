@@ -3,6 +3,8 @@ event_inherited();
 
 region_w = 360;
 region_h = 180;
+region_x_offset = 0;
+region_y_offset = 0;
 region_alpha = .8;
 
 anim = -1;
@@ -17,8 +19,8 @@ close = fx() {
 }
 
 draw_region = fx(_xoff = 0, _yoff = 0) {
-	var _x = GUI_WIDTH * .5;
-	var _y = GUI_HEIGHT * .5;
+	var _x = GUI_WIDTH * .5 + region_x_offset;
+	var _y = GUI_HEIGHT * .5 + region_y_offset;
 	
 	draw_set_alpha(region_alpha);
 	draw_sprite_stretched(

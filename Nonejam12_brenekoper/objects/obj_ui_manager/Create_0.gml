@@ -37,9 +37,35 @@ check_priority = fx(_priority) {
 
 inputs = {};
 with(inputs) {
-	overworld= "";
+	menu = fx() { return "Interagir [spr_mouse_left]" };
+	overworld = fx() { return "Interagir [spr_space]" };
+	skill_tree = fx() { return "Comprar [spr_mouse_left]\nMover [spr_mouse_right]\nSair [spr_esc]" };
+	expedition = fx() { return $"Cavar [spr_mouse_left]{UPGRADES.dash_unlocked ? "\nMover [spr_mouse_right]" : ""}" };
 }
 
+current_input = "menu";
+
 draw_inputs = fx() {
+	var _scrib = scribble($"[fnt_pb_o]{inputs[$ current_input]()}");
 	
+	var _padding = 12;
+	
+	var _x = GUI_WIDTH - _padding;
+	var _y = GUI_HEIGHT - _padding;
+	
+	_scrib
+		.align(fa_right, fa_bottom)
+		.flash(#000000, 1)
+		.draw(
+			_x - 1,
+			_y + 1
+		)
+
+	_scrib
+		.flash(#ffffff, 0)
+		.draw(
+			_x,
+			_y
+		)
+
 }
