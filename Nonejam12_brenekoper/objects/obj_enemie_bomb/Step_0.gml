@@ -8,13 +8,21 @@ if(global.pause) return;
 
 if(!activated)
 {
-	if(life_total != life || distance_to_object(obj_player) < area_explosion/2 && obj_player.image_alpha > 0)
+	if(obj_player.image_alpha > 0)
 	{
-		activated = true;
+		var _dist = distance_to_object(obj_player);
+		var _area = area_explosion*.8;
 		
-		sprite_index = spr_enemie_bomb_activated;
+		//if(life_max*.7 <= life || distance_to_object(obj_player) < area_explosion/2)
 		
-		scale = 1.5
+		if(_dist < _area)
+		{
+			activated = true;
+		
+			sprite_index = spr_enemie_bomb_activated;
+		
+			scale = 1.5
+		}
 	}
 }
 else

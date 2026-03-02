@@ -14,7 +14,7 @@ current_between_hits = 10;
 
 old_position = new vector2(x,y);
 
-random_positions = better_array_create(random(6),new vector2(x,y))
+random_positions = better_array_create(3,new vector2(x,y))
 
 next_attack = noone;
 
@@ -52,10 +52,11 @@ hurt_enemies = function()
 		x = next_attack.x;
 		y = next_attack.y;
 		
-		var _rng = point_distance(old_position.x, old_position.y,x,y) * .075;
+		var _rng = point_distance(old_position.x, old_position.y,x,y) * .25;
 								 
 		var _num = array_length(random_positions)
-		for(var i = _num-1 ; i >= 0 ;i--)
+		//for(var i = _num-1 ; i >= 0 ;i--)
+		for(var i = 0 ; i < _num ;i++)
 		{
 			
 			random_positions[i].x = lerp(old_position.x , x , i/(_num-1)) + random_range(-_rng,_rng);
