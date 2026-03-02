@@ -1,1 +1,1 @@
-call_later(0.5, time_source_units_seconds, fx() { music_swap(mus_overworld) });
+music_swap(mus_overworld);

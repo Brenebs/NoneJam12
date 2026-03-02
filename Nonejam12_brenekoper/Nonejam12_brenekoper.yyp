@@ -322,6 +322,7 @@
     {"id":{"name":"obj_skill_slot4","path":"objects/obj_skill_slot4/obj_skill_slot4.yy",},},
     {"id":{"name":"obj_skill_slot5","path":"objects/obj_skill_slot5/obj_skill_slot5.yy",},},
     {"id":{"name":"obj_skill","path":"objects/obj_skill/obj_skill.yy",},},
+    {"id":{"name":"obj_splash","path":"objects/obj_splash/obj_splash.yy",},},
     {"id":{"name":"obj_teleport_botton","path":"objects/obj_teleport_botton/obj_teleport_botton.yy",},},
     {"id":{"name":"obj_teleport_top","path":"objects/obj_teleport_top/obj_teleport_top.yy",},},
     {"id":{"name":"obj_transition","path":"objects/obj_transition/obj_transition.yy",},},
@@ -333,6 +334,7 @@
     {"id":{"name":"rm_main_menu","path":"rooms/rm_main_menu/rm_main_menu.yy",},},
     {"id":{"name":"rm_real_world","path":"rooms/rm_real_world/rm_real_world.yy",},},
     {"id":{"name":"rm_skill_tree","path":"rooms/rm_skill_tree/rm_skill_tree.yy",},},
+    {"id":{"name":"rm_splash","path":"rooms/rm_splash/rm_splash.yy",},},
     {"id":{"name":"__InputBindingIsThumbstick","path":"scripts/__InputBindingIsThumbstick/__InputBindingIsThumbstick.yy",},},
     {"id":{"name":"__InputBindingScan","path":"scripts/__InputBindingScan/__InputBindingScan.yy",},},
     {"id":{"name":"__InputClassCluster","path":"scripts/__InputClassCluster/__InputClassCluster.yy",},},
@@ -1032,6 +1034,7 @@
     {"roomId":{"name":"rm_real_world","path":"rooms/rm_real_world/rm_real_world.yy",},},
     {"roomId":{"name":"rm_main_menu","path":"rooms/rm_main_menu/rm_main_menu.yy",},},
     {"roomId":{"name":"rm_skill_tree","path":"rooms/rm_skill_tree/rm_skill_tree.yy",},},
+    {"roomId":{"name":"rm_splash","path":"rooms/rm_splash/rm_splash.yy",},},
   ],
   "templateType":"game",
   "TextureGroups":[
