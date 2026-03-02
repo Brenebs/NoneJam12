@@ -20,7 +20,7 @@ if(hover)
 	
 	var _padding = 8;
 	
-	var _offset = ((_w + sprite_width * 1.5) * .5 + _padding) * (((MOUSE_GUI_X + _w + _padding * 2) > GUI_WIDTH) ? -1 : 1);
+	var _offset = ((_w + sprite_width * 1.5) * .5 + _padding) * (((MOUSE_GUI_X + (_w + sprite_width * 1.5) + _padding * 2) > GUI_WIDTH) ? -1 : 1);
 	
 	var _x = x - CAMERA_X + _offset;
 	var _y = y - CAMERA_Y;
