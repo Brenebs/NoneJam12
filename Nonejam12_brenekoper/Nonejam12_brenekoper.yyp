@@ -1018,6 +1018,7 @@
     {"id":{"name":"spr_player_normal_jump","path":"sprites/spr_player_normal_jump/spr_player_normal_jump.yy",},},
     {"id":{"name":"spr_player_normal_prepare_jump","path":"sprites/spr_player_normal_prepare_jump/spr_player_normal_prepare_jump.yy",},},
     {"id":{"name":"spr_player_normal_walk","path":"sprites/spr_player_normal_walk/spr_player_normal_walk.yy",},},
+    {"id":{"name":"spr_portal_magnet","path":"sprites/spr_portal_magnet/spr_portal_magnet.yy",},},
     {"id":{"name":"spr_portal","path":"sprites/spr_portal/spr_portal.yy",},},
     {"id":{"name":"spr_q","path":"sprites/spr_q/spr_q.yy",},},
     {"id":{"name":"spr_ray","path":"sprites/spr_ray/spr_ray.yy",},},

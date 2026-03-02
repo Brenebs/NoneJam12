@@ -882,7 +882,7 @@ v_spd = 0;
 		
 		consume_energy(state_dash_energy_cost);
 		
-		image_blend = c_red;
+		//image_blend = c_red;
 		
 		var _h_spd = lengthdir_x(dash_speed + ((current_energy < 0) * 5) , angle_direction);
 		var _v_spd = lengthdir_y(dash_speed + ((current_energy < 0) * 5) , angle_direction);

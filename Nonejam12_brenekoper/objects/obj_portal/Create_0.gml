@@ -3,6 +3,9 @@
 
 event_inherited();
 
+r_spd = 0;
+r = 0;
+
 when_interacted = function()
 {
 	do_boing();
