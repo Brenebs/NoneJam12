@@ -21,6 +21,8 @@ walk_speed = 2;
 damage = 5;
 knockback = 10;
 
+
+
 create_hitbox = function()
 {
 	hitbox = instance_create_depth(x,y,depth-1,obj_hitbox_hurt_player);
@@ -104,3 +106,5 @@ collision = function()
 		}
 	}
 }
+
+enemy_clone_mineral()

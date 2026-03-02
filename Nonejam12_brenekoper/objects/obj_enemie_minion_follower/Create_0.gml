@@ -18,6 +18,7 @@ knockback = 10;
 
 timer_to_attack = 20;
 
+
 get_knockback = function()
 {
 	return walk_direction;

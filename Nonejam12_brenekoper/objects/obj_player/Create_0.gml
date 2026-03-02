@@ -758,6 +758,11 @@ v_spd = 0;
 
 #region state machine debaixo da terra
 
+	check_dash = function()
+	{
+		return mouse_check_button(mb_right) || keyboard_check(vk_space);
+	}
+
 	//andando debaixo da terra
 	state_walk = function()
 	{
@@ -801,7 +806,7 @@ v_spd = 0;
 		
 		
 		
-		if(has_dash && mouse_check_button(mb_right))
+		if(has_dash && check_dash())
 		{
 			state = state_dash_load;
 			
@@ -836,9 +841,8 @@ v_spd = 0;
 		else look_at = 1;
 		
 		
-		current_dash_load_timer = clamp(current_dash_load_timer+1,0,dash_load_timer)
-		
-		if(!mouse_check_button(mb_right))
+		current_dash_load_timer = clamp(current_dash_load_timer+1,0,dash_load_timer);
+		if(!check_dash())
 		{
 			state = state_dash_released;
 			current_dash_timer = 0;

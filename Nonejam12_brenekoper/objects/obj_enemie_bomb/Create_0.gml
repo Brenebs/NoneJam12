@@ -68,6 +68,8 @@ draw_mineral = function()
 	}
 }
 
+enemy_clone_mineral()
+
 //if(_ins)
 //{
 //	if(_ins.can_i_be_hurt(id))

@@ -104,3 +104,5 @@ create_minions = function()
 }
 
 state = state_idle
+
+enemy_clone_mineral()
