@@ -285,9 +285,47 @@ function evade_teleport_height()
 
 function enemy_clone_mineral()
 {
-	life		   = 0;
-	resistency	   = 0;
-	mineral_number = 0;
+	var _list = ds_list_create();
+	
+	var _clone = noone;
+	var _lf = 0;
+	
+	var _num = collision_circle_list(x,y,300,obj_mineral_father,false,true,_list,true);
+	
+	for(var i = 0 ; i < _num ; i++)
+	{
+		var _current = ds_list_find_value(_list , i);
+		
+		if(_clone == noone)
+		{
+			_clone = _current;
+		}
+		
+		if(instance_exists(_clone))
+		{
+			if(_lf < _current.life)
+			{
+				_clone = _current;
+				_lf = _current.life;
+			}
+		}
+	}
+	
+	ds_list_destroy();
+	
+	if(_clone == noone)
+	{
+		_clone = instance_nearest(x,y,obj_mineral_father);
+	}
+	
+	if(instance_exists(_clone))
+	{
+		life		    = _clone.life_max * 2		  ;
+		life_max		= life		  ;
+		resistency	    = _clone.resistency	  ;
+		mineral_number  = round(_clone.mineral_number * 2.5);
+		mineral_drop	= _clone.mineral_drop;
+	}
 }
 
 //var _mineral = new create_minerals(obj_mineral_16)
