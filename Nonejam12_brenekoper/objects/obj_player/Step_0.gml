@@ -15,6 +15,7 @@ hit_stop = max_timer(hit_stop);
 
 if(global.pause || hit_stop>0) exit;
 
+current_energy = min(current_energy , energy_max);
 
 state();
 

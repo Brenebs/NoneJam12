@@ -152,7 +152,7 @@ dirt_sound = sfx_play(snd_dirt_loop, 0, 0, true);
 					GAME_INFO.enemies_killed++;
 					if(life_steal_percent > 0)
 					{
-						current_energy += (energy_max)*life_steal_percent;
+						current_energy = current_energy + min((energy_max)*life_steal_percent , energy_max)
 					}
 				}
 				_current.destroy_function(_is_dash);

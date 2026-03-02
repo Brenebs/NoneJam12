@@ -76,7 +76,21 @@ hurt_enemies = function()
 			timer_between_hitscisual = timer_between_hits/2
 			current_between_hits = 15;
 			
+			if(next_attack.is_enemy)
+			{
+				GAME_INFO.enemies_killed++;
+				with(obj_player)
+				{
+					if(life_steal_percent > 0)
+					{
+						current_energy = current_energy + min((energy_max)*life_steal_percent , energy_max);
+					}
+				}
+			}
+			
 			next_attack.destroy_function(0);
+			
+			
 		}
 		
 		ray		*= .9;
