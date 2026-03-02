@@ -2,9 +2,9 @@
   "$GMSprite":"v2",
   "%Name":"spr_litou_hat",
   "bboxMode":0,
-  "bbox_bottom":9,
+  "bbox_bottom":14,
   "bbox_left":0,
-  "bbox_right":10,
+  "bbox_right":11,
   "bbox_top":0,
   "collisionKind":1,
   "collisionTolerance":0,
@@ -12,14 +12,14 @@
   "edgeFiltering":false,
   "For3D":false,
   "frames":[
-    {"$GMSpriteFrame":"v1","%Name":"1269e00e-cd03-442d-9ed8-61900cb51216","name":"1269e00e-cd03-442d-9ed8-61900cb51216","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"413fe8a9-b494-410b-a283-748533b6e02b","name":"413fe8a9-b494-410b-a283-748533b6e02b","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
   "gridY":0,
-  "height":10,
+  "height":15,
   "HTile":false,
   "layers":[
-    {"$GMImageLayer":"","%Name":"c3a51aff-f80d-47d1-ad03-aca4cf486067","blendMode":0,"displayName":"default","isLocked":false,"name":"c3a51aff-f80d-47d1-ad03-aca4cf486067","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
+    {"$GMImageLayer":"","%Name":"382e1ce1-f67e-47f5-a26c-4a23ccabe298","blendMode":0,"displayName":"default","isLocked":false,"name":"382e1ce1-f67e-47f5-a26c-4a23ccabe298","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
   "name":"spr_litou_hat",
   "nineSlice":null,
@@ -69,8 +69,8 @@
     "tracks":[
       {"$GMSpriteFramesTrack":"","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"$KeyframeStore<SpriteFrameKeyframe>":"","Keyframes":[
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"1269e00e-cd03-442d-9ed8-61900cb51216","path":"sprites/spr_litou_hat/spr_litou_hat.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"8d2a128b-0947-4bb9-9d16-f777c061f1f2","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"413fe8a9-b494-410b-a283-748533b6e02b","path":"sprites/spr_litou_hat/spr_litou_hat.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"76de8277-081e-4854-afe8-6cadfecd1cb7","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange":null,
@@ -86,5 +86,5 @@
   },
   "type":0,
   "VTile":false,
-  "width":11,
+  "width":12,
 }

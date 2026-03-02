@@ -22,6 +22,8 @@ current_timer_to_explode = 0;
 
 life_total = life;
 
+sound = -1;
+
 get_knockback = function(_ins)
 {
 	return point_direction(x,y,_ins.x,_ins.y);
@@ -29,6 +31,9 @@ get_knockback = function(_ins)
 
 exploding = function()
 {
+	
+	audio_stop_sound(sound);
+	sfx_play(snd_explosion);
 	
 	var _ins = collision_circle(x,y,area_explosion,obj_player,true , true);
 	

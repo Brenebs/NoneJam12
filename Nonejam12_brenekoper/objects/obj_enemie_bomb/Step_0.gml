@@ -18,6 +18,11 @@ if(!activated)
 		if(_dist < _area)
 		{
 			activated = true;
+			
+			if sound == -1 {
+				sound = sfx_play(snd_mine_loop, 1, 0, true);
+				audio_sound_pitch(sound, 1.4);
+			}
 		
 			sprite_index = spr_enemie_bomb_activated;
 		
@@ -28,6 +33,10 @@ if(!activated)
 else
 {
 	current_timer_to_explode++;
+	
+	if (current_timer_to_explode >= timer_to_explode * .5) {
+		audio_sound_pitch(sound, audio_sound_get_pitch(sound) * 1.015);
+	}
 	
 	if(current_timer_to_explode >= timer_to_explode)
 	{
