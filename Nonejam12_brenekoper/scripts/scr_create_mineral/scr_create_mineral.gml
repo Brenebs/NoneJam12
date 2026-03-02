@@ -311,7 +311,7 @@ function enemy_clone_mineral()
 		}
 	}
 	
-	ds_list_destroy();
+	ds_list_destroy(_list);
 	
 	if(_clone == noone)
 	{
