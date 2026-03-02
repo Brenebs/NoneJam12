@@ -145,7 +145,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.14.2.213",
+    "IDEVersion":"2024.14.3.217",
   },
   "name":"Nonejam12_brenekoper",
   "resources":[
@@ -972,6 +972,7 @@
     {"id":{"name":"spr_inside_house","path":"sprites/spr_inside_house/spr_inside_house.yy",},},
     {"id":{"name":"spr_item_dispenser","path":"sprites/spr_item_dispenser/spr_item_dispenser.yy",},},
     {"id":{"name":"spr_litou_hat","path":"sprites/spr_litou_hat/spr_litou_hat.yy",},},
+    {"id":{"name":"spr_logo","path":"sprites/spr_logo/spr_logo.yy",},},
     {"id":{"name":"spr_mineral_1","path":"sprites/spr_mineral_1/spr_mineral_1.yy",},},
     {"id":{"name":"spr_mineral_10","path":"sprites/spr_mineral_10/spr_mineral_10.yy",},},
     {"id":{"name":"spr_mineral_11","path":"sprites/spr_mineral_11/spr_mineral_11.yy",},},
