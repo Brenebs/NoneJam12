@@ -241,10 +241,38 @@ function create_minerals(_object = obj_mineral_father) constructor
 		{
 			add_interval(60 , 65 , , 1 , 1,1);
 		}
+		with(_mina)
+		{
+			add_interval(70 , 80 , , 1 , 1,1);
+		}
 		
 		with(_fumirainha)
 		{
 			add_interval(70 , 70 , , 1 , 1,1);
+		}
+		with(_fumirainha)
+		{
+			add_interval(81 , 83 , , 1 , 1,1);
+		}
+		
+		with(_fumirainha)
+		{
+			add_interval(90 , 95 , , 1 , 1,1);
+		}
+		
+		with(_fumirainha)
+		{
+			add_interval(110 , 115 , , 1 , 1,1);
+		}
+		
+		with(_fumiga)
+		{
+			add_interval(80 , 90 , , 1 , 1,1);
+		}
+		
+		with(_mina)
+		{
+			add_interval(110 , 110 , , 1 , 8,8);
 		}
 		
 	#endregion
