@@ -12,6 +12,8 @@ white_timer = 0;
 
 life_max = life;
 
+is_enemy = false;
+
 //image_xscale = scale;
 //image_yscale = scale;
 

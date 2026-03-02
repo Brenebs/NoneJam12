@@ -303,7 +303,7 @@ function enemy_clone_mineral()
 		
 		if(instance_exists(_clone))
 		{
-			if(_lf < _current.life)
+			if(_lf < _current.life && !_current.is_enemy)
 			{
 				_clone = _current;
 				_lf = _current.life;

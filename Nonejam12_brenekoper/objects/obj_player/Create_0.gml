@@ -147,6 +147,14 @@ dirt_sound = sfx_play(snd_dirt_loop, 0, 0, true);
 				{
 					_is_dash = true
 				}
+				if(_current.is_enemy)
+				{
+					GAME_INFO.enemies_killed++;
+					if(life_steal_percent > 0)
+					{
+						current_energy += (energy_max)*life_steal_percent;
+					}
+				}
 				_current.destroy_function(_is_dash);
 			}
 			else
@@ -770,6 +778,16 @@ v_spd = 0;
 		
 		hurt_flag = false;
 		
+		
+		
+		if(has_dash && check_dash())
+		{
+			state = state_dash_load;
+			
+			current_dash_timer = 0;
+			current_dash_load_timer = 0
+		}
+		
 		using_elevator = false;
 		
 		check_interactables();
@@ -805,14 +823,6 @@ v_spd = 0;
 		else look_at = 1;
 		
 		
-		
-		if(has_dash && check_dash())
-		{
-			state = state_dash_load;
-			
-			current_dash_timer = 0;
-			current_dash_load_timer = 0
-		}
 	}
 	
 	//carregando dash
@@ -1265,7 +1275,7 @@ v_spd = 0;
 		timer_invincible = lerp( GAME_SPEED , GAME_SPEED * 2.5	, UPGRADES.energy_invencibility / 3	);
 		defensive_multipliyer	 = lerp( 1			, .5		, UPGRADES.energy_resistency	/ 30);
 		
-		life_steal_percent = (UPGRADES.energy_leech/4) * .15;
+		life_steal_percent = (UPGRADES.energy_leech/4) * .05;
 		
 		////Extras
 		

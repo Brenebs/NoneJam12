@@ -1,6 +1,6 @@
 
 //debugs e configurações do projeto
-#macro DEBUG_BUILD false
+#macro DEBUG_BUILD true
 #macro GAME_SPEED 60
 
 #macro GAME_NAME game_display_name
